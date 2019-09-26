@@ -5,7 +5,7 @@ using UnityEngine;
 public class Toggler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject target;
+    private GameObject target = null;
 
     public void Enable()
     {
