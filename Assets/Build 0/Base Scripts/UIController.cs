@@ -15,36 +15,13 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UISingleton.Instance.Setup(hearts, fullHeart, emptyHeart);
+        UISingleton.Instance.Player1Health = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (health > numHealth)
-        {
-            health = numHealth;
-        }
-        for (int i  = 0; i < hearts.Length; i++)
-        {
-            if (i< health)
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-
-            if (i < numHealth)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false; 
-            }
-        }
     }
 }
