@@ -7,7 +7,7 @@ public enum Action
     UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SPELL_CARD
 }
 
-public class InputMap : MonoBehaviour
+public class InputMap : Singleton<InputMap>
 {
     IDictionary<Action, KeyCode> act = new Dictionary<Action, KeyCode>();
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class InputMap : MonoBehaviour
     }
     void UpdateKeyCode(Action action, KeyCode key)
     {
-        act.Add(action, key);
+        act[action] = key;
     }
     bool GetInputUp(Action action)
     {
@@ -39,12 +39,5 @@ public class InputMap : MonoBehaviour
     bool GetInputDown(Action action)
     {
         return Input.GetKeyDown(act[action]);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
