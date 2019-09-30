@@ -4,8 +4,7 @@ using UnityEngine;
 
 public enum Action
 {
-    //PUT THIS SHIT IN ALL CAPS
-    Up, Down, Left, Right, Fire1, Fire2, Fire3, shinMalphur, spellCard
+    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SPELL_CARD
 }
 
 public class InputMap : MonoBehaviour
@@ -24,6 +23,7 @@ public class InputMap : MonoBehaviour
         act.Add(Action.LAST_WORD, KeyCode.A);
         act.Add(Action.SPELL_CARD, KeyCode.D);
     }
+
     bool GetInput(Action action)
     {
         return Input.GetKey(act[action]);
@@ -40,6 +40,7 @@ public class InputMap : MonoBehaviour
     {
         return Input.GetKeyDown(act[action]);
     }
+
 
     // Update is called once per frame
     void Update()
