@@ -14,12 +14,31 @@ public class InputMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        act.Add(Action.Up, KeyCode.W);
-        act.Add(Action.Down, KeyCode.S);
-        act.Add(Action.Left, KeyCode.A);
-        act.Add(Action.Right, KeyCode.D);
-        act.Add(Action.Fire1, KeyCode.)
-
+        act.Add(Action.UP, KeyCode.UpArrow);
+        act.Add(Action.DOWN, KeyCode.DownArrow);
+        act.Add(Action.LEFT, KeyCode.LeftArrow);
+        act.Add(Action.RIGHT, KeyCode.RightArrow);
+        act.Add(Action.PRIM, KeyCode.Z);
+        act.Add(Action.HEAVY, KeyCode.X);
+        act.Add(Action.INTRIN, KeyCode.C);
+        act.Add(Action.LAST_WORD, KeyCode.A);
+        act.Add(Action.SPELL_CARD, KeyCode.D);
+    }
+    bool GetInput(Action action)
+    {
+        return Input.GetKey(act[action]);
+    }
+    void UpdateKeyCode(Action action, KeyCode key)
+    {
+        act.Add(action, key);
+    }
+    bool GetInputUp(Action action)
+    {
+        return Input.GetKeyUp(act[action]);
+    }
+    bool GetInputDown(Action action)
+    {
+        return Input.GetKeyDown(act[action]);
     }
 
     // Update is called once per frame
