@@ -23,6 +23,7 @@ public class InputMap : MonoBehaviour
         act.Add(Action.LAST_WORD, KeyCode.A);
         act.Add(Action.SPELL_CARD, KeyCode.D);
     }
+
     bool GetInput(Action action)
     {
         return Input.GetKey(act[action]);
