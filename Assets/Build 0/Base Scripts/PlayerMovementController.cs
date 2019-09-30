@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-
-    public float speed = 1;
-    float diagFactor = Mathf.Sqrt((float) 0.5);
+    [SerializeField]
+    private float speed = 7;
+    [SerializeField]
+    private float sprintFactor = 1.5f;
+    
+    private Vector3 velocity;
     Rigidbody2D r;
 
     // Start is called before the first frame update
@@ -18,42 +21,21 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position += new Vector3(speed, speed, 0) * diagFactor;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.position += new Vector3(speed, -1 * speed, 0) * diagFactor;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position += new Vector3(-1 * speed, speed, 0) * diagFactor;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.position -= new Vector3(speed, speed, 0) * diagFactor;
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.position += new Vector3(speed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.position -= new Vector3(speed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                transform.position += new Vector3(0, speed, 0);
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                transform.position -= new Vector3(0, speed, 0);
-            }
-        }
+        velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        transform.position += velocity.normalized * Time.deltaTime * speed * isSprint();
+    }
 
+    private float isSprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return sprintFactor;
+        }
+        return 1;
+    }
+
+    private void runSprintCooldown()
+    {
 
     }
 
