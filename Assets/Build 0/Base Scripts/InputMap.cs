@@ -23,21 +23,21 @@ public class InputMap : MonoBehaviour
         act.Add(Action.LAST_WORD, KeyCode.A);
         act.Add(Action.SPELL_CARD, KeyCode.D);
     }
-    bool Input(Action action)
+    bool GetInput(Action action)
     {
-        return InputMap.GetKey(act[action]);
+        return Input.GetKey(act[action]);
     }
-    void Update(Action action, KeyCode key)
+    void UpdateKeyCode(Action action, KeyCode key)
     {
         act.Add(action, key);
     }
-    bool InputUp(Action action)
+    bool GetInputUp(Action action)
     {
-        return InputMap.GetKeyUp(act[action]);
+        return Input.GetKeyUp(act[action]);
     }
-    bool InputDown(Action action)
+    bool GetInputDown(Action action)
     {
-        return InputMap.GetKeyDown(act[action]);
+        return Input.GetKeyDown(act[action]);
     }
 
 
