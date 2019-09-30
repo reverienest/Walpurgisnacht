@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551f4ae0d2340b24a8c5ce5d34a4da7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSceneName: Alpha
+  mainSceneName: MainGame
 --- !u!1 &178153656
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +489,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
+        type: 3}
+      propertyPath: m_Text
+      value: Controls
+      objectReference: {fileID: 0}
     - target: {fileID: 5490976348367960542, guid: 7aa776f43ff911347ba91e30707696fd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -518,11 +523,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
-        type: 3}
-      propertyPath: m_Text
-      value: Controls
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa776f43ff911347ba91e30707696fd, type: 3}
@@ -811,6 +811,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
+        type: 3}
+      propertyPath: m_Text
+      value: Exit Game
+      objectReference: {fileID: 0}
     - target: {fileID: 5490976348367960542, guid: 7aa776f43ff911347ba91e30707696fd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -840,11 +845,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
-        type: 3}
-      propertyPath: m_Text
-      value: Exit Game
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa776f43ff911347ba91e30707696fd, type: 3}
@@ -1601,6 +1601,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
+        type: 3}
+      propertyPath: m_Text
+      value: Start Game
+      objectReference: {fileID: 0}
     - target: {fileID: 5490976348367960542, guid: 7aa776f43ff911347ba91e30707696fd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1630,11 +1635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4593673559131600300, guid: 7aa776f43ff911347ba91e30707696fd,
-        type: 3}
-      propertyPath: m_Text
-      value: Start Game
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa776f43ff911347ba91e30707696fd, type: 3}
