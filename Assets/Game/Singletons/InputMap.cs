@@ -11,7 +11,7 @@ public enum Action
 public class InputMap : Singleton<InputMap>
 {
     IDictionary<Action, KeyCode> act = new Dictionary<Action, KeyCode>();
-    // Start is called before the first frame update
+
     void Start()
     {
         act.Add(Action.UP, KeyCode.UpArrow);
@@ -29,16 +29,16 @@ public class InputMap : Singleton<InputMap>
     {
         return Input.GetKey(act[action]);
     }
-    void UpdateKeyCode(Action action, KeyCode key)
-    {
-        act[action] = key;
-    }
-    bool GetInputUp(Action action)
+    public bool GetInputUp(Action action)
     {
         return Input.GetKeyUp(act[action]);
     }
-    bool GetInputDown(Action action)
+    public bool GetInputDown(Action action)
     {
         return Input.GetKeyDown(act[action]);
+    }
+    public void UpdateKeyCode(Action action, KeyCode key)
+    {
+        act[action] = key;
     }
 }
