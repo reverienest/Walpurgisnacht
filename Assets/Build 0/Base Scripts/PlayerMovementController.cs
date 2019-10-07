@@ -10,33 +10,37 @@ public class PlayerMovementController : MonoBehaviour
     private float sprintFactor = 1.5f;
     
     private Vector3 velocity;
-    Rigidbody2D r;
 
     // Start is called before the first frame update
     void Start()
     {
-        r = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        transform.position += velocity.normalized * Time.deltaTime * speed * isSprint();
-    }
-
-    private float isSprint()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
+        int horizontalMovement = 0;
+        if (InputMap.Instance.GetInput(Action.RIGHT))
         {
-            return sprintFactor;
+            horizontalMovement++;
         }
-        return 1;
+        if (InputMap.Instance.GetInput(Action.LEFT))
+        {
+            horizontalMovement--;
+        }
+        int verticalMovement = 0;
+        if (InputMap.Instance.GetInput(Action.UP))
+        {
+            verticalMovement++;
+        }
+        if (InputMap.Instance.GetInput(Action.DOWN))
+        {
+            verticalMovement--;
+        }
+
+        velocity = new Vector3(horizontalMovement, verticalMovement, 0);
+        transform.position += velocity.normalized * Time.deltaTime * speed;
     }
 
-    private void runSprintCooldown()
-    {
-
-    }
 
 }

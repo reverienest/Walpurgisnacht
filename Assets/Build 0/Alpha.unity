@@ -697,18 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08ff427d1784af47a626c9d51f42cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  numHealth: 5
-  hearts:
-  - {fileID: 559464708}
-  - {fileID: 21972449}
-  - {fileID: 288226881}
-  - {fileID: 216390807}
-  - {fileID: 853026425}
-  fullHeart: {fileID: -2135320078533545131, guid: ef3c1dae748197c4e9702b99938e39a9,
-    type: 3}
-  emptyHeart: {fileID: -9192638271177797499, guid: 0fbf1101f9eba60468652de4ea62e74a,
-    type: 3}
 --- !u!114 &925361935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,12 +704,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925361930}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7badc58b33bc147c8be5b2fef1bc9f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  sprintFactor: 1.5
 --- !u!50 &925361936
 Rigidbody2D:
   serializedVersion: 4
