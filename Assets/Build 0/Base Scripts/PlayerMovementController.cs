@@ -6,17 +6,9 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField]
     private float speed = 7;
-    [SerializeField]
-    private float sprintFactor = 1.5f;
     
     private Vector3 velocity;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         int horizontalMovement = 0;
