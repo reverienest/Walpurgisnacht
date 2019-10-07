@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class InputMap : Singleton<InputMap>
         act.Add(Action.SPELL_CARD, KeyCode.D);
     }
 
-    bool GetInput(Action action)
+    public bool GetInput(Action action)
     {
         return Input.GetKey(act[action]);
     }
