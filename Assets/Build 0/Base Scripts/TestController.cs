@@ -12,9 +12,9 @@ public class TestController : MonoBehaviour
     public GameObject shotPrefab;
     private bool isCircle = false;
     private int coolDown = 30;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class TestController : MonoBehaviour
 
     private void CircleCast()
     {
-       if (isCircle = false)
+       if (isCircle == false)
        {
             if (Input.GetButtonDown("CirclePlace"))
             {
