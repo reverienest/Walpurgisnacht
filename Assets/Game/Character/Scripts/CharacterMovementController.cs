@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CharacterMovementController : MonoBehaviour
 {
+    /// <summary>
+    /// This is zero indexed
+    /// </summary>
+    public int playerNumber;
+
     [SerializeField]
     private float speed = 7;
 
@@ -12,20 +17,20 @@ public class CharacterMovementController : MonoBehaviour
     void Update()
     {
         int horizontalMovement = 0;
-        if (InputMap.Instance.GetInput(Action.RIGHT))
+        if (InputMap.Instance.GetInput(playerNumber, Action.RIGHT))
         {
             horizontalMovement++;
         }
-        if (InputMap.Instance.GetInput(Action.LEFT))
+        if (InputMap.Instance.GetInput(playerNumber, Action.LEFT))
         {
             horizontalMovement--;
         }
         int verticalMovement = 0;
-        if (InputMap.Instance.GetInput(Action.UP))
+        if (InputMap.Instance.GetInput(playerNumber, Action.UP))
         {
             verticalMovement++;
         }
-        if (InputMap.Instance.GetInput(Action.DOWN))
+        if (InputMap.Instance.GetInput(playerNumber, Action.DOWN))
         {
             verticalMovement--;
         }
