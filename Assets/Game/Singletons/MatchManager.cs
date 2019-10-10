@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MatchManager : Singleton<MatchManager>
 {
@@ -21,7 +22,15 @@ public class MatchManager : Singleton<MatchManager>
     [SerializeField]
     private int winsNeeded = 3;
 
-    private int[] playerWins = new int[2];
+    [SerializeField]
+    private Text[] playerScoreTexts = null;
+
+    private int[] _playerScores = new int[2];
+    private void SetPlayerScore(int playerNumber, int value)
+    {
+        _playerScores[playerNumber] = value;
+        playerScoreTexts[playerNumber].text = _playerScores[playerNumber].ToString();
+    }
 
     private GameObject player1;
     private GameObject player2;
@@ -63,11 +72,14 @@ public class MatchManager : Singleton<MatchManager>
     private void OnPlayerDeath(int playerNumber)
     {
         int alivePlayer = playerNumber == 0 ? 1 : 0;
+        SetPlayerScore(alivePlayer, _playerScores[alivePlayer] + 1);
 
-        ++playerWins[alivePlayer];
-        if (playerWins[alivePlayer] == winsNeeded) {
-            //Go to the victory screen
-        } else {
+        if (_playerScores[alivePlayer] == winsNeeded)
+        {
+            //TODO: Go to the victory screen (once we have it)
+        }
+        else
+        {
             ResetArena();
         }
     }
