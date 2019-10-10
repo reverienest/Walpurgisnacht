@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour
+public class CharacterMovementController : MonoBehaviour
 {
     [SerializeField]
     private float speed = 7;
-    
+
     private Vector3 velocity;
 
     void Update()
