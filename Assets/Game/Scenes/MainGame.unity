@@ -171,8 +171,7 @@ MonoBehaviour:
   - {fileID: 6313812592357874236, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
   - {fileID: 4965133680744376420, guid: 2c799703f2ea1c743a9ddc062b4844d6, type: 3}
   winsNeeded: 3
-  player1ScoreText: {fileID: 1746606764}
-  player2ScoreText: {fileID: 932074986}
+  playerScoreTexts: []
 --- !u!1 &65978444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1423610545971750278, guid: 04ae7b294c1609e428e326be7230e407,
@@ -717,9 +716,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1420824250}
   - {fileID: 1500599305}
   - {fileID: 1521505920}
-  - {fileID: 1420824250}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -765,7 +764,7 @@ RectTransform:
   - {fileID: 631996095}
   - {fileID: 1500799755}
   m_Father: {fileID: 1040174036}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -780,6 +779,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420824249}
   m_CullTransparentMesh: 0
+--- !u!1 &1439068192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439068193}
+  - component: {fileID: 1439068194}
+  m_Layer: 0
+  m_Name: MagicCircleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439068193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439068192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2999312, y: -0.014686536, z: 2.7890625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1677314617}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439068194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439068192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed650ef882478b343bf18e3affc94764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMP: 25
+  chargeTime: 10
+  magicCircleSpritePrefab: {fileID: 5770527097584088275, guid: 9579f4ec4af02f84bbf1f31febae11b1,
+    type: 3}
 --- !u!1 &1469867367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1423610546847465645, guid: 04ae7b294c1609e428e326be7230e407,
@@ -968,7 +1014,7 @@ PrefabInstance:
     - target: {fileID: 1423610546619085251, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1423610546619085251, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
@@ -1172,6 +1218,7 @@ Transform:
   m_Children:
   - {fileID: 9277521}
   - {fileID: 89353969}
+  - {fileID: 1439068193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1338,7 +1385,7 @@ PrefabInstance:
     - target: {fileID: 1423610546619085251, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1423610546619085251, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
