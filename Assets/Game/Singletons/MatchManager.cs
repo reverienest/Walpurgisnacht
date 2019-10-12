@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class MatchManager : Singleton<MatchManager>
 {
     [SerializeField]
-    private CharacterType player1CharacterType = default;
-    [SerializeField]
-    private CharacterType player2CharacterType = default;
+    private CharacterType[] playerCharacterTypes = new CharacterType[2];
 
     [SerializeField]
     private Transform player1SpawnPoint = null;
@@ -18,12 +16,16 @@ public class MatchManager : Singleton<MatchManager>
 
     [SerializeField]
     private GameObject[] characterPrefabs = null;
+    [SerializeField]
+    private Sprite[] characterHeadshots = null;
 
     [SerializeField]
     private int winsNeeded = 3;
 
     [SerializeField]
     private Text[] playerScoreTexts = null;
+    [SerializeField]
+    private Image[] playerCharacterImages = null;
 
     private int[] _playerScores = new int[2];
     private void SetPlayerScore(int playerNumber, int value)
@@ -37,6 +39,10 @@ public class MatchManager : Singleton<MatchManager>
 
     void Start()
     {
+        //Setup player character UI images
+        for (int i = 0; i < playerCharacterImages.Length; ++i)
+            playerCharacterImages[i].sprite = characterHeadshots[(int)playerCharacterTypes[i]];
+
         PlayerStatsManager.Instance.OnDeathAction += new PlayerStatsManager.DeathAction(OnPlayerDeath);
         ResetArena();
     }
@@ -54,11 +60,11 @@ public class MatchManager : Singleton<MatchManager>
 
         //Spawn new players
         player1 = Instantiate(
-            characterPrefabs[(int)player1CharacterType],
+            characterPrefabs[(int)playerCharacterTypes[0]],
             player1SpawnPoint.position,
             Quaternion.identity);
         player2 = Instantiate(
-            characterPrefabs[(int)player2CharacterType],
+            characterPrefabs[(int)playerCharacterTypes[1]],
             player2SpawnPoint.position,
             Quaternion.identity);
 
