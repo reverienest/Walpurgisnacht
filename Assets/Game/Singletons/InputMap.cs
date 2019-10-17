@@ -1,43 +1,55 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum Action
 {
-    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SPELL_CARD
+    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD
 }
 
 public class InputMap : Singleton<InputMap>
 {
-    IDictionary<Action, KeyCode> act = new Dictionary<Action, KeyCode>();
-    // Start is called before the first frame update
-    void Start()
+    IDictionary<Action, KeyCode>[] actionMaps = {
+        new Dictionary<Action, KeyCode>(), //Player 1
+        new Dictionary<Action, KeyCode>(), //Player 2
+    };
+
+    void Awake()
     {
-        act.Add(Action.UP, KeyCode.UpArrow);
-        act.Add(Action.DOWN, KeyCode.DownArrow);
-        act.Add(Action.LEFT, KeyCode.LeftArrow);
-        act.Add(Action.RIGHT, KeyCode.RightArrow);
-        act.Add(Action.PRIM, KeyCode.Z);
-        act.Add(Action.HEAVY, KeyCode.X);
-        act.Add(Action.INTRIN, KeyCode.C);
-        act.Add(Action.LAST_WORD, KeyCode.A);
-        act.Add(Action.SPELL_CARD, KeyCode.D);
+        actionMaps[0].Add(Action.UP, KeyCode.UpArrow);
+        actionMaps[0].Add(Action.DOWN, KeyCode.DownArrow);
+        actionMaps[0].Add(Action.LEFT, KeyCode.LeftArrow);
+        actionMaps[0].Add(Action.RIGHT, KeyCode.RightArrow);
+        actionMaps[0].Add(Action.PRIM, KeyCode.Z);
+        actionMaps[0].Add(Action.HEAVY, KeyCode.X);
+        actionMaps[0].Add(Action.INTRIN, KeyCode.C);
+        actionMaps[0].Add(Action.LAST_WORD, KeyCode.A);
+
+        actionMaps[1].Add(Action.UP, KeyCode.I);
+        actionMaps[1].Add(Action.DOWN, KeyCode.K);
+        actionMaps[1].Add(Action.LEFT, KeyCode.J);
+        actionMaps[1].Add(Action.RIGHT, KeyCode.L);
+        actionMaps[1].Add(Action.PRIM, KeyCode.E);
+        actionMaps[1].Add(Action.HEAVY, KeyCode.R);
+        actionMaps[1].Add(Action.INTRIN, KeyCode.T);
+        actionMaps[1].Add(Action.LAST_WORD, KeyCode.Alpha3);
     }
 
-    bool GetInput(Action action)
+    public bool GetInput(int playerNumber, Action action)
     {
-        return Input.GetKey(act[action]);
+        return Input.GetKey(actionMaps[playerNumber][action]);
     }
-    void UpdateKeyCode(Action action, KeyCode key)
+    public bool GetInputUp(int playerNumber, Action action)
     {
-        act[action] = key;
+        return Input.GetKeyUp(actionMaps[playerNumber][action]);
     }
-    bool GetInputUp(Action action)
+    public bool GetInputDown(int playerNumber, Action action)
     {
-        return Input.GetKeyUp(act[action]);
+        return Input.GetKeyDown(actionMaps[playerNumber][action]);
     }
-    bool GetInputDown(Action action)
+    public void UpdateKeyCode(int playerNumber, Action action, KeyCode key)
     {
-        return Input.GetKeyDown(act[action]);
+        actionMaps[playerNumber][action] = key;
     }
 }
