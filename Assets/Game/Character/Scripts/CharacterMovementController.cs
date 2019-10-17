@@ -11,6 +11,7 @@ public class CharacterMovementController : MonoBehaviour
 
     [SerializeField]
     private float speed = 7;
+    [SerializeField]
     private float slowSpeed = 3;
 
     private Vector3 velocity;
