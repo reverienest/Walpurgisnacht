@@ -36,7 +36,16 @@ public class CharacterMovementController : MonoBehaviour
         }
 
         velocity = new Vector3(horizontalMovement, verticalMovement, 0);
-        transform.position += velocity.normalized * Time.deltaTime * speed;
+        if (InputMap.Instance.GetInput(playerNumber, Action.SLOW))
+        {
+            speed = 3;
+            transform.position += velocity.normalized * Time.deltaTime * speed;
+        }
+        else
+        {
+            speed = 7;
+            transform.position += velocity.normalized * Time.deltaTime * speed;
+        }
     }
 
 
