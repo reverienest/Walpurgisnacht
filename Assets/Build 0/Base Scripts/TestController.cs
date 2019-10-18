@@ -56,7 +56,7 @@ public class TestController : MonoBehaviour
     }
 
     private void CircleCast()
-    {1`
+    {
        if (isCircle = false)
        {
             if (Input.GetButtonDown("CirclePlace"))
