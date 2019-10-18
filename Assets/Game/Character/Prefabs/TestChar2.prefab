@@ -110,6 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   speed: 4
+  slowSpeed: 3
+  circlePrefab: {fileID: 6013667188481603560, guid: fa17cfada7ddba24a940e62442e65e67,
+    type: 3}
 --- !u!1001 &4965133681020926246
 PrefabInstance:
   m_ObjectHideFlags: 0

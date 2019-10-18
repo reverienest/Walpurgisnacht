@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum Action
 {
-    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SLOW
+    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SLOW, CAST_CIRCLE
 }
 
 public class InputMap : Singleton<InputMap>
@@ -26,6 +26,7 @@ public class InputMap : Singleton<InputMap>
         actionMaps[0].Add(Action.INTRIN, KeyCode.C);
         actionMaps[0].Add(Action.LAST_WORD, KeyCode.A);
         actionMaps[0].Add(Action.SLOW, KeyCode.LeftShift);
+        actionMaps[0].Add(Action.CAST_CIRCLE, KeyCode.LeftControl);
 
         actionMaps[1].Add(Action.UP, KeyCode.I);
         actionMaps[1].Add(Action.DOWN, KeyCode.K);
@@ -36,6 +37,7 @@ public class InputMap : Singleton<InputMap>
         actionMaps[1].Add(Action.INTRIN, KeyCode.T);
         actionMaps[1].Add(Action.LAST_WORD, KeyCode.Alpha3);
         actionMaps[1].Add(Action.SLOW, KeyCode.RightShift);
+        actionMaps[1].Add(Action.CAST_CIRCLE, KeyCode.RightControl);
     }
 
     public bool GetInput(int playerNumber, Action action)

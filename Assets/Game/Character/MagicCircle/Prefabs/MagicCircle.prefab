@@ -94,5 +94,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  startingMP: 25
-  chargeTime: 30
+  circleChargeTime: 25
