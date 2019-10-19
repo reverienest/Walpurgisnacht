@@ -13,7 +13,7 @@ public class MagicCircle : MonoBehaviour
     private int circleChargeTime = 0;
 
     [SerializeField]
-    private int StartingMP = 0;
+    private int startingMP = 0;
 
     private float timeModifier;
     private float lastUpdate = -1; 	
