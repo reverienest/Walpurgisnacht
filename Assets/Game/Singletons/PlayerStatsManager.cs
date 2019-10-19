@@ -13,14 +13,10 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     private int maxHealth = 0;
     [SerializeField]
     private int maxWards = 0;
-
     [SerializeField]
     private int maxMP = 0;
-    [SerializeField]
-    private int startingMP = 0;
 
     public int MaxMP { get { return maxMP; } }
-    public int StartingMP { get { return startingMP; } }
 
     [SerializeField]
     private GameObject[] player1HeartIcons = null;

@@ -12,13 +12,16 @@ public class MagicCircle : MonoBehaviour
     [SerializeField]
     private int circleChargeTime = 0;
 
+    [SerializeField]
+    private int StartingMP = 0;
+
     private float timeModifier;
     private float lastUpdate = -1; 	
 
     // Start is called before the first frame update
     void Start()
     {
-        timeModifier =  ((float)circleChargeTime) / (PlayerStatsManager.Instance.MaxMP - PlayerStatsManager.Instance.StartingMP);
+        timeModifier =  ((float)circleChargeTime) / (PlayerStatsManager.Instance.MaxMP - StartingMP);
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class MagicCircle : MonoBehaviour
     {	
         this.playerNumber = playerNumber;
         lastUpdate = Time.time;
-        SetGuage(PlayerStatsManager.Instance.StartingMP);
+        SetGuage(StartingMP);
     }
 
     private void SetGuage(int percentage)

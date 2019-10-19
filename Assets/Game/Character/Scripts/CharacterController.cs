@@ -58,7 +58,7 @@ public class CharacterController : MonoBehaviour
             float height = this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
             Vector2 circleSpawnLocation = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - (height / 2));
             magicCircle = Instantiate(circlePrefab, circleSpawnLocation, Quaternion.identity);
-            magicCircle.GetComponent<MagicCircle>().SpawnCircle(0);
+            magicCircle.GetComponent<MagicCircle>().SpawnCircle(playerNumber);
         }
     }
 
