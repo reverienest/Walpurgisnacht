@@ -21,7 +21,7 @@ public class MagicCircle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeModifier =  ((float)circleChargeTime) / (PlayerStatsManager.Instance.MaxMP - StartingMP);
+        timeModifier =  ((float)circleChargeTime) / (PlayerStatsManager.Instance.MaxMP - startingMP);
     }
 
     // Update is called once per frame
