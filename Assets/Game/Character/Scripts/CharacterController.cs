@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovementController : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     /// <summary>
     /// This is zero indexed
@@ -13,6 +13,11 @@ public class CharacterMovementController : MonoBehaviour
     private float speed = 7;
     [SerializeField]
     private float slowSpeed = 3;
+
+    [SerializeField]
+    private GameObject circlePrefab = null;
+
+    private GameObject magicCircle;
 
     private Vector3 velocity;
 
@@ -45,6 +50,15 @@ public class CharacterMovementController : MonoBehaviour
         else
         {
             transform.position += velocity.normalized * Time.deltaTime * speed;
+        }
+
+
+        if (InputMap.Instance.GetInput(playerNumber, Action.CAST_CIRCLE) && null == magicCircle)
+        {
+            float height = this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
+            Vector2 circleSpawnLocation = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - (height / 2));
+            magicCircle = Instantiate(circlePrefab, circleSpawnLocation, Quaternion.identity);
+            magicCircle.GetComponent<MagicCircle>().SpawnCircle(playerNumber);
         }
     }
 

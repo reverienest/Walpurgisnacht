@@ -16,6 +16,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     [SerializeField]
     private int maxMP = 0;
 
+    public int MaxMP { get { return maxMP; } }
+
     [SerializeField]
     private GameObject[] player1HeartIcons = null;
     [SerializeField]
