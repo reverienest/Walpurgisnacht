@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MagicCircle : MonoBehaviour
 {
-    /// <summary>   
-    /// This is zero indexed   
-    /// </summary>     
+    /// <summary>
+    /// This is zero indexed
+    /// </summary>
     public int playerNumber;
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class MagicCircle : MonoBehaviour
     private int startingMP = 0;
 
     private float timeModifier;
-    private float lastUpdate = -1; 	
+    private float lastUpdate = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -27,21 +27,21 @@ public class MagicCircle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lastUpdate != -1) // make sure SpawnCircle called	
-        {	
+        if (lastUpdate != -1) // make sure SpawnCircle called
+        {
             if (Time.time - lastUpdate >= timeModifier)
             {
                 lastUpdate = Time.time;
                 IncrementGuage();
             }
-        }	
+        }
     }
 
-    public void SpawnCircle(int playerNumber)	
-    {	
+    public void SpawnCircle(int playerNumber)
+    {
         this.playerNumber = playerNumber;
         lastUpdate = Time.time;
-        SetGuage(StartingMP);
+        SetGuage(startingMP);
     }
 
     private void SetGuage(int percentage)
