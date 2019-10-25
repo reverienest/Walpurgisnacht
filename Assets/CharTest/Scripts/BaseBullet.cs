@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseBullet : MonoBehaviour
+public abstract class BaseBullet
 {
     public abstract void IntrinsicMutate();
 }

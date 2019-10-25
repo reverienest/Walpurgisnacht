@@ -15,16 +15,20 @@ private float primarySpeed;         //Speed of projectiles in primary spell
 private int heavyProjectiles;
 
 [SerializeField]
-private float startAngle = 120f, endAngle = 240f;
 public GameObject primaryPrefab;   //Primary shot sprite
 
 private Vector2 startShot;
-private const float radius = 1F;
+
+private Vector2 startHeavyShot;
+
+private Vector2 TarDir;
+
+private CharacterTargeting CharTar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CharTar = GetComponent<CharacterTargeting>();
     }
 
     // Update is called once per frame
@@ -35,19 +39,28 @@ private const float radius = 1F;
             startShot = transform.position;
             StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves));
         }
-
+        
+        if (Input.GetButtonDown("HeavyFire"))
+        {
+            startShot = transform.position;   
+            StartCoroutine(SeleneHeavy(heavyProjectiles));
+        }
+        TarDir = CharTar.TargetDirection();
     }   
 
     IEnumerator SelenePrimary(int _primaryProjectiles, int _primaryWaves)
     {
-        float angleStep = 120f / primaryProjectiles;
+        float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
         float angle = 0f;
-        //for (int i = primaryWaves; i > 0; i--)
-       // {
-            for (int k = 0; k < primaryProjectiles; k++)
+
+        Debug.Log("Angle = " + baseAngle);
+        for (int i = primaryWaves; i > 0; i--)
+       {
+            for (int k = 0; k < primaryProjectiles + 1; k++)
             {
-                float shotDirXPos = startShot.x + Mathf.Sin((angle * Mathf.PI) / 120f) * radius;
-                float shotDirYPos = startShot.y + Mathf.Cos((angle * Mathf.PI) / 120f) * radius;
+                float angleStep = ((baseAngle + 30) - (baseAngle - 30)) / primaryProjectiles;
+                float shotDirXPos = startShot.x + Mathf.Sin((angle * Mathf.PI) - 60f);
+                float shotDirYPos = startShot.y + Mathf.Cos((angle * Mathf.PI) - 60f);
 
                 Vector2 shotVector = new Vector2(shotDirXPos, shotDirYPos);
                 Vector2 shotDirection = (shotVector - startShot).normalized * primarySpeed;
@@ -58,13 +71,39 @@ private const float radius = 1F;
 
             }
 
-           // primaryProjectiles = primaryProjectiles - 1; 
-           yield return new WaitForSeconds(10f);
-        //}
+            yield return new WaitForSeconds(.4f);
+            primaryProjectiles = primaryProjectiles - 1; 
+
+        }
     }
 
-    private void SeleneHeavy(int _heavyProjectiles)
+    IEnumerator SeleneHeavy(int _heavyProjectiles)
     {
-        //bullet that continues down a path and explodes
+        float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
+        float angle = 0f;
+        float shotDirXPos = startShot.x + Mathf.Sin(baseAngle * Mathf.PI);
+        float shotDirYPos = startShot.y + Mathf.Cos(baseAngle * Mathf.PI);
+
+         Vector2 shotVector = new Vector2(shotDirXPos, shotDirYPos);
+                Vector2 shotDirection = (shotVector - startShot).normalized * primarySpeed;
+                GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
+                tempObj.GetComponent<Rigidbody2D>().velocity = new Vector2(shotDirection.x, shotDirection.y);
+
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < heavyProjectiles + 1; i++)
+            {
+                float angleStep = 360f / heavyProjectiles;
+                float shotDirXPosSub = startHeavyShot.x + Mathf.Sin((angle * Mathf.PI) - 180f);
+                float shotDirYPosSub = startHeavyShot.y + Mathf.Cos((angle * Mathf.PI) - 180f);
+
+                Vector2 shotVectorSub = new Vector2(shotDirXPosSub, shotDirYPosSub);
+                Vector2 shotDirectionSub = (shotVectorSub - startHeavyShot).normalized * primarySpeed;
+
+                GameObject tempObjSub = Instantiate(primaryPrefab, startHeavyShot, Quaternion.identity);
+                tempObjSub.GetComponent<Rigidbody2D>().velocity = new Vector2(shotDirectionSub.x, shotDirectionSub.y);
+                angle += angleStep;
+
+            }
     }
 }
