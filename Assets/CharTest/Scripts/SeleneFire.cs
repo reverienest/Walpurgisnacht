@@ -50,30 +50,28 @@ private CharacterTargeting CharTar;
 
     IEnumerator SelenePrimary(int _primaryProjectiles, int _primaryWaves)
     {
+        int tempProjectiles = primaryProjectiles;
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
-        float angle = 0f;
 
         Debug.Log("Angle = " + baseAngle);
         for (int i = primaryWaves; i > 0; i--)
        {
-            for (int k = 0; k < primaryProjectiles + 1; k++)
+            float angle = baseAngle - (60f/2);
+            for (int k = 0; k < tempProjectiles; k++)
             {
-                float angleStep = ((baseAngle + 30) - (baseAngle - 30)) / primaryProjectiles;
-                float shotDirXPos = startShot.x + Mathf.Sin((angle * Mathf.PI) - 60f);
-                float shotDirYPos = startShot.y + Mathf.Cos((angle * Mathf.PI) - 60f);
+                //float angleStep = (baseAngle - 60f / 2) / primaryProjectiles;
+                float shotDirXPos = Mathf.Cos(angle * Mathf.Deg2Rad);
+                float shotDirYPos = Mathf.Sin(angle * Mathf.Deg2Rad);
 
-                Vector2 shotVector = new Vector2(shotDirXPos, shotDirYPos);
-                Vector2 shotDirection = (shotVector - startShot).normalized * primarySpeed;
+                Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * primarySpeed;
 
-                GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
-                tempObj.GetComponent<Rigidbody2D>().velocity = new Vector2(shotDirection.x, shotDirection.y);
-                angle += angleStep;
+                GameObject tempObj = Instantiate(primaryPrefab, transform.position, Quaternion.identity);
+                tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
+                angle += 60f / (tempProjectiles + 1);
 
             }
-
             yield return new WaitForSeconds(.4f);
-            primaryProjectiles = primaryProjectiles - 1; 
-
+            tempProjectiles = tempProjectiles - 1; 
         }
     }
 
@@ -81,27 +79,25 @@ private CharacterTargeting CharTar;
     {
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
         float angle = 0f;
-        float shotDirXPos = startShot.x + Mathf.Sin(baseAngle * Mathf.PI);
-        float shotDirYPos = startShot.y + Mathf.Cos(baseAngle * Mathf.PI);
+        float shotDirXPos = startShot.x + Mathf.Cos(baseAngle * Mathf.PI);
+        float shotDirYPos = startShot.y + Mathf.Sin(baseAngle * Mathf.PI);
 
-         Vector2 shotVector = new Vector2(shotDirXPos, shotDirYPos);
-                Vector2 shotDirection = (shotVector - startShot).normalized * primarySpeed;
+                Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * primarySpeed;
                 GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
-                tempObj.GetComponent<Rigidbody2D>().velocity = new Vector2(shotDirection.x, shotDirection.y);
+                tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
 
         yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < heavyProjectiles + 1; i++)
             {
                 float angleStep = 360f / heavyProjectiles;
-                float shotDirXPosSub = startHeavyShot.x + Mathf.Sin((angle * Mathf.PI) - 180f);
-                float shotDirYPosSub = startHeavyShot.y + Mathf.Cos((angle * Mathf.PI) - 180f);
+                float shotDirXPosSub = startHeavyShot.x + Mathf.Cos((angle * Mathf.PI) - 180f);
+                float shotDirYPosSub = startHeavyShot.y + Mathf.Sin((angle * Mathf.PI) - 180f);
 
-                Vector2 shotVectorSub = new Vector2(shotDirXPosSub, shotDirYPosSub);
-                Vector2 shotDirectionSub = (shotVectorSub - startHeavyShot).normalized * primarySpeed;
+                Vector2 shotDirectionSub = new Vector2(shotDirXPosSub, shotDirYPosSub) * primarySpeed;
 
                 GameObject tempObjSub = Instantiate(primaryPrefab, startHeavyShot, Quaternion.identity);
-                tempObjSub.GetComponent<Rigidbody2D>().velocity = new Vector2(shotDirectionSub.x, shotDirectionSub.y);
+                tempObjSub.GetComponent<Rigidbody2D>().velocity = shotDirectionSub;
                 angle += angleStep;
 
             }
