@@ -19,41 +19,16 @@ public class CharacterController : MonoBehaviour
 
     private GameObject magicCircle;
 
-    private Vector3 velocity;
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        int horizontalMovement = 0;
-        if (InputMap.Instance.GetInput(playerNumber, Action.RIGHT))
-        {
-            horizontalMovement++;
-        }
-        if (InputMap.Instance.GetInput(playerNumber, Action.LEFT))
-        {
-            horizontalMovement--;
-        }
-        int verticalMovement = 0;
-        if (InputMap.Instance.GetInput(playerNumber, Action.UP))
-        {
-            verticalMovement++;
-        }
-        if (InputMap.Instance.GetInput(playerNumber, Action.DOWN))
-        {
-            verticalMovement--;
-        }
-
-        velocity = new Vector3(horizontalMovement, verticalMovement, 0);
-        if (InputMap.Instance.GetInput(playerNumber, Action.SLOW))
-        {
-            transform.position += velocity.normalized * Time.deltaTime * slowSpeed;
-        }
-        else
-        {
-            transform.position += velocity.normalized * Time.deltaTime * speed;
-        }
-
-
-        if (InputMap.Instance.GetInput(playerNumber, Action.CAST_CIRCLE) && null == magicCircle)
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.CAST_CIRCLE) && null == magicCircle)
         {
             float height = this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
             Vector2 circleSpawnLocation = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - (height / 2));
@@ -62,5 +37,35 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        int horizontalMovement = 0;
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.RIGHT))
+        {
+            horizontalMovement++;
+        }
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.LEFT))
+        {
+            horizontalMovement--;
+        }
+        int verticalMovement = 0;
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.UP))
+        {
+            verticalMovement++;
+        }
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.DOWN))
+        {
+            verticalMovement--;
+        }
 
+        rb.velocity = new Vector2(horizontalMovement, verticalMovement);
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
+        {
+            transform.position += (Vector3)rb.velocity.normalized * Time.deltaTime * slowSpeed;
+        }
+        else
+        {
+            transform.position += (Vector3)rb.velocity.normalized * Time.deltaTime * speed;
+        }
+    }
 }
