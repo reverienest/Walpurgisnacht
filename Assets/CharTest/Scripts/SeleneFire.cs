@@ -11,6 +11,8 @@ private int primaryProjectiles;     //Number of projectiles in first wave of pri
 private int primaryWaves;            //Number of waves in primary spell
 [SerializeField]
 private float primarySpeed;         //Speed of projectiles in primary spell
+[SerializeField]
+private int heavyProjectiles;
 
 [SerializeField]
 private float startAngle = 120f, endAngle = 240f;
@@ -31,12 +33,12 @@ private const float radius = 1F;
         if (Input.GetButtonDown("LightFire"))
         {
             startShot = transform.position;
-            SelenePrimary(primaryProjectiles, primaryWaves);
+            StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves));
         }
 
     }   
 
-    private void SelenePrimary(int _primaryProjectiles, int _primaryWaves)
+    IEnumerator SelenePrimary(int _primaryProjectiles, int _primaryWaves)
     {
         float angleStep = 120f / primaryProjectiles;
         float angle = 0f;
@@ -57,6 +59,12 @@ private const float radius = 1F;
             }
 
            // primaryProjectiles = primaryProjectiles - 1; 
+           yield return new WaitForSeconds(10f);
         //}
+    }
+
+    private void SeleneHeavy(int _heavyProjectiles)
+    {
+        //bullet that continues down a path and explodes
     }
 }
