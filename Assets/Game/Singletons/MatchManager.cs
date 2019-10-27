@@ -8,6 +8,10 @@ public class MatchManager : Singleton<MatchManager>
 {
     [SerializeField]
     private CharacterType[] playerCharacterTypes = new CharacterType[2];
+    public CharacterType GetPlayerCharacterType(int playerNumber)
+    {
+        return playerCharacterTypes[playerNumber];
+    }
 
     [SerializeField]
     private Transform player1SpawnPoint = null;
@@ -73,6 +77,8 @@ public class MatchManager : Singleton<MatchManager>
         player1.GetComponent<CharacterController>().playerNumber = 0;
         player2.GetComponent<CharacterTargeting>().target = player1.transform;
         player2.GetComponent<CharacterController>().playerNumber = 1;
+
+        InputMap.Instance.inputEnabled = true;
     }
 
     private void OnPlayerDeath(int playerNumber)
@@ -86,6 +92,7 @@ public class MatchManager : Singleton<MatchManager>
         }
         else
         {
+            //TODO: Start some transition animation
             ResetArena();
         }
     }

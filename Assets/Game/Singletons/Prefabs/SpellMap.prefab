@@ -44,7 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldowns:
-  - 1
-  - 3
-  - 5
-  - 5
+  - cooldowns:
+    - 0
+    - 0
+    - 0
+    - 0
+  - cooldowns:
+    - 0
+    - 0
+    - 0
+    - 0
