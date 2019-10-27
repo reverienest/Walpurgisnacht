@@ -45,12 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldowns:
   - cooldowns:
-    - 0
-    - 0
-    - 0
-    - 0
+    - 3
+    - 3
+    - 3
+    - 3
   - cooldowns:
-    - 0
-    - 0
-    - 0
-    - 0
+    - 3
+    - 3
+    - 3
+    - 3
+  player1SpellIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player2SpellIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
