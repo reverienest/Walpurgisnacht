@@ -22,10 +22,10 @@ public class SpellMap : Singleton<SpellMap>
 
 
     [SerializeField]
-    private Slider[] player1SpellIcons = null;
+    private Slider[] player1CooldownSliders = null;
 
     [SerializeField]
-    private Slider[] player2SpellIcons = null;
+    private Slider[] player2CooldownSliders = null;
 
     private float[][] cooldownTimers = new float[2][];
 
@@ -59,7 +59,7 @@ public class SpellMap : Singleton<SpellMap>
         SetCooldown(GetInitialCooldown(playerNumber, spellType), playerNumber, spellType);
     }
 
-    private void DecrementCooldown(float deltaTime, int playerNumber, SpellType spellType)
+    private void DecreaseCooldown(float deltaTime, int playerNumber, SpellType spellType)
     {
         SetCooldown(Math.Max(0.0f, cooldownTimers[playerNumber][(int)spellType] - deltaTime), playerNumber, spellType);
     }
