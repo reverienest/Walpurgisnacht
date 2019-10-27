@@ -74,9 +74,9 @@ public class MatchManager : Singleton<MatchManager>
 
         //Setup parameters for their tracking and controls
         player1.GetComponent<CharacterTargeting>().target = player2.transform;
-        player1.GetComponent<CharacterController>().playerNumber = 0;
+        player1.GetComponent<SharedCharacterController>().playerNumber = 0;
         player2.GetComponent<CharacterTargeting>().target = player1.transform;
-        player2.GetComponent<CharacterController>().playerNumber = 1;
+        player2.GetComponent<SharedCharacterController>().playerNumber = 1;
 
         InputMap.Instance.inputEnabled = true;
     }

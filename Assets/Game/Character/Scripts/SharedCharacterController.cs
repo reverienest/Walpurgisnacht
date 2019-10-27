@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+/// Handles movement and placing magic circle
+public class SharedCharacterController : MonoBehaviour
 {
     /// <summary>
     /// This is zero indexed
@@ -21,12 +22,22 @@ public class CharacterController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    void Start()
+    private Vector2 lastDirection;
+    /// Last non-zero direction this character moved
+    public Vector2 LastDirection { get { return lastDirection; } }
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        //Default teleport direction based on player number
+        if (playerNumber == 0)
+            lastDirection = Vector2.right;
+        else
+            lastDirection = Vector2.left;
     }
 
-    void Update()
+    public void HandlePlaceCircle()
     {
         if (InputMap.Instance.GetInput(playerNumber, ActionType.CAST_CIRCLE) && null == magicCircle)
         {
@@ -37,7 +48,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void HandleMovement()
     {
         int horizontalMovement = 0;
         if (InputMap.Instance.GetInput(playerNumber, ActionType.RIGHT))
@@ -58,14 +69,21 @@ public class CharacterController : MonoBehaviour
             verticalMovement--;
         }
 
-        rb.velocity = new Vector2(horizontalMovement, verticalMovement);
         if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
         {
-            transform.position += (Vector3)rb.velocity.normalized * Time.deltaTime * slowSpeed;
+            rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * slowSpeed;
         }
         else
         {
-            transform.position += (Vector3)rb.velocity.normalized * Time.deltaTime * speed;
+            rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * speed;
         }
+
+        if (rb.velocity.magnitude != 0)
+            lastDirection = rb.velocity.normalized;
+    }
+
+    void FixedUpdate()
+    {
+        rb.velocity = Vector2.zero;
     }
 }

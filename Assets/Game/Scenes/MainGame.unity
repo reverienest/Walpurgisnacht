@@ -965,6 +965,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
+        type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
@@ -1391,6 +1396,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
+        type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
@@ -1721,5 +1731,17 @@ PrefabInstance:
       propertyPath: playerCharacterImages.Array.data[1]
       value: 
       objectReference: {fileID: 1646903582}
+    - target: {fileID: 7355736272233085758, guid: 8c053c9f3f7937c45bfc274ef327c163,
+        type: 3}
+      propertyPath: characterPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 2193138727480721282, guid: d8003c4b49d121046a7090f56aca1075,
+        type: 3}
+    - target: {fileID: 7355736272233085758, guid: 8c053c9f3f7937c45bfc274ef327c163,
+        type: 3}
+      propertyPath: characterPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4496494981954801050, guid: c80b6e08c1d8ca4489df504e9e8cb7c7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c053c9f3f7937c45bfc274ef327c163, type: 3}
