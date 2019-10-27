@@ -10,12 +10,18 @@ public enum SpellType
 
 public class SpellMap : Singleton<SpellMap>
 {
+    [Serializable]
+    private class Cooldowns
+    {
+        public float[] cooldowns = new float[4];
+        public float this[int i] { get { return cooldowns[i]; } }
+    }
     [SerializeField]
-    private float[] cooldowns = new float[4];
+    private Cooldowns[] cooldowns = new Cooldowns[(int)CharacterType._NUM_TYPES];
 
     private float[][] cooldownTimers = new float[2][];
 
-    private ActionType[] spellToActionMap = new ActionType[(uint)SpellType._NUM_TYPES];
+    private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
 
     void Start()
     {
@@ -39,7 +45,11 @@ public class SpellMap : Singleton<SpellMap>
     }
 
     private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(uint)spellType] <= 0.0f; }
-    private void RestartCooldown(int playerNumber, SpellType spellType) { cooldownTimers[playerNumber][(uint)spellType] = cooldowns[(uint)spellType]; }
+    private void RestartCooldown(int playerNumber, SpellType spellType)
+    {
+        CharacterType charType = MatchManager.Instance.GetPlayerCharacterType(playerNumber);
+        cooldownTimers[playerNumber][(int)spellType] = cooldowns[(int)charType][(int)spellType];
+    }
 
     /// Upon returning true, this function will restart the cooldown on the given spell
     public bool GetSpell(int playerNumber, SpellType spellType)
