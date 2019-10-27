@@ -1,0 +1,55 @@
+using UnityEngine;
+
+public class SeleneTeleportState : SeleneState
+{
+    private enum Sequence { ENTER_HOLE, TRAVEL, EXIT_HOLE }
+    private Sequence state;
+
+    private Vector2 travelOrigin;
+    private Vector2 travelDestination;
+    private float travelTime;
+    private float travelTimer;
+
+    override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo transitionInfo = null)
+    {
+        travelOrigin = character.transform.position;
+
+        //Make sure we don't teleport out of the map
+        RaycastHit2D hit = Physics2D.Raycast(travelOrigin, input.cc.LastDirection, input.maxTravelDistance, LayerMask.GetMask("Arena"));
+        float travelDistance = hit.collider ? (hit.distance - input.cc2d.radius) : input.maxTravelDistance;
+        travelDestination = travelOrigin + input.cc.LastDirection * travelDistance;
+
+        travelTime = travelDistance / input.maxTravelDistance * input.maxTravelTime;
+        travelTimer = travelTime;
+
+        state = Sequence.ENTER_HOLE;
+        input.anim.Play("EnterHole");
+    }
+
+    override public void Update(SeleneStateInput input)
+    {
+        if (state == Sequence.TRAVEL)
+        {
+            travelTimer -= Time.deltaTime;
+            character.transform.position = Vector2.Lerp(travelDestination, travelOrigin, travelTimer / travelTime);
+
+            if (travelTimer <= 0)
+            {
+                state = Sequence.EXIT_HOLE;
+                input.anim.Play("ExitHole");
+            }
+        }
+    }
+
+    override public void OnAnimationEvent(string eventName)
+    {
+        if (eventName == "HoleEntered" && state == Sequence.ENTER_HOLE)
+        {
+            state = Sequence.TRAVEL;
+        }
+        else if (eventName == "HoleExited" && state == Sequence.EXIT_HOLE)
+        {
+            character.ChangeState<SeleneIdleState>();
+        }
+    }
+}
