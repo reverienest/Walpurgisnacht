@@ -1681,6 +1681,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
         type: 3}
+      propertyPath: player1CooldownSliders.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player2CooldownSliders.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
       propertyPath: player1SpellIcons.Array.data[0]
       value: 
       objectReference: {fileID: 886723483}
@@ -1719,6 +1729,46 @@ PrefabInstance:
       propertyPath: player2SpellIcons.Array.data[3]
       value: 
       objectReference: {fileID: 884813764}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player1CooldownSliders.Array.data[3]
+      value: 
+      objectReference: {fileID: 1790268515}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player1CooldownSliders.Array.data[2]
+      value: 
+      objectReference: {fileID: 679330329}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player1CooldownSliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 1127038898}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player1CooldownSliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 886723483}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player2CooldownSliders.Array.data[3]
+      value: 
+      objectReference: {fileID: 884813764}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player2CooldownSliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 1096909065}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player2CooldownSliders.Array.data[2]
+      value: 
+      objectReference: {fileID: 256793975}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: player2CooldownSliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 228752132}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0daf013c4c06beb4ea281a122944ff7d, type: 3}
 --- !u!1001 &4293835506882310389
