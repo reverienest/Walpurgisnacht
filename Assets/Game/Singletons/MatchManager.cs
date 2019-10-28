@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : Singleton<MatchManager>
 {
@@ -25,6 +26,10 @@ public class MatchManager : Singleton<MatchManager>
 
     [SerializeField]
     private int winsNeeded = 3;
+    [SerializeField]
+    private string roundStartString = "Get em'!";
+    [SerializeField]
+    private string victorySceneName = null;
 
     [SerializeField]
     private Text[] playerScoreTexts = null;
@@ -78,7 +83,7 @@ public class MatchManager : Singleton<MatchManager>
         player2.GetComponent<CharacterTargeting>().target = player1.transform;
         player2.GetComponent<SharedCharacterController>().playerNumber = 1;
 
-        InputMap.Instance.inputEnabled = true;
+        SplashTextManager.Instance.Splash(roundStartString, () => InputMap.Instance.inputEnabled = true);
     }
 
     private void OnPlayerDeath(int playerNumber)
@@ -86,14 +91,25 @@ public class MatchManager : Singleton<MatchManager>
         int alivePlayer = playerNumber == 0 ? 1 : 0;
         SetPlayerScore(alivePlayer, _playerScores[alivePlayer] + 1);
 
+        //Round winner splash text
+        string aliveCharacterString = GetPlayerCharacterType(0).ToString();
+        aliveCharacterString = aliveCharacterString.Substring(0, 1).ToUpper()
+            + aliveCharacterString.Substring(1).ToLower();
+        string victoryString = aliveCharacterString + " wins!";
+
         if (_playerScores[alivePlayer] == winsNeeded)
         {
-            //TODO: Go to the victory screen (once we have it)
+            SplashTextManager.Instance.Splash(victoryString, () => SceneManager.LoadScene(victorySceneName));
         }
         else
         {
+            InputMap.Instance.inputEnabled = false;
+
+            SplashTextManager.Instance.Splash(victoryString, ResetArena);
+
             //TODO: Start some transition animation
-            ResetArena();
+
+            // ResetArena();
         }
     }
 }

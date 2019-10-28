@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 9771ae99e8714e6428c6e65d5adedee7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - splashTextPrefab: {fileID: 7931932465710187676, guid: c2477945fbd2a5543a288febaf598387,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
