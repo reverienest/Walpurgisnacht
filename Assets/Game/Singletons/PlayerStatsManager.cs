@@ -16,6 +16,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     [SerializeField]
     private int maxMP = 0;
 
+    public int MaxMP { get { return maxMP; } }
+
     [SerializeField]
     private GameObject[] player1HeartIcons = null;
     [SerializeField]
@@ -115,6 +117,10 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         }
     }
 
+    // public events
+    public delegate void DeathAction(int playerNumber);
+    public event DeathAction OnDeathAction;
+
     public void Start()
     {
         Player1Health = maxHealth;
@@ -130,13 +136,9 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         for (int i = 0; i < arr.Length; i++)
         {
             if (i < value)
-            {
                 arr[i].SetActive(true);
-            }
             else
-            {
                 arr[i].SetActive(false);
-            }
         }
     }
 
@@ -145,6 +147,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     private void Player1HealthChanged(int oldValue, int newValue)
     {
         UpdateUIArray(player1HeartIcons, newValue);
+        if (newValue == 0)
+            OnDeathAction(0);
     }
 
     private void Player1WardsChanged(int oldValue, int newValue)
@@ -161,6 +165,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     private void Player2HealthChanged(int oldValue, int newValue)
     {
         UpdateUIArray(player2HeartIcons, newValue);
+        if (newValue == 0)
+            OnDeathAction(1);
     }
 
     private void Player2WardsChanged(int oldValue, int newValue)
@@ -173,6 +179,4 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         float normalizedMP = (float)newValue / maxMP;
         player2MPSlider.value = normalizedMP;
     }
-
-
 }

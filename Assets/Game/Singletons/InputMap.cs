@@ -3,42 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Action
+public enum ActionType
 {
-    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, LAST_WORD, SPELL_CARD
+    UP, DOWN, LEFT, RIGHT, PRIM, HEAVY, INTRIN, MOVE, LAST_WORD, SLOW, CAST_CIRCLE, _NUM_TYPES
 }
 
 public class InputMap : Singleton<InputMap>
 {
-    IDictionary<Action, KeyCode> act = new Dictionary<Action, KeyCode>();
-    // Start is called before the first frame update
-    void Start()
+    public bool inputEnabled;
+
+    IDictionary<ActionType, KeyCode>[] actionMaps = {
+        new Dictionary<ActionType, KeyCode>(), //Player 1
+        new Dictionary<ActionType, KeyCode>(), //Player 2
+    };
+
+    void Awake()
     {
-        act.Add(Action.UP, KeyCode.UpArrow);
-        act.Add(Action.DOWN, KeyCode.DownArrow);
-        act.Add(Action.LEFT, KeyCode.LeftArrow);
-        act.Add(Action.RIGHT, KeyCode.RightArrow);
-        act.Add(Action.PRIM, KeyCode.Z);
-        act.Add(Action.HEAVY, KeyCode.X);
-        act.Add(Action.INTRIN, KeyCode.C);
-        act.Add(Action.LAST_WORD, KeyCode.A);
-        act.Add(Action.SPELL_CARD, KeyCode.D);
+        actionMaps[0].Add(ActionType.UP, KeyCode.UpArrow);
+        actionMaps[0].Add(ActionType.DOWN, KeyCode.DownArrow);
+        actionMaps[0].Add(ActionType.LEFT, KeyCode.LeftArrow);
+        actionMaps[0].Add(ActionType.RIGHT, KeyCode.RightArrow);
+        actionMaps[0].Add(ActionType.PRIM, KeyCode.Z);
+        actionMaps[0].Add(ActionType.HEAVY, KeyCode.X);
+        actionMaps[0].Add(ActionType.INTRIN, KeyCode.C);
+        actionMaps[0].Add(ActionType.MOVE, KeyCode.V);
+        actionMaps[0].Add(ActionType.LAST_WORD, KeyCode.A);
+        actionMaps[0].Add(ActionType.SLOW, KeyCode.LeftShift);
+        actionMaps[0].Add(ActionType.CAST_CIRCLE, KeyCode.LeftControl);
+
+        actionMaps[1].Add(ActionType.UP, KeyCode.I);
+        actionMaps[1].Add(ActionType.DOWN, KeyCode.K);
+        actionMaps[1].Add(ActionType.LEFT, KeyCode.J);
+        actionMaps[1].Add(ActionType.RIGHT, KeyCode.L);
+        actionMaps[1].Add(ActionType.PRIM, KeyCode.E);
+        actionMaps[1].Add(ActionType.HEAVY, KeyCode.R);
+        actionMaps[1].Add(ActionType.INTRIN, KeyCode.T);
+        actionMaps[1].Add(ActionType.MOVE, KeyCode.Y);
+        actionMaps[1].Add(ActionType.LAST_WORD, KeyCode.Alpha3);
+        actionMaps[1].Add(ActionType.SLOW, KeyCode.RightShift);
+        actionMaps[1].Add(ActionType.CAST_CIRCLE, KeyCode.RightControl);
     }
 
-    public bool GetInput(Action action)
+    public bool GetInput(int playerNumber, ActionType actionType)
     {
-        return Input.GetKey(act[action]);
+        return inputEnabled && Input.GetKey(actionMaps[playerNumber][actionType]);
     }
-    void UpdateKeyCode(Action action, KeyCode key)
+    public bool GetInputUp(int playerNumber, ActionType actionType)
     {
-        act[action] = key;
+        return inputEnabled && Input.GetKeyUp(actionMaps[playerNumber][actionType]);
     }
-    bool GetInputUp(Action action)
+    public bool GetInputDown(int playerNumber, ActionType actionType)
     {
-        return Input.GetKeyUp(act[action]);
+        return inputEnabled && Input.GetKeyDown(actionMaps[playerNumber][actionType]);
     }
-    bool GetInputDown(Action action)
+    public void UpdateKeyCode(int playerNumber, ActionType actionType, KeyCode key)
     {
-        return Input.GetKeyDown(act[action]);
+        actionMaps[playerNumber][actionType] = key;
     }
 }
