@@ -49,7 +49,7 @@ public class SpellMap : Singleton<SpellMap>
         //Update cooldown timers
         for (int playerNum = 0; playerNum < cooldownTimers.Length; ++playerNum)
             for (int spellType = 0; spellType < cooldownTimers[playerNum].Length; ++spellType)
-                DecrementCooldown(Time.deltaTime, playerNum, (SpellType)spellType);
+                DecreaseCooldown(Time.deltaTime, playerNum, (SpellType)spellType);
     }
 
     private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
@@ -74,11 +74,11 @@ public class SpellMap : Singleton<SpellMap>
 
         if (0 == playerNumber)
         {
-            player1SpellIcons[(int)spellType].value = normalizedCooldown;
+            player1CooldownSliders[(int)spellType].value = normalizedCooldown;
         }
         else
         {
-            player2SpellIcons[(int)spellType].value = normalizedCooldown;
+            player2CooldownSliders[(int)spellType].value = normalizedCooldown;
         }
     }
 
