@@ -111,7 +111,7 @@
 			coords += netFilterWidth;
 		}
 
-		return color;
+		return float4(color.rgb / (_Parameter.x / 3 + 1), color.a);
 	}
 
 	VaryingsBlurCoordsSGX VertBlurHorizontalSGX(AttributesDefault v)

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MatchManager : Singleton<MatchManager>
 {
-    public delegate void VictoryAction();
+    public delegate void VictoryAction(int playerNumber);
     public event VictoryAction OnVictoryAction;
 
     [SerializeField]
@@ -31,8 +31,6 @@ public class MatchManager : Singleton<MatchManager>
     private int winsNeeded = 3;
     [SerializeField]
     private string roundStartString = "Get em'!";
-    [SerializeField]
-    private string victorySceneName = null;
 
     [SerializeField]
     private Text[] playerScoreTexts = null;
@@ -44,6 +42,10 @@ public class MatchManager : Singleton<MatchManager>
     {
         _playerScores[playerNumber] = value;
         playerScoreTexts[playerNumber].text = _playerScores[playerNumber].ToString();
+    }
+    public int GetPlayerScore(int playerNumber)
+    {
+        return _playerScores[playerNumber];
     }
 
     private GameObject player1;
@@ -63,6 +65,7 @@ public class MatchManager : Singleton<MatchManager>
     {
         //Reset stats
         PlayerStatsManager.Instance.Start();
+        SpellMap.Instance.ResetAllCooldowns();
 
         //Cleanup old players
         if (player1)
@@ -94,25 +97,19 @@ public class MatchManager : Singleton<MatchManager>
         int alivePlayer = playerNumber == 0 ? 1 : 0;
         SetPlayerScore(alivePlayer, _playerScores[alivePlayer] + 1);
 
+        InputMap.Instance.inputEnabled = false;
+
         //Round winner splash text
-        string aliveCharacterString = GetPlayerCharacterType(0).ToString();
-        aliveCharacterString = aliveCharacterString.Substring(0, 1).ToUpper()
-            + aliveCharacterString.Substring(1).ToLower();
+        string aliveCharacterString = GetPlayerCharacterType(alivePlayer).GetString();
         string victoryString = "(P" + (alivePlayer + 1) + ") " + aliveCharacterString + " wins!";
 
         if (_playerScores[alivePlayer] == winsNeeded)
         {
-            SplashTextManager.Instance.Splash(victoryString, () => OnVictoryAction?.Invoke());
+            SplashTextManager.Instance.Splash(victoryString, () => OnVictoryAction?.Invoke(alivePlayer));
         }
         else
         {
-            InputMap.Instance.inputEnabled = false;
-
             SplashTextManager.Instance.Splash(victoryString, ResetArena);
-
-            //TODO: Start some transition animation
-
-            // ResetArena();
         }
     }
 }
