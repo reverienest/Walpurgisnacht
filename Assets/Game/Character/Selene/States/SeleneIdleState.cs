@@ -14,13 +14,6 @@ public class SeleneIdleState : SeleneState
         {
             character.ChangeState<SeleneTeleportState>();
         }
-
-        //TODO: TEMP
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
-        {
-            PlayerStatsManager.Instance.Player2Wards = 0;
-            PlayerStatsManager.Instance.Player2Health = 0;
-        }
     }
 
     override public void FixedUpdate(SeleneStateInput input)
