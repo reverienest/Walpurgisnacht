@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : Singleton<MatchManager>
 {
+    public delegate void VictoryAction(int playerNumber);
+    public event VictoryAction OnVictoryAction;
+
     [SerializeField]
     private CharacterType[] playerCharacterTypes = new CharacterType[2];
     public CharacterType GetPlayerCharacterType(int playerNumber)
@@ -25,6 +29,8 @@ public class MatchManager : Singleton<MatchManager>
 
     [SerializeField]
     private int winsNeeded = 3;
+    [SerializeField]
+    private string roundStartString = "Get em'!";
 
     [SerializeField]
     private Text[] playerScoreTexts = null;
@@ -36,6 +42,10 @@ public class MatchManager : Singleton<MatchManager>
     {
         _playerScores[playerNumber] = value;
         playerScoreTexts[playerNumber].text = _playerScores[playerNumber].ToString();
+    }
+    public int GetPlayerScore(int playerNumber)
+    {
+        return _playerScores[playerNumber];
     }
 
     private GameObject player1;
@@ -55,6 +65,7 @@ public class MatchManager : Singleton<MatchManager>
     {
         //Reset stats
         PlayerStatsManager.Instance.Start();
+        SpellMap.Instance.ResetAllCooldowns();
 
         //Cleanup old players
         if (player1)
@@ -78,7 +89,7 @@ public class MatchManager : Singleton<MatchManager>
         player2.GetComponent<CharacterTargeting>().target = player1.transform;
         player2.GetComponent<SharedCharacterController>().playerNumber = 1;
 
-        InputMap.Instance.inputEnabled = true;
+        SplashTextManager.Instance.Splash(roundStartString, () => InputMap.Instance.inputEnabled = true);
     }
 
     private void OnPlayerDeath(int playerNumber)
@@ -86,14 +97,19 @@ public class MatchManager : Singleton<MatchManager>
         int alivePlayer = playerNumber == 0 ? 1 : 0;
         SetPlayerScore(alivePlayer, _playerScores[alivePlayer] + 1);
 
+        InputMap.Instance.inputEnabled = false;
+
+        //Round winner splash text
+        string aliveCharacterString = GetPlayerCharacterType(alivePlayer).GetString();
+        string victoryString = "(P" + (alivePlayer + 1) + ") " + aliveCharacterString + " wins!";
+
         if (_playerScores[alivePlayer] == winsNeeded)
         {
-            //TODO: Go to the victory screen (once we have it)
+            SplashTextManager.Instance.Splash(victoryString, () => OnVictoryAction?.Invoke(alivePlayer));
         }
         else
         {
-            //TODO: Start some transition animation
-            ResetArena();
+            SplashTextManager.Instance.Splash(victoryString, ResetArena);
         }
     }
 }

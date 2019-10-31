@@ -31,7 +31,7 @@ public class SpellMap : Singleton<SpellMap>
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
 
-    void Start()
+    void Awake()
     {
         //Init cooldown timers
         cooldownTimers[0] = new float[(uint)SpellType._NUM_TYPES];
@@ -86,6 +86,13 @@ public class SpellMap : Singleton<SpellMap>
     {
         CharacterType charType = MatchManager.Instance.GetPlayerCharacterType(playerNumber);
         return cooldowns[(int)charType][(int)spellType];
+    }
+
+    public void ResetAllCooldowns()
+    {
+        for (int playerNum = 0; playerNum < cooldownTimers.Length; ++playerNum)
+            for (int spellType = 0; spellType < cooldownTimers[playerNum].Length; ++spellType)
+                SetCooldown(0, playerNum, (SpellType)spellType);
     }
 
     /// Upon returning true, this function will restart the cooldown on the given spell

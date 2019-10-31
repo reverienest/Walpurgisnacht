@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStarter : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    private string mainSceneName = null;
+    private string sceneName = null;
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(mainSceneName);
+        SceneManager.LoadScene(sceneName);
     }
 }
