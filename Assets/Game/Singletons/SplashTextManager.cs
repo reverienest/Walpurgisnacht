@@ -11,7 +11,7 @@ public class SplashTextManager : Singleton<SplashTextManager>
 
     public void Splash(string text, SplashText.EndAction callback = null)
     {
-        GameObject splashTextGO = Instantiate(splashTextPrefab, Vector3.zero, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+        GameObject splashTextGO = Instantiate(splashTextPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
         SplashText splashText = splashTextGO.GetComponent<SplashText>();
         splashText.Init(text, callback);
     }

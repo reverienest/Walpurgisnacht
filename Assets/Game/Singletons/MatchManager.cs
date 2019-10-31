@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class MatchManager : Singleton<MatchManager>
 {
+    public delegate void VictoryAction();
+    public event VictoryAction OnVictoryAction;
+
     [SerializeField]
     private CharacterType[] playerCharacterTypes = new CharacterType[2];
     public CharacterType GetPlayerCharacterType(int playerNumber)
@@ -95,11 +98,11 @@ public class MatchManager : Singleton<MatchManager>
         string aliveCharacterString = GetPlayerCharacterType(0).ToString();
         aliveCharacterString = aliveCharacterString.Substring(0, 1).ToUpper()
             + aliveCharacterString.Substring(1).ToLower();
-        string victoryString = aliveCharacterString + " wins!";
+        string victoryString = "(P" + (alivePlayer + 1) + ") " + aliveCharacterString + " wins!";
 
         if (_playerScores[alivePlayer] == winsNeeded)
         {
-            SplashTextManager.Instance.Splash(victoryString, () => SceneManager.LoadScene(victorySceneName));
+            SplashTextManager.Instance.Splash(victoryString, () => OnVictoryAction?.Invoke());
         }
         else
         {
