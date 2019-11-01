@@ -78,19 +78,19 @@ private CharacterTargeting CharTar;
     IEnumerator SeleneHeavy(int _heavyProjectiles)
     {
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
-        float angle = 0f;
-        float shotDirXPos = startShot.x + Mathf.Cos(baseAngle * Mathf.PI);
-        float shotDirYPos = startShot.y + Mathf.Sin(baseAngle * Mathf.PI);
+        float angle = baseAngle - (60f/2);
+        float shotDirXPos = Mathf.Cos(baseAngle * Mathf.Deg2Rad);
+        float shotDirYPos = Mathf.Sin(baseAngle * Mathf .Deg2Rad);
 
                 Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * primarySpeed;
-                GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
+                GameObject tempObj = Instantiate(primaryPrefab, transform.position, Quaternion.identity);
                 tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < heavyProjectiles + 1; i++)
             {
-                float angleStep = 360f / heavyProjectiles;
+                //float angleStep = 360f / heavyProjectiles;
                 float shotDirXPosSub = startHeavyShot.x + Mathf.Cos((angle * Mathf.PI) - 180f);
                 float shotDirYPosSub = startHeavyShot.y + Mathf.Sin((angle * Mathf.PI) - 180f);
 
@@ -98,8 +98,7 @@ private CharacterTargeting CharTar;
 
                 GameObject tempObjSub = Instantiate(primaryPrefab, startHeavyShot, Quaternion.identity);
                 tempObjSub.GetComponent<Rigidbody2D>().velocity = shotDirectionSub;
-                angle += angleStep;
-
+                //angle += angleStep;
             }
     }
 }

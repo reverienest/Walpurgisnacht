@@ -235,7 +235,7 @@ MonoBehaviour:
   primaryProjectiles: 8
   primaryWaves: 4
   primarySpeed: 3
-  heavyProjectiles: 0
+  heavyProjectiles: 5
   primaryPrefab: {fileID: 2952370669140197075, guid: c35cd5728530ada4ebe768343b1477b7,
     type: 3}
 --- !u!114 &438896395
@@ -396,7 +396,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8.981321
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -433,6 +433,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 438896398}
     m_Modifications:
+    - target: {fileID: 3437400882307386067, guid: 4968de94d26993b4ca0b1c3441140a91,
+        type: 3}
+      propertyPath: m_Name
+      value: Reticle
+      objectReference: {fileID: 0}
     - target: {fileID: 188338011637728042, guid: 4968de94d26993b4ca0b1c3441140a91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -487,11 +492,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437400882307386067, guid: 4968de94d26993b4ca0b1c3441140a91,
-        type: 3}
-      propertyPath: m_Name
-      value: Reticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4968de94d26993b4ca0b1c3441140a91, type: 3}
