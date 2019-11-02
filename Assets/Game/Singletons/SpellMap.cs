@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SpellType
 {
@@ -19,11 +20,18 @@ public class SpellMap : Singleton<SpellMap>
     [SerializeField]
     private Cooldowns[] cooldowns = new Cooldowns[(int)CharacterType._NUM_TYPES];
 
+
+    [SerializeField]
+    private Slider[] player1CooldownSliders = null;
+
+    [SerializeField]
+    private Slider[] player2CooldownSliders = null;
+
     private float[][] cooldownTimers = new float[2][];
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
 
-    void Start()
+    void Awake()
     {
         //Init cooldown timers
         cooldownTimers[0] = new float[(uint)SpellType._NUM_TYPES];
@@ -39,16 +47,52 @@ public class SpellMap : Singleton<SpellMap>
     void Update()
     {
         //Update cooldown timers
-        for (uint i = 0; i < cooldownTimers.Length; ++i)
-            for (uint j = 0; j < cooldownTimers[i].Length; ++j)
-                cooldownTimers[i][j] -= Time.deltaTime;
+        for (int playerNum = 0; playerNum < cooldownTimers.Length; ++playerNum)
+            for (int spellType = 0; spellType < cooldownTimers[playerNum].Length; ++spellType)
+                DecreaseCooldown(Time.deltaTime, playerNum, (SpellType)spellType);
     }
 
-    private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(uint)spellType] <= 0.0f; }
+    private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
+
     private void RestartCooldown(int playerNumber, SpellType spellType)
     {
+        SetCooldown(GetInitialCooldown(playerNumber, spellType), playerNumber, spellType);
+    }
+
+    private void DecreaseCooldown(float deltaTime, int playerNumber, SpellType spellType)
+    {
+        SetCooldown(Math.Max(0.0f, cooldownTimers[playerNumber][(int)spellType] - deltaTime), playerNumber, spellType);
+    }
+
+    private void SetCooldown(float newVal, int playerNumber, SpellType spellType)
+    {
+        if (cooldownTimers[playerNumber][(int)spellType] == newVal)
+            return;
+
+        cooldownTimers[playerNumber][(int)spellType] = newVal;
+        float normalizedCooldown = (newVal / GetInitialCooldown(playerNumber, spellType));
+
+        if (0 == playerNumber)
+        {
+            player1CooldownSliders[(int)spellType].value = normalizedCooldown;
+        }
+        else
+        {
+            player2CooldownSliders[(int)spellType].value = normalizedCooldown;
+        }
+    }
+
+    private float GetInitialCooldown(int playerNumber, SpellType spellType)
+    {
         CharacterType charType = MatchManager.Instance.GetPlayerCharacterType(playerNumber);
-        cooldownTimers[playerNumber][(int)spellType] = cooldowns[(int)charType][(int)spellType];
+        return cooldowns[(int)charType][(int)spellType];
+    }
+
+    public void ResetAllCooldowns()
+    {
+        for (int playerNum = 0; playerNum < cooldownTimers.Length; ++playerNum)
+            for (int spellType = 0; spellType < cooldownTimers[playerNum].Length; ++spellType)
+                SetCooldown(0, playerNum, (SpellType)spellType);
     }
 
     /// Upon returning true, this function will restart the cooldown on the given spell
