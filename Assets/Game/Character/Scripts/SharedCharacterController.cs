@@ -19,6 +19,8 @@ public class SharedCharacterController : MonoBehaviour
     private GameObject circlePrefab = null;
 
     private GameObject magicCircle;
+    public bool HasCircle() { return magicCircle != null; }
+    public Vector2 GetCirclePosition() { return magicCircle.transform.position; }
 
     private Rigidbody2D rb;
 
