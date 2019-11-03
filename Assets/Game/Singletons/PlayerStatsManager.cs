@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerStatsManager : Singleton<PlayerStatsManager>
 {
+    // public events
+    public delegate void DeathAction(int playerNumber);
+    public event DeathAction OnDeathAction;
+
     /*
     * UI components set by Unity
     */
@@ -117,9 +121,7 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         }
     }
 
-    // public events
-    public delegate void DeathAction(int playerNumber);
-    public event DeathAction OnDeathAction;
+    private int[] tempWards = new int[2];
 
     public void Start()
     {
@@ -129,6 +131,34 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         Player2Health = maxHealth;
         Player2Wards = maxWards;
         Player2MP = 0;
+    }
+
+    /// Stores player's current ward count and removes them from actual ward count
+    public void StashWards(int playerNumber)
+    {
+        if (playerNumber == 0)
+        {
+            tempWards[playerNumber] = Player1Wards;
+            Player1Wards = 0;
+        }
+        else
+        {
+            tempWards[playerNumber] = Player2Wards;
+            Player2Wards = 0;
+        }
+    }
+
+    /// Restores player's old ward count
+    public void PopWards(int playerNumber)
+    {
+        if (playerNumber == 0)
+        {
+            Player1Wards = tempWards[playerNumber];
+        }
+        else
+        {
+            Player2Wards = tempWards[playerNumber];
+        }
     }
 
     private void UpdateUIArray(GameObject[] arr, int value)

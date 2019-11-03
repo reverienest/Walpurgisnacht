@@ -14,6 +14,10 @@ public class SeleneIdleState : SeleneState
         {
             character.ChangeState<SeleneTeleportState>();
         }
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
+        {
+            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
+        }
     }
 
     override public void FixedUpdate(SeleneStateInput input)
