@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastWordNames:
-  - Boomer Blast
-  - Zoomer Zest
+  - Final Eclipse
+  - Solar Flare
   titleText: {fileID: 7010487845023677140}
   timerText: {fileID: 682342049083719671}
 --- !u!1 &8996376983335946392
