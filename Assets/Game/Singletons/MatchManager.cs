@@ -3,16 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : Singleton<MatchManager>
 {
-    [SerializeField]
-    private CharacterType[] playerCharacterTypes = new CharacterType[2];
+    public delegate void VictoryAction(int playerNumber);
+    public event VictoryAction OnVictoryAction;
+
+    public delegate void LastWordStartAction(int playerNumber);
+    public event LastWordStartAction OnLastWordStart;
+
+    public delegate void LastWordEndAction();
+    public event LastWordEndAction OnLastWordEnd;
+
+    public delegate void LastWordTimerChangeAction(float oldValue, float newValue);
+    public event LastWordTimerChangeAction OnLastWordTimerChange;
 
     [SerializeField]
-    private Transform player1SpawnPoint = null;
+    private CharacterType[] playerCharacterTypes = new CharacterType[2];
+    public CharacterType GetPlayerCharacterType(int playerNumber)
+    {
+        return playerCharacterTypes[playerNumber];
+    }
+
     [SerializeField]
-    private Transform player2SpawnPoint = null;
+    private Transform[] spawnPoints = new Transform[2];
 
     [SerializeField]
     private GameObject[] characterPrefabs = null;
@@ -21,6 +36,15 @@ public class MatchManager : Singleton<MatchManager>
 
     [SerializeField]
     private int winsNeeded = 3;
+    [SerializeField]
+    private string roundStartString = "Get em'!";
+
+    [SerializeField]
+    private float lastWordDuration = 30;
+    [SerializeField]
+    private float lastWordMoveTime = 1;
+    [SerializeField]
+    private Transform[] lastWordPositions = new Transform[2];
 
     [SerializeField]
     private Text[] playerScoreTexts = null;
@@ -33,13 +57,35 @@ public class MatchManager : Singleton<MatchManager>
         _playerScores[playerNumber] = value;
         playerScoreTexts[playerNumber].text = _playerScores[playerNumber].ToString();
     }
+    public int GetPlayerScore(int playerNumber)
+    {
+        return _playerScores[playerNumber];
+    }
 
-    private GameObject player1;
-    private GameObject player2;
+    private GameObject[] players = new GameObject[2];
+
+    private int lastWordPlayerNumber;
+    private bool lastWordActive;
+    public bool LastWordActive { get { return lastWordActive; } }
+    private float _lastWordTimer;
+    private float LastWordTimer
+    {
+        get
+        {
+            return _lastWordTimer;
+        }
+        set
+        {
+            OnLastWordTimerChange?.Invoke(_lastWordTimer, value);
+            _lastWordTimer = value;
+        }
+    }
+    private ForceMoveTransitionInfo.AllInPositionAction[] playersOnAllInPosition = new ForceMoveTransitionInfo.AllInPositionAction[2];
+    private Coroutine lastWordCoroutine;
 
     void Start()
     {
-        //Setup player character UI images
+        // Setup player character UI images
         for (int i = 0; i < playerCharacterImages.Length; ++i)
             playerCharacterImages[i].sprite = characterHeadshots[(int)playerCharacterTypes[i]];
 
@@ -47,32 +93,119 @@ public class MatchManager : Singleton<MatchManager>
         ResetArena();
     }
 
+    public void StartLastWord(int lastWordPlayerNumber)
+    {
+        if (lastWordCoroutine != null)
+            StopCoroutine(lastWordCoroutine);
+
+        this.lastWordPlayerNumber = lastWordPlayerNumber;
+        lastWordActive = true;
+        LastWordTimer = lastWordDuration;
+        int victimPlayerNumber = lastWordPlayerNumber == 0 ? 1 : 0;
+
+        PlayerStatsManager.Instance.StashWards(victimPlayerNumber);
+        OnLastWordStart?.Invoke(lastWordPlayerNumber);
+        StartForcedMovement(true);
+    }
+
+    private void StartForcedMovement(bool isStartingLastWord)
+    {
+        for (int playerNum = 0; playerNum < players.Length; ++playerNum)
+        {
+            int playerNumCopy = playerNum;
+            ForceMoveTransitionInfo transitionInfo = new ForceMoveTransitionInfo
+            {
+                onCompleteMove = (ForceMoveTransitionInfo.AllInPositionAction onAllInPosition) => OnCompleteMove(playerNumCopy, isStartingLastWord, onAllInPosition),
+                isLastWordCaster = isStartingLastWord && playerNum == lastWordPlayerNumber,
+                moveTime = lastWordMoveTime,
+            };
+
+            SharedCharacterController cc = players[playerNum].GetComponent<SharedCharacterController>();
+            if (isStartingLastWord)
+                transitionInfo.moveDestination = lastWordPositions[playerNum].position;
+            else if (cc.HasCircle())
+                transitionInfo.moveDestination = cc.GetCirclePosition();
+            else
+                transitionInfo.moveDestination = spawnPoints[playerNum].position;
+
+            switch (GetPlayerCharacterType(playerNum))
+            {
+                case CharacterType.SELENE:
+                    Selene selene = players[playerNum].GetComponent<Selene>();
+                    selene.ChangeStateSoft<SeleneForceMoveState>(transitionInfo);
+                    break;
+                case CharacterType.RHEA:
+                    // TODO: Do the same thing for Rhea once her states have been made
+                    break;
+            }
+        }
+    }
+
+    /// Callback for when a character completes moving to/from its last word position
+    private void OnCompleteMove(int playerNumber, bool isStartingLastWord, ForceMoveTransitionInfo.AllInPositionAction onAllInPosition)
+    {
+        playersOnAllInPosition[playerNumber] = onAllInPosition;
+
+        // Must wait until all players are in position until we proceed
+        if (playersOnAllInPosition[0] != null && playersOnAllInPosition[1] != null)
+        {
+            playersOnAllInPosition[0]();
+            playersOnAllInPosition[1]();
+
+            if (isStartingLastWord)
+                lastWordCoroutine = StartCoroutine(DuringLastWord());
+
+            playersOnAllInPosition[0] = null;
+            playersOnAllInPosition[1] = null;
+        }
+    }
+
+    private IEnumerator DuringLastWord()
+    {
+        while (LastWordTimer > 0)
+        {
+            LastWordTimer -= Time.deltaTime;
+            yield return null;
+        }
+        EndLastWord();
+    }
+
+    private void EndLastWord()
+    {
+        lastWordActive = false;
+        int victimPlayerNumber = lastWordPlayerNumber == 0 ? 1 : 0;
+
+        PlayerStatsManager.Instance.PopWards(victimPlayerNumber);
+        OnLastWordEnd?.Invoke();
+        StartForcedMovement(false);
+    }
+
     private void ResetArena()
     {
-        //Reset stats
+        // Reset stats
         PlayerStatsManager.Instance.Start();
+        SpellMap.Instance.ResetAllCooldowns();
 
-        //Cleanup old players
-        if (player1)
-            Destroy(player1);
-        if (player2)
-            Destroy(player2);
+        for (int playerNum = 0; playerNum < players.Length; ++playerNum)
+        {
+            // Cleanup old players
+            if (players[playerNum])
+                Destroy(players[playerNum]);
 
-        //Spawn new players
-        player1 = Instantiate(
-            characterPrefabs[(int)playerCharacterTypes[0]],
-            player1SpawnPoint.position,
-            Quaternion.identity);
-        player2 = Instantiate(
-            characterPrefabs[(int)playerCharacterTypes[1]],
-            player2SpawnPoint.position,
-            Quaternion.identity);
+            // Spawn new players
+            players[playerNum] = Instantiate(
+                characterPrefabs[(int)playerCharacterTypes[playerNum]],
+                spawnPoints[playerNum].position,
+                Quaternion.identity);
+        }
 
-        //Setup parameters for their tracking and controls
-        player1.GetComponent<CharacterTargeting>().target = player2.transform;
-        player1.GetComponent<CharacterController>().playerNumber = 0;
-        player2.GetComponent<CharacterTargeting>().target = player1.transform;
-        player2.GetComponent<CharacterController>().playerNumber = 1;
+        // Setup parameters for their tracking and controls
+        players[0].GetComponent<CharacterTargeting>().target = players[1].transform;
+        players[0].GetComponent<SharedCharacterController>().playerNumber = 0;
+        players[1].GetComponent<CharacterTargeting>().target = players[0].transform;
+        players[1].GetComponent<SharedCharacterController>().playerNumber = 1;
+
+        SplashTextManager.Instance.Splash(roundStartString, () => InputMap.Instance.inputEnabled = true);
     }
 
     private void OnPlayerDeath(int playerNumber)
@@ -80,13 +213,19 @@ public class MatchManager : Singleton<MatchManager>
         int alivePlayer = playerNumber == 0 ? 1 : 0;
         SetPlayerScore(alivePlayer, _playerScores[alivePlayer] + 1);
 
+        InputMap.Instance.inputEnabled = false;
+
+        // Round winner splash text
+        string aliveCharacterString = GetPlayerCharacterType(alivePlayer).GetString();
+        string victoryString = "(P" + (alivePlayer + 1) + ") " + aliveCharacterString + " wins!";
+
         if (_playerScores[alivePlayer] == winsNeeded)
         {
-            //TODO: Go to the victory screen (once we have it)
+            SplashTextManager.Instance.Splash(victoryString, () => OnVictoryAction?.Invoke(alivePlayer));
         }
         else
         {
-            ResetArena();
+            SplashTextManager.Instance.Splash(victoryString, ResetArena);
         }
     }
 }
