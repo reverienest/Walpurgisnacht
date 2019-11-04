@@ -41,6 +41,12 @@ public class SeleneTeleportState : SeleneState
         }
     }
 
+    override public void SoftTransitionWarning(SeleneStateInput input)
+    {
+        state = Sequence.EXIT_HOLE;
+        input.anim.Play("ExitHole");
+    }
+
     override public void OnAnimationEvent(string eventName)
     {
         if (eventName == "HoleEntered" && state == Sequence.ENTER_HOLE)
@@ -49,7 +55,10 @@ public class SeleneTeleportState : SeleneState
         }
         else if (eventName == "HoleExited" && state == Sequence.EXIT_HOLE)
         {
-            character.ChangeState<SeleneIdleState>();
+            if (character.softTransitionChangeState != null)
+                character.softTransitionChangeState();
+            else
+                character.ChangeState<SeleneIdleState>();
         }
     }
 }

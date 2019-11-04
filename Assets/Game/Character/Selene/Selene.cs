@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Selene : Character<Selene, SeleneState, SeleneStateInput>
 {
+    // SeleneTeleportState constants
     [SerializeField]
     private float maxTravelTime = 1;
     [SerializeField]
@@ -14,7 +15,6 @@ public class Selene : Character<Selene, SeleneState, SeleneStateInput>
         input.rb = GetComponent<Rigidbody2D>();
         input.cc2d = GetComponent<CircleCollider2D>();
         input.anim = GetComponent<Animator>();
-
     }
 
     override protected void SetInitialState()

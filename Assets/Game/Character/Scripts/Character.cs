@@ -11,6 +11,10 @@ where C : Character<C, S, I>
 where S : CharacterState<C, S, I>
 where I : CharacterStateInput, new()
 {
+    public delegate void SoftTransitionAction();
+    /// Call this to complete the SoftTransition
+    public SoftTransitionAction softTransitionChangeState;
+
     protected Dictionary<Type, S> stateMap;
     protected S state = null;
     protected I input = new I();
@@ -58,13 +62,21 @@ where I : CharacterStateInput, new()
         state.OnAnimationEvent(eventName);
     }
 
-    // This can be called by any of this character's states in order to transition to a new one.
-    // The optional transition info provided is passed to the new state when it is Enter()-ed.
-
+    /// This can be called by any of this character's states in order to transition to a new one.
+    /// The optional transition info provided is passed to the new state when it is Enter()-ed.
     public void ChangeState<N>(CharacterStateTransitionInfo transitionInfo = null) where N : S
     {
+        state?.ForceCleanUp(input);
         state = stateMap[typeof(N)];
+        softTransitionChangeState = null;
         state.Enter(input, transitionInfo);
+    }
+
+    /// Gives the current state a gentle warning that it should transition as soon as possible to the given state N
+    public void ChangeStateSoft<N>(CharacterStateTransitionInfo transitionInfo = null) where N : S
+    {
+        softTransitionChangeState = () => ChangeState<N>(transitionInfo);
+        state.SoftTransitionWarning(input);
     }
 }
 
@@ -78,6 +90,14 @@ where I : CharacterStateInput, new()
     public virtual void Init(I input) {}
 
     public virtual void Enter(I input, CharacterStateTransitionInfo transitionInfo = null) {}
+
+    /// Called externally to request that a state finish ASAP and call softTransitionChangeState()
+    /// The default implementation will immediately transition
+    public virtual void SoftTransitionWarning(I input) { character.softTransitionChangeState(); }
+
+    /// Called externally to alert a state that it has until this function returns to clean up any internal logic
+    /// There will be a state transition immediately upon returning
+    public virtual void ForceCleanUp(I input) {}
 
     public virtual void Update(I input) {}
 
