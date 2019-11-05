@@ -11,10 +11,11 @@ public class Selene : Character<Selene, SeleneState, SeleneStateInput>
 
     override protected void Init()
     {
-        input.cc = GetComponent<SharedCharacterController>();
-        input.rb = GetComponent<Rigidbody2D>();
-        input.cc2d = GetComponent<CircleCollider2D>();
         input.anim = GetComponent<Animator>();
+        input.cc2d = GetComponent<CircleCollider2D>();
+        input.rb = GetComponent<Rigidbody2D>();
+        input.cc = GetComponent<SharedCharacterController>();
+        input.sr = GetComponent<SpriteRenderer>();
     }
 
     override protected void SetInitialState()
@@ -38,8 +39,9 @@ public class SeleneStateInput : CharacterStateInput
     public float maxTravelTime;
     public float maxTravelDistance;
 
-    public SharedCharacterController cc;
-    public Rigidbody2D rb;
-    public CircleCollider2D cc2d;
     public Animator anim;
+    public CircleCollider2D cc2d;
+    public Rigidbody2D rb;
+    public SharedCharacterController cc;
+    public SpriteRenderer sr;
 }

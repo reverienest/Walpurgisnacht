@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8dc62a80e8ed240889aa4920df35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterTypes: 0000000001000000
-  player1SpawnPoint: {fileID: 0}
-  player2SpawnPoint: {fileID: 0}
+  playerCharacterTypes: 0000000000000000
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   characterPrefabs:
   - {fileID: 5494616695495671793, guid: 9e08071e718676241bd15ee0ef04fe61, type: 3}
   - {fileID: 4965133680744376420, guid: 2c799703f2ea1c743a9ddc062b4844d6, type: 3}
@@ -54,7 +55,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f643f10bd3be0994ba4da778b1823f65, type: 3}
   winsNeeded: 3
   roundStartString: Get em'!
-  victorySceneName: VictoryScreen
+  lastWordDuration: 30
+  lastWordMoveTime: 1
+  lastWordPositions:
+  - {fileID: 0}
+  - {fileID: 0}
   playerScoreTexts:
   - {fileID: 0}
   - {fileID: 0}

@@ -50,8 +50,10 @@ public class SharedCharacterController : MonoBehaviour
         }
     }
 
+    private bool movementHandled;
     public void HandleMovement()
     {
+        movementHandled = true;
         int horizontalMovement = 0;
         if (InputMap.Instance.GetInput(playerNumber, ActionType.RIGHT))
         {
@@ -86,6 +88,8 @@ public class SharedCharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = Vector2.zero;
+        if (!movementHandled)
+            rb.velocity = Vector2.zero;
+        movementHandled = false;
     }
 }
