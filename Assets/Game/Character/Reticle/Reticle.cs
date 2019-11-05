@@ -16,6 +16,8 @@ public class Reticle : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition = ct.TargetDirection() * orbitDistance;
+        Vector2 targetDirection = ct.TargetDirection();
+        transform.localPosition = targetDirection * orbitDistance;
+        transform.right = targetDirection;
     }
 }
