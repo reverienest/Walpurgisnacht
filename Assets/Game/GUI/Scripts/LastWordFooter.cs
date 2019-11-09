@@ -30,7 +30,7 @@ public class LastWordFooter : MonoBehaviour
 
     private void OnLastWordStart(int playerNumber)
     {
-        titleText.text = lastWordNames[(int)MatchManager.Instance.GetPlayerCharacterType(playerNumber)];
+        titleText.text = lastWordNames[(int)CharacterSelection.Instance.GetPlayerCharacterType(playerNumber)];
         anim.Play("LastWordIn");
     }
 
