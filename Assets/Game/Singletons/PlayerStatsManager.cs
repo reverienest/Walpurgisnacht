@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,30 +10,23 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public delegate void DeathAction(int playerNumber);
     public event DeathAction OnDeathAction;
 
+    public delegate void HealthChangeAction(int playerNumber, int newHealthValue, int newWardValue);
+    public event HealthChangeAction OnHealthChanged;
+
     /*
     * UI components set by Unity
     */
 
     [SerializeField]
     private int maxHealth = 0;
-    [SerializeField]
-    private int maxWards = 0;
+    public int MaxHealth { get { return maxHealth; } }
     [SerializeField]
     private int maxMP = 0;
-
     public int MaxMP { get { return maxMP; } }
 
     [SerializeField]
-    private GameObject[] player1HeartIcons = null;
-    [SerializeField]
-    private GameObject[] player1WardIcons = null;
-    [SerializeField]
     private Slider player1MPSlider = null;
 
-    [SerializeField]
-    private GameObject[] player2HeartIcons = null;
-    [SerializeField]
-    private GameObject[] player2WardIcons = null;
     [SerializeField]
     private Slider player2MPSlider = null;
 
@@ -126,10 +120,10 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public void Start()
     {
         Player1Health = maxHealth;
-        Player1Wards = maxWards;
+        Player1Wards = maxHealth;
         Player1MP = 0;
         Player2Health = maxHealth;
-        Player2Wards = maxWards;
+        Player2Wards = maxHealth;
         Player2MP = 0;
     }
 
@@ -153,22 +147,11 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     {
         if (playerNumber == 0)
         {
-            Player1Wards = tempWards[playerNumber];
+            Player1Wards = Math.Min(tempWards[playerNumber], Player1Health);
         }
         else
         {
-            Player2Wards = tempWards[playerNumber];
-        }
-    }
-
-    private void UpdateUIArray(GameObject[] arr, int value)
-    {
-        for (int i = 0; i < arr.Length; i++)
-        {
-            if (i < value)
-                arr[i].SetActive(true);
-            else
-                arr[i].SetActive(false);
+            Player2Wards = Math.Min(tempWards[playerNumber], Player2Health);
         }
     }
 
@@ -176,14 +159,14 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
 
     private void Player1HealthChanged(int oldValue, int newValue)
     {
-        UpdateUIArray(player1HeartIcons, newValue);
+        OnHealthChanged?.Invoke(0, newValue, Player1Wards);
         if (newValue == 0)
             OnDeathAction(0);
     }
 
     private void Player1WardsChanged(int oldValue, int newValue)
     {
-        UpdateUIArray(player1WardIcons, newValue);
+        OnHealthChanged?.Invoke(0, Player1Health, newValue);
     }
 
     private void Player1MPChanged(int oldValue, int newValue)
@@ -194,14 +177,14 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
 
     private void Player2HealthChanged(int oldValue, int newValue)
     {
-        UpdateUIArray(player2HeartIcons, newValue);
+        OnHealthChanged?.Invoke(1, newValue, Player2Wards);
         if (newValue == 0)
             OnDeathAction(1);
     }
 
     private void Player2WardsChanged(int oldValue, int newValue)
     {
-        UpdateUIArray(player2WardIcons, newValue);
+        OnHealthChanged?.Invoke(1, Player2Health, newValue);
     }
 
     private void Player2MPChanged(int oldValue, int newValue)

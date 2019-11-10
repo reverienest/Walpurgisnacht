@@ -55,7 +55,7 @@ public class VictoryOverlay : MonoBehaviour
         playerScoreTexts[0].text = MatchManager.Instance.GetPlayerScore(0).ToString();
         playerScoreTexts[1].text = MatchManager.Instance.GetPlayerScore(1).ToString();
 
-        CharacterType victorCharacter = MatchManager.Instance.GetPlayerCharacterType(playerNumber);
+        CharacterType victorCharacter = CharacterSelection.Instance.GetPlayerCharacterType(playerNumber);
         string victorCharacterString = victorCharacter.GetString();
         victorText.text = "(P" + (playerNumber + 1) + ") " + victorCharacterString;
         victorImage.sprite = characterVictorySprites[(int)victorCharacter];
