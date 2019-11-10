@@ -43,7 +43,8 @@ public class MatchManager : Singleton<MatchManager>
     private Text[] playerScoreTexts = null;
     [SerializeField]
     private Image[] playerCharacterImages = null;
-
+    [SerializeField]
+    private Color[] playerOutlineColors = new Color[2];
     private int[] _playerScores = new int[2];
     private void SetPlayerScore(int playerNumber, int value)
     {
@@ -196,8 +197,10 @@ public class MatchManager : Singleton<MatchManager>
         // Setup parameters for their tracking and controls
         players[0].GetComponent<CharacterTargeting>().target = players[1].transform;
         players[0].GetComponent<SharedCharacterController>().playerNumber = 0;
+        players[0].GetComponent<SpriteOutline>().color = playerOutlineColors[0];
         players[1].GetComponent<CharacterTargeting>().target = players[0].transform;
         players[1].GetComponent<SharedCharacterController>().playerNumber = 1;
+        players[1].GetComponent<SpriteOutline>().color = playerOutlineColors[1];
 
         SplashTextManager.Instance.Splash(roundStartString, () => InputMap.Instance.inputEnabled = true);
     }

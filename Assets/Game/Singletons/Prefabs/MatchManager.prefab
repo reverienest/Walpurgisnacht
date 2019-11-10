@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8dc62a80e8ed240889aa4920df35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterTypes: 0000000000000000
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -66,3 +65,6 @@ MonoBehaviour:
   playerCharacterImages:
   - {fileID: 0}
   - {fileID: 0}
+  playerOutlineColors:
+  - {r: 0.5254902, g: 0.12941177, b: 0.7058824, a: 1}
+  - {r: 0.7058824, g: 0.12941177, b: 0.44705883, a: 1}
