@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8dc62a80e8ed240889aa4920df35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterTypes: 0000000000000000
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -52,7 +51,7 @@ MonoBehaviour:
   - {fileID: 4965133680744376420, guid: 2c799703f2ea1c743a9ddc062b4844d6, type: 3}
   characterHeadshots:
   - {fileID: 21300000, guid: 38aeea35e1ad6f74fbc9f0bce695656a, type: 3}
-  - {fileID: 21300000, guid: f643f10bd3be0994ba4da778b1823f65, type: 3}
+  - {fileID: 21300000, guid: d9a59b53224cf0f4fafd93872a218b92, type: 3}
   winsNeeded: 3
   roundStartString: Get em'!
   lastWordDuration: 30
