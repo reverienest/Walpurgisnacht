@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7786847072380869280}
   - component: {fileID: 1170873391337030589}
   - component: {fileID: 4064234925726897623}
-  m_Layer: 0
+  - component: {fileID: 9052847023316341023}
+  m_Layer: 11
   m_Name: MagicCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,5 +95,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  circleChargeTime: 180
-  StartingMP: 25
+  circleChargeTime: 30
+  startingMP: 10
+  timePerWard: 5
+--- !u!70 &9052847023316341023
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013667188481603560}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.03}
+  m_Size: {x: 0.97, y: 0.59}
+  m_Direction: 1
