@@ -21,11 +21,10 @@ public class VictoryOverlay : MonoBehaviour
     private Text victorText = null;
     [SerializeField]
     private Image victorImage = null;
+    [SerializeField]
+    private Image blurredBG = null;
 
     private Animator anim;
-    private CanvasGroup cg;
-    private PostProcessVolume volume;
-    private Blur blur;
 
     private float transitionTimer;
     private bool transitionDone;
@@ -33,11 +32,6 @@ public class VictoryOverlay : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        cg = GetComponent<CanvasGroup>();
-        blur = ScriptableObject.CreateInstance<Blur>();
-        blur.enabled.Override(true);
-        blur.BlurSize.Override(0);
-        volume = PostProcessManager.instance.QuickVolume(0, 100, blur);
 
         MatchManager.Instance.OnVictoryAction += OnVictoryAction;
     }
@@ -68,8 +62,7 @@ public class VictoryOverlay : MonoBehaviour
         for (transitionTimer = 0; transitionTimer < transitionDuration; transitionTimer += Time.deltaTime)
         {
             float normalized = transitionTimer / transitionDuration;
-            blur.BlurSize.value = Mathf.Lerp(0, maxBlurSize, normalized);
-            // cg.alpha = Mathf.Lerp(0, 1, normalized);
+            blurredBG.color = Util.ModifyAlpha(blurredBG.color, Mathf.Lerp(0, 1, normalized));
             yield return null;
         }
         transitionDone = true;
