@@ -508,7 +508,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: I accidentally deleted the old text
+  m_Text: 'Right Trigger - Primary Fire
+
+    Left Trigger - Heavy Fire
+
+    A button - Dodge
+
+    B button - Special
+
+    X button - Slow
+
+    Y button - Place Magic Circle/ Last Word'
 --- !u!222 &806335489
 CanvasRenderer:
   m_ObjectHideFlags: 0
