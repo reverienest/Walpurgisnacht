@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum SpellType
 {
-    PRIM, HEAVY, INTRIN, MOVE, _NUM_TYPES
+    PRIM, HEAVY, INTRIN, MOVE, CIRCLE, _NUM_TYPES
 }
 
 public class SpellMap : Singleton<SpellMap>
@@ -14,7 +14,7 @@ public class SpellMap : Singleton<SpellMap>
     [Serializable]
     private class Cooldowns
     {
-        public float[] cooldowns = new float[4];
+        public float[] cooldowns = new float[5];
         public float this[int i] { get { return cooldowns[i]; } }
     }
     [SerializeField]
@@ -31,6 +31,8 @@ public class SpellMap : Singleton<SpellMap>
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
 
+    private int lastWordsCastBy = -1;
+
     void Awake()
     {
         //Init cooldown timers
@@ -42,6 +44,10 @@ public class SpellMap : Singleton<SpellMap>
         spellToActionMap[(uint)SpellType.HEAVY] = ActionType.HEAVY;
         spellToActionMap[(uint)SpellType.INTRIN] = ActionType.INTRIN;
         spellToActionMap[(uint)SpellType.MOVE] = ActionType.MOVE;
+        spellToActionMap[(uint)SpellType.CIRCLE] = ActionType.CAST_CIRCLE;
+
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
     }
 
     void Update()
@@ -135,5 +141,28 @@ public class SpellMap : Singleton<SpellMap>
 
         RestartCooldown(playerNumber, spellType);
         return true;
+    }
+
+    public void HideCircleCooldown(int playerNumber)
+    {
+
+    }
+    
+    public void ShowCircleCooldown(int playerNumber)
+    {
+
+    }
+
+    private void OnLastWordStart(int playerNum)
+    {
+        lastWordsCastBy = playerNum;
+    }
+
+
+    private void OnLastWordEnd()
+    {
+        ShowCircleCooldown(lastWordsCastBy);
+        SetCooldown(GetInitialCooldown(lastWordsCastBy, SpellType.CIRCLE), lastWordsCastBy, SpellType.CIRCLE);
+        lastWordsCastBy = -1;
     }
 }

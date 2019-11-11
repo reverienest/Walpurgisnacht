@@ -131,6 +131,7 @@ public class MagicCircle : MonoBehaviour
         this.playerNumber = playerNumber;
         lastUpdateMPCharge = Time.time;
         SetGuage(startingMP);
+        SpellMap.Instance.HideCircleCooldown(playerNumber);
     }
 
 
