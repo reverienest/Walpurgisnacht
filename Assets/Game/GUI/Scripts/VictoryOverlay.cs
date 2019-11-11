@@ -7,8 +7,6 @@ using UnityEngine.Rendering.PostProcessing;
 public class VictoryOverlay : MonoBehaviour
 {
     [SerializeField]
-    private float maxBlurSize = 2;
-    [SerializeField]
     private float transitionDuration = 2;
     [SerializeField]
     private Sprite[] characterVictorySprites = new Sprite[(int)CharacterType._NUM_TYPES];
