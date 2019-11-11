@@ -16,21 +16,38 @@ public class MagicCircle : MonoBehaviour
     private int startingMP = 0;
 
     [SerializeField]
-    private float timePerWard = 0;
+    private int timePerWardRecharge = 0;
+
+    [SerializeField]
+    private int mpPerWardRecharge = 0;
 
     private float timeModifierMPCharge;
     private float lastUpdateMPCharge = -1;
 
-    private float lastUpdateWardRefill = -1;
+    private float timeModifierWardRefill;
+    private float wardRefillModifier;
+    private float slowdownWhenNoMP;
+    private float lastWardRefillTime = -1;
     private float lastWardRefillValue = 0;
+    private float lastUpdateMPDischarge = 0;
 
     private int restitutionMP = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerStatsManager.Instance.Player1Wards = 0;
-        timeModifierMPCharge = ((float)circleChargeTime) / (PlayerStatsManager.Instance.MaxMP - startingMP);
+        //time it takes to increase MP by 1 during normal play
+        timeModifierMPCharge = (float)circleChargeTime / (PlayerStatsManager.Instance.MaxMP - startingMP);
+
+        //time it takes to decrease MP by 1 when recharging a ward
+        timeModifierWardRefill = (float)timePerWardRecharge / mpPerWardRecharge;
+
+        //normalized ward refill per second
+        wardRefillModifier = 1.0f / timePerWardRecharge;
+
+        //multiplier to addedRefill when player has drained all their MP
+        //basically, what percentage of the overall decrease specified by the serialized fields does the natural recharge contribute? 
+        slowdownWhenNoMP = (1.0f / timeModifierMPCharge) / ((1.0f / timeModifierMPCharge) + (1.0f / timeModifierWardRefill));
     }
 
     // Update is called once per frame
@@ -38,11 +55,11 @@ public class MagicCircle : MonoBehaviour
     {
         if (ShouldRefill)
         {
-            float addedRefill = (Time.time - lastUpdateWardRefill) / timePerWard;
+            float addedRefill = (Time.time - lastWardRefillTime) * wardRefillModifier;
 
             if (0 == GetGuage())
             {
-                addedRefill /= 2;
+                addedRefill *= slowdownWhenNoMP;
             }
 
             float newWardRefillValue = lastWardRefillValue + addedRefill;
@@ -51,20 +68,24 @@ public class MagicCircle : MonoBehaviour
             if (newWardRefillValue > 1)
             {
                 //ward refilled
-                restitutionMP -= Mathf.FloorToInt(100 * timePerWard / circleChargeTime);
+                restitutionMP = GetGuage();
                 newWardRefillValue = 0;
+            }
+
+            if (Time.time - lastUpdateMPDischarge >= timeModifierWardRefill)
+            {
+                lastUpdateMPDischarge = Time.time;
+                DecrementGuage();
             }
 
             if (Time.time - lastUpdateMPCharge >= timeModifierMPCharge)
             {
                 lastUpdateMPCharge = Time.time;
-                DecrementGuage();
                 restitutionMP += 1;
             }
 
-            lastUpdateWardRefill = Time.time;
+            lastWardRefillTime = Time.time;
             lastWardRefillValue = newWardRefillValue;
-
         }
         else if (IsCircleSpawned)
         {
@@ -84,7 +105,7 @@ public class MagicCircle : MonoBehaviour
 
     private bool IsPlayerInCircle
     {
-        get => lastUpdateWardRefill != -1;
+        get => lastWardRefillTime != -1;
     }
 
     private bool ShouldRefill
@@ -196,7 +217,8 @@ public class MagicCircle : MonoBehaviour
             restitutionMP = PlayerStatsManager.Instance.Player2MP;
         }
 
-        lastUpdateWardRefill = Time.time;
+        lastUpdateMPDischarge = Time.time;
+        lastWardRefillTime = Time.time;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -207,11 +229,14 @@ public class MagicCircle : MonoBehaviour
             //not the same player
             return;
         }
-        
-        SetGuage(restitutionMP);
+
+        if (restitutionMP > GetGuage())
+        {
+            SetGuage(restitutionMP);
+        }
 
         lastWardRefillValue = 0;
-        lastUpdateWardRefill = -1;
+        lastWardRefillTime = -1;
 
         SetWardRefill(0);
     }

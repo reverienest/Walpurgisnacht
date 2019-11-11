@@ -53,7 +53,7 @@ public class HealthUI : MonoBehaviour
             return;
        
         healthIcons[currentWardValue].color = ModifyAlpha(healthIcons[currentWardValue].color, 1);
-        healthIcons[currentWardValue].material.SetFloat("_t", refillValue * 0.3f + 0.3f);
+        healthIcons[currentWardValue].material.SetFloat("_t", refillValue * 0.43f + 0.1f);
     }
 
     void OnDestroy() {
