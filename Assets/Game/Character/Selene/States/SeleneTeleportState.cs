@@ -31,10 +31,10 @@ public class SeleneTeleportState : SeleneState
         if (state == Sequence.TRAVEL)
         {
             travelTimer -= Time.deltaTime;
-            character.transform.position = Vector2.Lerp(travelDestination, travelOrigin, travelTimer / travelTime);
 
             if (travelTimer <= 0)
             {
+                character.transform.position = travelDestination;
                 state = Sequence.EXIT_HOLE;
                 input.anim.Play("ExitHole");
             }

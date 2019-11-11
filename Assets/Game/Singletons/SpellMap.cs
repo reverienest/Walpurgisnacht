@@ -84,7 +84,7 @@ public class SpellMap : Singleton<SpellMap>
 
     private float GetInitialCooldown(int playerNumber, SpellType spellType)
     {
-        CharacterType charType = MatchManager.Instance.GetPlayerCharacterType(playerNumber);
+        CharacterType charType = CharacterSelection.Instance.GetPlayerCharacterType(playerNumber);
         return cooldowns[(int)charType][(int)spellType];
     }
 

@@ -10,10 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1033686303857a947b912161e9da8e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxTravelTime: 0.5
   maxTravelDistance: 5
+--- !u!114 &-2587267942630820443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193138727480721282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7971c6bc288754dba52e29d28b3af3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  color: {r: 0.5247427, g: 0.130162, b: 0.7075472, a: 1}
+  outlineSize: 2
 --- !u!1001 &5327955258788472254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29,7 +43,7 @@ PrefabInstance:
     - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_Controller
-      value: 
+      value:
       objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
     - target: {fileID: 6313812592357874237, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
@@ -86,6 +100,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value:
+      objectReference: {fileID: 2100000, guid: 35c5848a3a380f645a1fb08ab60897c7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &2193138727480721282 stripped

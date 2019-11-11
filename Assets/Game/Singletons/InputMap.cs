@@ -10,7 +10,7 @@ public enum ActionType
 
 public class InputMap : Singleton<InputMap>
 {
-    public bool inputEnabled;
+    public bool inputEnabled = true;
 
     IDictionary<ActionType, KeyCode>[] actionMaps = {
         new Dictionary<ActionType, KeyCode>(), //Player 1
