@@ -14,4 +14,9 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+    }
 }
