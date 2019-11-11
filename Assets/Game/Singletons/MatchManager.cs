@@ -20,13 +20,6 @@ public class MatchManager : Singleton<MatchManager>
     public event LastWordTimerChangeAction OnLastWordTimerChange;
 
     [SerializeField]
-    private CharacterType[] playerCharacterTypes = new CharacterType[2];
-    public CharacterType GetPlayerCharacterType(int playerNumber)
-    {
-        return playerCharacterTypes[playerNumber];
-    }
-
-    [SerializeField]
     private Transform[] spawnPoints = new Transform[2];
 
     [SerializeField]
@@ -50,7 +43,8 @@ public class MatchManager : Singleton<MatchManager>
     private Text[] playerScoreTexts = null;
     [SerializeField]
     private Image[] playerCharacterImages = null;
-
+    [SerializeField]
+    private Color[] playerOutlineColors = new Color[2];
     private int[] _playerScores = new int[2];
     private void SetPlayerScore(int playerNumber, int value)
     {
@@ -87,9 +81,10 @@ public class MatchManager : Singleton<MatchManager>
     {
         // Setup player character UI images
         for (int i = 0; i < playerCharacterImages.Length; ++i)
-            playerCharacterImages[i].sprite = characterHeadshots[(int)playerCharacterTypes[i]];
+            playerCharacterImages[i].sprite = characterHeadshots[(int)CharacterSelection.Instance.GetPlayerCharacterType(i)];
 
         PlayerStatsManager.Instance.OnDeathAction += new PlayerStatsManager.DeathAction(OnPlayerDeath);
+        InputMap.Instance.inputEnabled = false;
         ResetArena();
     }
 
@@ -128,7 +123,7 @@ public class MatchManager : Singleton<MatchManager>
             else
                 transitionInfo.moveDestination = spawnPoints[playerNum].position;
 
-            switch (GetPlayerCharacterType(playerNum))
+            switch (CharacterSelection.Instance.GetPlayerCharacterType(playerNum))
             {
                 case CharacterType.SELENE:
                     Selene selene = players[playerNum].GetComponent<Selene>();
@@ -194,7 +189,7 @@ public class MatchManager : Singleton<MatchManager>
 
             // Spawn new players
             players[playerNum] = Instantiate(
-                characterPrefabs[(int)playerCharacterTypes[playerNum]],
+                characterPrefabs[(int)CharacterSelection.Instance.GetPlayerCharacterType(playerNum)],
                 spawnPoints[playerNum].position,
                 Quaternion.identity);
         }
@@ -202,8 +197,10 @@ public class MatchManager : Singleton<MatchManager>
         // Setup parameters for their tracking and controls
         players[0].GetComponent<CharacterTargeting>().target = players[1].transform;
         players[0].GetComponent<SharedCharacterController>().playerNumber = 0;
+        players[0].GetComponent<SpriteOutline>().color = playerOutlineColors[0];
         players[1].GetComponent<CharacterTargeting>().target = players[0].transform;
         players[1].GetComponent<SharedCharacterController>().playerNumber = 1;
+        players[1].GetComponent<SpriteOutline>().color = playerOutlineColors[1];
 
         SplashTextManager.Instance.Splash(roundStartString, () => InputMap.Instance.inputEnabled = true);
     }
@@ -216,7 +213,7 @@ public class MatchManager : Singleton<MatchManager>
         InputMap.Instance.inputEnabled = false;
 
         // Round winner splash text
-        string aliveCharacterString = GetPlayerCharacterType(alivePlayer).GetString();
+        string aliveCharacterString = CharacterSelection.Instance.GetPlayerCharacterType(alivePlayer).GetString();
         string victoryString = "(P" + (alivePlayer + 1) + ") " + aliveCharacterString + " wins!";
 
         if (_playerScores[alivePlayer] == winsNeeded)
