@@ -950,9 +950,9 @@ MonoBehaviour:
     m_LineSpacing: 2
   m_Text: "Walpurgisnacht wouldn't have been possible without these lovely people\r\n\r\nYoon
     Lee - Lead, Programming, Music/Sound\r\nJacqueline Chambers - Art Lead\r\nBrandon
-    Shockley - Programming Lead\r\nEthan Yu - Art\r\nSam Choi - Art\r\nNoura (Lastname)
-    - Art\r\nMaki (Lastname) - Art\r\nArshad (Lastname) - Programming\r\nDrew Bondurant
-    - Programming\r\nAlbert Ko - Programming\r\nPranay (Lastname) - Music/Sound"
+    Shockley - Programming Lead\r\nEthan Yu - Art\r\nSam Choi - Art\r\nNoura El Bayrouti
+    - Art\r\nArshad Hosein - Programming\r\nDrew Bondurant - Programming\r\nAlbert
+    Ko - Programming\r\nPranay Rapolu - Music/Sound"
 --- !u!222 &1373471634
 CanvasRenderer:
   m_ObjectHideFlags: 0
