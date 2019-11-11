@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseBullet
+public interface IBaseBullet
 {
-    public abstract void IntrinsicMutate();
+    void IntrinsicMutate();
+
+    void DestroyBullet();
 }
 

@@ -25,10 +25,13 @@ private Vector2 TarDir;
 
 private CharacterTargeting CharTar;
 
+static public List bulletList;
     // Start is called before the first frame update
     void Start()
     {
         CharTar = GetComponent<CharacterTargeting>();
+
+        bulletList = new List<someshit>();
     }
 
     // Update is called once per frame
@@ -36,8 +39,7 @@ private CharacterTargeting CharTar;
     {   
         if (Input.GetButtonDown("LightFire"))
         {
-            startShot = transform.position;
-            StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves));
+            StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves, transform.position));
         }
         
         if (Input.GetButtonDown("HeavyFire"))
@@ -48,7 +50,7 @@ private CharacterTargeting CharTar;
         TarDir = CharTar.TargetDirection();
     }   
 
-    IEnumerator SelenePrimary(int _primaryProjectiles, int _primaryWaves)
+    IEnumerator SelenePrimary(int _primaryProjectiles, int _primaryWaves, Vector2 startShot)
     {
         int tempProjectiles = primaryProjectiles;
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
@@ -78,7 +80,7 @@ private CharacterTargeting CharTar;
     IEnumerator SeleneHeavy(int _heavyProjectiles)
     {
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
-        float angle = baseAngle - (60f/2);
+        float angle = baseAngle;
         float shotDirXPos = Mathf.Cos(baseAngle * Mathf.Deg2Rad);
         float shotDirYPos = Mathf.Sin(baseAngle * Mathf .Deg2Rad);
 
@@ -91,14 +93,14 @@ private CharacterTargeting CharTar;
         for (int i = 0; i < heavyProjectiles + 1; i++)
             {
                 //float angleStep = 360f / heavyProjectiles;
-                float shotDirXPosSub = startHeavyShot.x + Mathf.Cos((angle * Mathf.PI) - 180f);
-                float shotDirYPosSub = startHeavyShot.y + Mathf.Sin((angle * Mathf.PI) - 180f);
+                float shotDirXPosSub = Mathf.Cos((angle * Mathf.Deg2Rad) - 180f);
+                float shotDirYPosSub = Mathf.Sin((angle * Mathf.Deg2Rad) - 180f);
 
                 Vector2 shotDirectionSub = new Vector2(shotDirXPosSub, shotDirYPosSub) * primarySpeed;
 
                 GameObject tempObjSub = Instantiate(primaryPrefab, startHeavyShot, Quaternion.identity);
                 tempObjSub.GetComponent<Rigidbody2D>().velocity = shotDirectionSub;
-                //angle += angleStep;
+                angle += 60f;
             }
     }
 }

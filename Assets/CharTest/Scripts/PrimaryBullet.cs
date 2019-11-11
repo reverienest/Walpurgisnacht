@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrimaryBullet : BaseBullet 
+public class PrimaryBullet : MonoBehaviour, IBaseBullet 
 {
-    // Start is called before the first frame update
-    public override void IntrinsicMutate()
+    public void IntrinsicMutate()
     {
         //Info here
+    }
+
+    public void DestroyBullet()
+    {
+
     }
 }
