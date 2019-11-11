@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SeleneIdleState : SeleneState
 {
-
     override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo info = null)
     {
         input.anim.Play("Idle");
