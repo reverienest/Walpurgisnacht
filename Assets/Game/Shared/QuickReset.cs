@@ -6,16 +6,25 @@ using UnityEngine.SceneManagement;
 public class QuickReset : MonoBehaviour
 {
     [SerializeField]
-    private string titleScene = null;
+    private string titleSceneName = null;
+
+    private static QuickReset instance;
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        // We only want one of these things in existance at a time
+        if (!instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
     }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.O) && Input.GetKeyDown(KeyCode.M))
-            SceneManager.LoadScene(titleScene);
+            SceneManager.LoadScene(titleSceneName);
     }
 }

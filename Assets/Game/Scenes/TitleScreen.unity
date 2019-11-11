@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611ffef6e579be141b3c66d8b860b21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleScene: TitleScreen
+  titleSceneName: TitleScreen
 --- !u!4 &1940890817
 Transform:
   m_ObjectHideFlags: 0
