@@ -27,6 +27,9 @@ public class SpellMap : Singleton<SpellMap>
     [SerializeField]
     private Slider[] player2CooldownSliders = null;
 
+    [SerializeField]
+    private GameObject[] magicCircleCooldownSlots= null;
+
     private float[][] cooldownTimers = new float[2][];
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
@@ -145,12 +148,12 @@ public class SpellMap : Singleton<SpellMap>
 
     public void HideCircleCooldown(int playerNumber)
     {
-
+        magicCircleCooldownSlots[playerNumber].GetComponent<Animator>().Play("CooldownSlideOut");
     }
     
     public void ShowCircleCooldown(int playerNumber)
     {
-
+        magicCircleCooldownSlots[playerNumber].GetComponent<Animator>().Play("CooldownSlideIn");
     }
 
     private void OnLastWordStart(int playerNum)
