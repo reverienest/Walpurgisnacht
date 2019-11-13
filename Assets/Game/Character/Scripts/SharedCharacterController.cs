@@ -43,7 +43,7 @@ public class SharedCharacterController : MonoBehaviour
     {
         if (InputMap.Instance.GetInput(playerNumber, ActionType.CAST_CIRCLE) //are they pressing the button?
             && null == magicCircle //have they already cast the circle?
-            && !MatchManager.Instance.LastWordActive //is either player using their last words?
+            && !MatchManager.Instance.LastWordActive //is either player using their last word?
             && SpellMap.Instance.SpellReady(playerNumber, SpellType.CIRCLE)) //is the cast on cooldown?
         {
             float height = this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -56,12 +56,12 @@ public class SharedCharacterController : MonoBehaviour
         return false;
     }
 
-    public bool HandleLastWords()
+    public bool HandleLastWord()
     {
         if (InputMap.Instance.GetInput(playerNumber, ActionType.LAST_WORD) //are they pressing the button?
             && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP? 
             && magicCircle.GetComponent<MagicCircle>().IsPlayerInCircle //are they in the circle?
-            && !MatchManager.Instance.LastWordActive ) //is other player using their last words? 
+            && !MatchManager.Instance.LastWordActive ) //is other player using their last word? 
         {
             MatchManager.Instance.StartLastWord(playerNumber);
             Destroy(magicCircle);

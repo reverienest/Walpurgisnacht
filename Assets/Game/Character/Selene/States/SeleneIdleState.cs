@@ -15,14 +15,14 @@ public class SeleneIdleState : SeleneState
     {
         input.cc.HandlePlaceCircle();
 
-        input.cc.HandleLastWords();
+        input.cc.HandleLastWord();
 
         // Spells
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
         {
             character.ChangeState<SeleneTeleportState>();
         }
-        // TODO: This triggers the last word. Yun can remove this to cast the primary spell.
+
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
             

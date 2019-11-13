@@ -59,7 +59,7 @@ public class MatchManager : Singleton<MatchManager>
     private GameObject[] players = new GameObject[2];
 
     private int lastWordPlayerNumber;
-    private bool lastWordActive = false;
+    private bool lastWordActive;
     public bool LastWordActive { get { return lastWordActive; } }
     private float _lastWordTimer;
     private float LastWordTimer

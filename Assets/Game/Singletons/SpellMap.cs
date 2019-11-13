@@ -34,7 +34,7 @@ public class SpellMap : Singleton<SpellMap>
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
 
-    private int lastWordsCastBy = -1;
+    private int lastWordCastBy = -1;
 
     void Awake()
     {
@@ -158,14 +158,14 @@ public class SpellMap : Singleton<SpellMap>
 
     private void OnLastWordStart(int playerNum)
     {
-        lastWordsCastBy = playerNum;
+        lastWordCastBy = playerNum;
     }
 
 
     private void OnLastWordEnd()
     {
-        ShowCircleCooldown(lastWordsCastBy);
-        SetCooldown(GetInitialCooldown(lastWordsCastBy, SpellType.CIRCLE), lastWordsCastBy, SpellType.CIRCLE);
-        lastWordsCastBy = -1;
+        ShowCircleCooldown(lastWordCastBy);
+        SetCooldown(GetInitialCooldown(lastWordCastBy, SpellType.CIRCLE), lastWordCastBy, SpellType.CIRCLE);
+        lastWordCastBy = -1;
     }
 }
