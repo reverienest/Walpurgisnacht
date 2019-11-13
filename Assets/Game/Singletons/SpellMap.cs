@@ -61,7 +61,7 @@ public class SpellMap : Singleton<SpellMap>
                 DecreaseCooldown(Time.deltaTime, playerNum, (SpellType)spellType);
     }
 
-    private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
+    public bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
 
     private void RestartCooldown(int playerNumber, SpellType spellType)
     {

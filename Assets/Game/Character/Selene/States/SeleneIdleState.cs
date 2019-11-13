@@ -15,6 +15,8 @@ public class SeleneIdleState : SeleneState
     {
         input.cc.HandlePlaceCircle();
 
+        input.cc.HandleLastWords();
+
         // Spells
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
         {
@@ -23,7 +25,7 @@ public class SeleneIdleState : SeleneState
         // TODO: This triggers the last word. Yun can remove this to cast the primary spell.
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
-            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
+            
         }
 
         // Movement animations

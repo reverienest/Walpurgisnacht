@@ -39,15 +39,45 @@ public class SharedCharacterController : MonoBehaviour
             lastDirection = Vector2.left;
     }
 
-    public void HandlePlaceCircle()
+    public bool HandlePlaceCircle()
     {
-        if (InputMap.Instance.GetInput(playerNumber, ActionType.CAST_CIRCLE) && null == magicCircle)
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.CAST_CIRCLE) //are they pressing the button?
+            && null == magicCircle //have they already cast the circle?
+            && !MatchManager.Instance.LastWordActive //is either player using their last words?
+            && SpellMap.Instance.SpellReady(playerNumber, SpellType.CIRCLE)) //is the cast on cooldown?
         {
             float height = this.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
             Vector2 circleSpawnLocation = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - (height / 2));
             magicCircle = Instantiate(circlePrefab, circleSpawnLocation, Quaternion.identity);
             magicCircle.GetComponent<MagicCircle>().SpawnCircle(playerNumber);
+            return true;
         }
+
+        return false;
+    }
+
+    public bool HandleLastWords()
+    {
+        if (InputMap.Instance.GetInput(playerNumber, ActionType.LAST_WORD) //are they pressing the button?
+            && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP? 
+            && magicCircle.GetComponent<MagicCircle>().IsPlayerInCircle //are they in the circle?
+            && !MatchManager.Instance.LastWordActive ) //is other player using their last words? 
+        {
+            MatchManager.Instance.StartLastWord(playerNumber);
+            Destroy(magicCircle);
+
+            if (0 == playerNumber)
+            {
+                PlayerStatsManager.Instance.Player1MP = 0;
+            }
+            else
+            {
+                PlayerStatsManager.Instance.Player2MP = 0;
+            }
+            return true;
+        }
+
+        return false;
     }
 
     private bool movementHandled;

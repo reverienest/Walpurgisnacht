@@ -95,17 +95,17 @@ public class MagicCircle : MonoBehaviour
                 IncrementGuage();
             }
         }
-        
+
+    }
+
+    public bool IsPlayerInCircle
+    {
+        get => lastWardRefillTime != -1;
     }
 
     private bool IsCircleSpawned
     {
         get => lastUpdateMPCharge != -1;
-    }
-
-    private bool IsPlayerInCircle
-    {
-        get => lastWardRefillTime != -1;
     }
 
     private bool ShouldRefill

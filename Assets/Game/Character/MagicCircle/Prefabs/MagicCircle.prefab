@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   circleChargeTime: 180
-  startingMP: 30
+  startingMP: 20
   timePerWardRecharge: 10
   mpPerWardRecharge: 25
 --- !u!70 &9052847023316341023
