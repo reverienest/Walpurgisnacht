@@ -251,6 +251,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: cooldowns.Array.data[0].cooldowns.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: cooldowns.Array.data[1].cooldowns.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: cooldowns.Array.data[0].cooldowns.Array.data[4]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936718765037713539, guid: 0daf013c4c06beb4ea281a122944ff7d,
+        type: 3}
+      propertyPath: cooldowns.Array.data[1].cooldowns.Array.data[4]
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0daf013c4c06beb4ea281a122944ff7d, type: 3}
 --- !u!4 &725786564169516575 stripped
@@ -338,6 +358,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4496494981954801050, guid: c80b6e08c1d8ca4489df504e9e8cb7c7,
         type: 3}
+    - target: {fileID: 7355736272233085758, guid: 8c053c9f3f7937c45bfc274ef327c163,
+        type: 3}
+      propertyPath: roundStartString
+      value: Let's Dance!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c053c9f3f7937c45bfc274ef327c163, type: 3}
 --- !u!4 &4285172111496352212 stripped

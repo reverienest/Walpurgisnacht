@@ -2652,16 +2652,6 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[1]
       value: 
       objectReference: {fileID: 704121907}
-    - target: {fileID: 4285172111496352215, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
-      propertyPath: lastWordDuration
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4285172111496352215, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
-      propertyPath: roundStartString
-      value: Let's Dance!
-      objectReference: {fileID: 0}
     - target: {fileID: 4285172111560437621, guid: 7bcc516f2a2febb49aa33048707abc04,
         type: 3}
       propertyPath: player1HeartIcons.Array.data[0]
@@ -2744,16 +2734,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
         type: 3}
-      propertyPath: cooldowns.Array.data[0].cooldowns.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
-      propertyPath: cooldowns.Array.data[1].cooldowns.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
       propertyPath: magicCircleCooldownSliderAnimators.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2812,16 +2792,6 @@ PrefabInstance:
       propertyPath: player2CooldownSliders.Array.data[4]
       value: 
       objectReference: {fileID: 1521505922}
-    - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
-      propertyPath: cooldowns.Array.data[0].cooldowns.Array.data[4]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
-        type: 3}
-      propertyPath: cooldowns.Array.data[1].cooldowns.Array.data[4]
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 4010517633705771195, guid: 7bcc516f2a2febb49aa33048707abc04,
         type: 3}
       propertyPath: magicCircleCooldownSlots.Array.data[0]
