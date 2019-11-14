@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/TitleScreen.unity
     guid: 98ef8cc4fe6251a44bf2f3984d9785ee
   - enabled: 1
+    path: Assets/Game/Scenes/CharacterSelection.unity
+    guid: cf099696f2027c043a4db08affd6a38e
+  - enabled: 1
     path: Assets/Game/Scenes/MainGame.unity
     guid: e5067fb405a1ab84280417e35309422d
   m_configObjects: {}
