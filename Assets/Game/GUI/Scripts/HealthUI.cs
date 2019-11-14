@@ -12,7 +12,6 @@ public class HealthUI : MonoBehaviour
     void Start()
     {
         PlayerStatsManager.Instance.OnHealthChanged += UpdateUI;
-        PlayerStatsManager.Instance.OnWardRefill += PartiallyRefillWard;
         foreach (var healthIcon in healthIcons)
             healthIcon.material = Instantiate(healthIcon.material);
     }
@@ -45,15 +44,6 @@ public class HealthUI : MonoBehaviour
                 healthIcons[i].color = ModifyAlpha(healthIcons[i].color, 0);
             }
         }
-    }
-
-    private void PartiallyRefillWard(int playerNumber, int currentWardValue, float refillValue)
-    {
-        if (playerNumber != this.playerNumber)
-            return;
-       
-        healthIcons[currentWardValue].color = ModifyAlpha(healthIcons[currentWardValue].color, 1);
-        healthIcons[currentWardValue].material.SetFloat("_t", refillValue * 0.43f + 0.1f);
     }
 
     void OnDestroy() {

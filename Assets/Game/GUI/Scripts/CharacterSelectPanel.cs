@@ -23,7 +23,7 @@ public class CharacterSelectPanel : MonoBehaviour
     [SerializeField]
     private Color confirmColor = Color.black;
 
-    void Awake()
+    void Start()
     {
         CharacterSelection.Instance.OnCharacterTypeChange += UpdateCharacterUI;
         ReadyManager.Instance.OnReady += ConfirmCharacter;

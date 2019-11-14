@@ -48,13 +48,13 @@ public class MenuNavigator : MonoBehaviour
         {
             Current = Current.Right;
         }
-        if (GetInputDown(ActionType.CONFIRM))
+        if (GetInputDown(ActionType.PRIM))
         {
             Current.ActivateNode();
             if (Current.Forward)
                 Current = Current.Forward;
         }
-        if (GetInputDown(ActionType.BACK))
+        if (GetInputDown(ActionType.HEAVY))
         {
             Current.DeactivateNode();
             if (Current.Backward)
