@@ -133,4 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  prefab: {fileID: 388504248127969802}
+  orbitOrigin: {fileID: 0}
+  angleSpeed: 0.01
+  baseAngle: 40
+  shotOrigin: {x: 0, y: 0}

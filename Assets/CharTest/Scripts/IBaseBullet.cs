@@ -4,8 +4,10 @@ using UnityEngine;
 
 public interface IBaseBullet
 {
-    void IntrinsicMutate();
+    IEnumerator IntrinsicMutate();
 
     void DestroyBullet();
+
+    bool CheckMutation();
 }
 
