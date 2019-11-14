@@ -112,7 +112,7 @@ PolygonCollider2D:
       - {x: -0.32588196, y: 0.53125}
       - {x: -0.08295846, y: 0.37410414}
       - {x: 0.02772522, y: -0.02040279}
-      - {x: 0.023298264, y: -0.14731824}
+      - {x: 0.06522465, y: -0.14731824}
       - {x: -0.024116993, y: -0.34264064}
       - {x: -0.33125, y: -0.51875}
       - {x: -0.30625, y: -0.53125}
@@ -154,7 +154,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fa6c1020a7f3644a476ac1f4d2846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  startHeavyShot: {x: 0, y: 0}
-  heavySpeed: 1
-  heavyPrefab: {fileID: 5724873062319007756}
