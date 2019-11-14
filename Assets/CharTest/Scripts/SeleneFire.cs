@@ -48,13 +48,13 @@ public class SeleneFire : MonoBehaviour
         {
             StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves, startShot));
         }
-        
-        if (Input.GetButtonDown("HeavyFire"))
+     
+        if (Input.GetButtonDown("LightFire"))
         {  
             StartCoroutine(SeleneHeavy(heavyProjectiles));
         }
 
-        if (Input.GetButtonDown("IntrinsicFire"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             for (int i = 0; i < bulletList.Count; i++)
             {

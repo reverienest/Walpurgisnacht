@@ -28,6 +28,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.5247427, g: 0.130162, b: 0.7075472, a: 1}
   outlineSize: 2
+--- !u!114 &7726817127616369113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193138727480721282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42ac17f4512fcd4da45cce45c007dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryProjectiles: 8
+  primaryWaves: 4
+  primarySpeed: 3
+  heavyProjectiles: 6
+  primaryPrefab: {fileID: 388504248127969802, guid: 5db50c4e57fdbbf4197b8368d6fe0fa9,
+    type: 3}
+  heavyPrefab: {fileID: 5724873062319007756, guid: c81bb2e19062c9f48bf1192523964659,
+    type: 3}
+  TarDir: {x: 0, y: 0}
+  CharTar: {fileID: 0}
+  targetTrans: {fileID: 0}
 --- !u!1001 &5327955258788472254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40,11 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selene
       objectReference: {fileID: 0}
-    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
+    - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
-      propertyPath: m_Controller
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
+      objectReference: {fileID: 2100000, guid: 35c5848a3a380f645a1fb08ab60897c7, type: 2}
     - target: {fileID: 6313812592357874237, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -100,11 +123,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
+    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 2100000, guid: 35c5848a3a380f645a1fb08ab60897c7, type: 2}
+      objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &2193138727480721282 stripped

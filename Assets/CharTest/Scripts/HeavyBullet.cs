@@ -30,7 +30,7 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    void update()
+    void Update()
     {
         startHeavyShot = transform.position;
         newTarDir = TargetDir();
@@ -39,11 +39,11 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     {
         hasMutated = true; 
         rb.velocity = Vector2.zero;
-        deltaTarget = Mathf.Atan2(newTarDir.y, newTarDir.x) * Mathf.Rad2Deg;
-        float newXPos = Mathf.Cos(deltaTarget * Mathf.Deg2Rad);
-        float newYpos = Mathf.Sin(deltaTarget * Mathf.Deg2Rad);
+        //deltaTarget = Mathf.Atan2(newTarDir.y, newTarDir.x) * Mathf.Rad2Deg;
+        //float newXPos = Mathf.Cos(deltaTarget * Mathf.Deg2Rad);
+        //float newYpos = Mathf.Sin(deltaTarget * Mathf.Deg2Rad);
         yield return new WaitForSeconds(1f);
-        rb.velocity = new Vector2(newXPos, newYpos) * heavySpeed;
+        rb.velocity = newTarDir * heavySpeed;
         //FIX: heavybullet cannot travel correctly if on right of target
     }
     
