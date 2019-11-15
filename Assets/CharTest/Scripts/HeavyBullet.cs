@@ -6,7 +6,8 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
 {
     public SeleneFire player;
     private Transform target;
-    public GameObject heavyPrefab;
+    [SerializeField]
+    private GameObject heavyPrefab;
 
     [HideInInspector]
     public Vector2 startHeavyShot;
@@ -25,7 +26,7 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     public Vector2 TargetDir() { return (target.position - transform.position).normalized;}
     // Start is called before the first frame update
 
-  void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -58,16 +59,16 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     public void SpawnChildren(Vector2 newHeavyShot, float newAngle, int heavyProjectiles)
     {
         for (int i = 0; i < heavyProjectiles + 1; i++)
-            {
-                float shotDirXPosSub = Mathf.Cos((newAngle * Mathf.Deg2Rad) - 180f);
-                float shotDirYPosSub = Mathf.Sin((newAngle * Mathf.Deg2Rad) - 180f);
+        {
+            float shotDirXPosSub = Mathf.Cos((newAngle * Mathf.Deg2Rad) - 180f);
+            float shotDirYPosSub = Mathf.Sin((newAngle * Mathf.Deg2Rad) - 180f);
 
-                Vector2 shotDirectionSub = new Vector2(shotDirXPosSub, shotDirYPosSub) * heavySpeed;
+            Vector2 shotDirectionSub = new Vector2(shotDirXPosSub, shotDirYPosSub) * heavySpeed;
 
-                GameObject tempObjSub = Instantiate(heavyPrefab, newHeavyShot, Quaternion.identity);
-                tempObjSub.GetComponent<Rigidbody2D>().velocity = shotDirectionSub;
-                newAngle += 60f;
-            }
+            GameObject tempObjSub = Instantiate(heavyPrefab, newHeavyShot, Quaternion.identity);
+            tempObjSub.GetComponent<Rigidbody2D>().velocity = shotDirectionSub;
+            newAngle += 60f;
+        }
     }
 
     public void DestroyBullet()
