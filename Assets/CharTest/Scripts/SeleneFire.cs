@@ -8,49 +8,53 @@ public class SeleneFire : MonoBehaviour
     [SerializeField]
     private int primaryProjectiles;     //Number of projectiles in first wave of primary spell
     [SerializeField]
-    private int primaryWaves;           //Number of waves in primary spell
+    private int primaryWaves;            //Number of waves in primary spell
     [SerializeField]
     private float primarySpeed;         //Speed of projectiles in primary spell
-    [SerializeField]
-    private int heavyProjectiles;       //Number of split heavy projectiles
 
-    public GameObject primaryPrefab;  
+    [SerializeField]
+    private int heavyProjectiles;
+
+    [SerializeField]
+    public GameObject primaryPrefab;   //Primary shot sprite
+
     public GameObject heavyPrefab;
 
     private Vector2 startShot;
-    [HideInInspector]
+
     public Vector2 TarDir;
+
     public CharacterTargeting CharTar;
 
-    [HideInInspector]
+    public Transform targetTrans;
     public List<IBaseBullet> bulletList;
 
-    private SharedCharacterController charCon;
      // Start is called before the first frame update
     void Start()
     {
         CharTar = GetComponent<CharacterTargeting>();
+
         bulletList = new List<IBaseBullet>();
-        charCon = GetComponent<SharedCharacterController>();
     }
 
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {   
         startShot = transform.position;
         TarDir = CharTar.TargetDirection();
- 
-         if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.PRIM))       
+        targetTrans = CharTar.target;
+
+        if (Input.GetButtonDown("LightFire"))
         {
             StartCoroutine(SelenePrimary(primaryProjectiles, primaryWaves, startShot));
         }
      
-        if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.HEAVY))
+        if (Input.GetButtonDown("LightFire"))
         {  
             StartCoroutine(SeleneHeavy(heavyProjectiles));
         }
 
-        if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.INTRIN))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             for (int i = 0; i < bulletList.Count; i++)
             {
@@ -68,6 +72,7 @@ public class SeleneFire : MonoBehaviour
         int tempProjectiles = primaryProjectiles;
         float baseAngle = Mathf.Atan2(TarDir.y, TarDir.x) * Mathf.Rad2Deg;
 
+        Debug.Log("Angle = " + baseAngle);
         for (int i = primaryWaves; i > 0; i--)  
        {
             float angle = baseAngle - (60f/2);

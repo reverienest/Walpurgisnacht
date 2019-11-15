@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class HeavyBullet : MonoBehaviour, IBaseBullet
 {
-    public SeleneFire player;
-    private Transform target;
-    public GameObject heavyPrefab;
+     public SeleneFire player;
+     public Vector2 startHeavyShot;
 
-    [HideInInspector]
-    public Vector2 startHeavyShot;
     [SerializeField]
-    private float heavySpeed;
+     private float heavySpeed;
+
+    [SerializeField]
+     private Transform target;
+
+     public GameObject heavyPrefab;
+
+     public bool hasMutated;
+
+     private Rigidbody2D rb;
 
     private float deltaTarget;
+    
     private Vector2 newTarDir;
 
-    [HideInInspector]
-    public bool hasMutated;
-
-    private Rigidbody2D rb;
-
-    [HideInInspector]
     public Vector2 TargetDir() { return (target.position - transform.position).normalized;}
     // Start is called before the first frame update
 
@@ -31,7 +32,6 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     }
     void Update()
     {
-        target = player.GetComponent<CharacterTargeting>().target;
         startHeavyShot = transform.position;
         newTarDir = TargetDir();
     }
@@ -39,9 +39,12 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
     {
         hasMutated = true; 
         rb.velocity = Vector2.zero;
+        //deltaTarget = Mathf.Atan2(newTarDir.y, newTarDir.x) * Mathf.Rad2Deg;
+        //float newXPos = Mathf.Cos(deltaTarget * Mathf.Deg2Rad);
+        //float newYpos = Mathf.Sin(deltaTarget * Mathf.Deg2Rad);
         yield return new WaitForSeconds(1f);
-
         rb.velocity = newTarDir * heavySpeed;
+        //FIX: heavybullet cannot travel correctly if on right of target
     }
     
     public bool CheckMutation()
@@ -78,7 +81,7 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "BulletCollider")
+        if (col.gameObject.tag == "Player")
         {
             DestroyBullet();
         }
