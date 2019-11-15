@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InnerCollider : MonoBehaviour
 {
-    public static EdgeCollider2D ec;
+    private EdgeCollider2D ec;
 
     void Start()
     {

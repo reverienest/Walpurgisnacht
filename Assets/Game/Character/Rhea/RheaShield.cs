@@ -9,6 +9,9 @@ public class RheaShield : MonoBehaviour
     [SerializeField]
     private GameObject character;
 
+    [SerializeField]
+    private float shieldOut = 2;
+
     private CharacterTargeting ct;
 
     private Selene selene;
@@ -24,7 +27,7 @@ public class RheaShield : MonoBehaviour
         selene = character.GetComponent<Selene>();
         r2d = GetComponent<Rigidbody2D>();
         ec = GetComponent<EdgeCollider2D>();
-        Destroy(this.gameObject, 2);
+        Destroy(this.gameObject, shieldOut);
     }
 
     // Update is called once per frame
