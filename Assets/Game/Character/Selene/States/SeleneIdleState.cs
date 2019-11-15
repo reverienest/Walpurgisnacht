@@ -20,11 +20,6 @@ public class SeleneIdleState : SeleneState
         {
             character.ChangeState<SeleneTeleportState>();
         }
-        // TODO: Currently maps the Last Word to the proper key, need to confinure with respect to MC gauge. 
-       if (InputMap.Instance.GetInputDown(input.cc.playerNumber, ActionType.LAST_WORD))
-       {
-            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
-        }
 
         // Movement animations
         int horizontalMovement = 0;
