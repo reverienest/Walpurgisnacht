@@ -16,13 +16,13 @@ public class SeleneIdleState : SeleneState
         input.cc.HandlePlaceCircle();
 
         // Spells
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.MOVE))
         {
             character.ChangeState<SeleneTeleportState>();
         }
-        // TODO: This triggers the last word. Yun can remove this to cast the primary spell.
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
-        {
+        // TODO: Currently maps the Last Word to the proper key, need to confinure with respect to MC gauge. 
+       if (InputMap.Instance.GetInputDown(input.cc.playerNumber, ActionType.LAST_WORD))
+       {
             MatchManager.Instance.StartLastWord(input.cc.playerNumber);
         }
 
