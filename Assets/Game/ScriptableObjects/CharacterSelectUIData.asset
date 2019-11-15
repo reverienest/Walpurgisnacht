@@ -16,5 +16,5 @@ MonoBehaviour:
   - Selene is slick
   - Rhea is rad
   characterPortraits:
-  - {fileID: 21300000, guid: a90f9f641e3570c4f8c375608e9b89e0, type: 3}
-  - {fileID: 21300000, guid: 812fa16c7f8d5e4429822cac32e94698, type: 3}
+  - {fileID: 21300000, guid: f814e920c1f7df94fb7d2e4f64eea34e, type: 3}
+  - {fileID: 21300000, guid: 9d15f65a93ad76a4eb664aeaac76dac8, type: 3}

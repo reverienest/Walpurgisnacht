@@ -13,6 +13,9 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public delegate void HealthChangeAction(int playerNumber, int newHealthValue, int newWardValue);
     public event HealthChangeAction OnHealthChanged;
 
+    public delegate void WardRefillAction(int playerNumber, int currentWardValue, float refillValue);
+    public event WardRefillAction OnWardRefill;
+
     /*
     * UI components set by Unity
     */
@@ -34,10 +37,12 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
 
     private int _player1Health;
     private int _player1Wards;
+    private float _player1WardRefill;
     private int _player1MP;
 
     private int _player2Health;
     private int _player2Wards;
+    private float _player2WardRefill;
     private int _player2MP;
 
     // public properties
@@ -47,6 +52,16 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player1Health; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxHealth)
+            {
+                value = maxHealth;
+            }
+
             if (_player1Health != value)
             {
                 Player1HealthChanged(_player1Health, value);
@@ -59,10 +74,45 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player1Wards; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxHealth)
+            {
+                value = maxHealth;
+            }
+
             if (_player1Wards != value)
             {
                 Player1WardsChanged(_player1Wards, value);
                 _player1Wards = value;
+            }
+        }
+    }
+    public float Player1WardRefill
+    {
+        get { return _player1WardRefill; }
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (_player1WardRefill != value && _player1Wards <= maxHealth)
+            {
+                if (1 > value)
+                { 
+                    OnWardRefill?.Invoke(0, Player1Wards, value);
+                    _player1WardRefill = value;
+                }
+                else
+                {
+                    Player1Wards += 1;
+                    _player1WardRefill = 0;
+                }
             }
         }
     }
@@ -71,6 +121,16 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player1MP; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxMP)
+            {
+                value = maxMP;
+            }
+
             if (_player1MP != value)
             {
                 Player1MPChanged(_player1MP, value);
@@ -83,6 +143,16 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player2Health; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxHealth)
+            {
+                value = maxHealth;
+            }
+
             if (_player2Health != value)
             {
                 Player2HealthChanged(_player2Health, value);
@@ -95,10 +165,45 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player2Wards; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxHealth)
+            {
+                value = maxHealth;
+            }
+
             if (_player2Wards != value)
             {
                 Player2WardsChanged(_player2Wards, value);
                 _player2Wards = value;
+            }
+        }
+    }
+    public float Player2WardRefill
+    {
+        get { return _player2WardRefill; }
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (_player2WardRefill != value && _player2Wards <= maxHealth)
+            {
+                if (1 > value)
+                {
+                    OnWardRefill?.Invoke(1, Player1Wards, value);
+                    _player1WardRefill = value;
+                }
+                else
+                {
+                    Player2Wards += 1;
+                    _player2WardRefill = 0;
+                }
             }
         }
     }
@@ -107,6 +212,16 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         get { return _player2MP; }
         set
         {
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > maxMP)
+            {
+                value = maxMP;
+            }
+
             if (_player2MP != value)
             {
                 Player2MPChanged(_player2MP, value);
@@ -191,5 +306,19 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     {
         float normalizedMP = (float)newValue / maxMP;
         player2MPSlider.value = normalizedMP;
+    }
+
+    // Helper Methods
+
+    public bool PlayerAtFullMP(int playerNumber)
+    {
+        if (0 == playerNumber)
+        {
+            return _player1MP == MaxMP;
+        }
+        else
+        {
+            return _player2MP == MaxMP;
+        }
     }
 }

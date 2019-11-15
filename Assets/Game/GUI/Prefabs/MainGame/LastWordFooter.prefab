@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 35}
   m_SizeDelta: {x: 50, y: 35}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1399120588323495922
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastWordNames:
-  - Final Eclipse
-  - Solar Flare
+  - True Umbra                      Lost Gospel of Night
+  - Nova Burst                       The Lodestar's Light
   titleText: {fileID: 7010487845023677140}
   timerText: {fileID: 682342049083719671}
 --- !u!1 &8996376983335946392
@@ -205,8 +205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 70}
+  m_AnchoredPosition: {x: 0, y: -105}
+  m_SizeDelta: {x: 380, y: 70}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4158146752432722518
 CanvasRenderer:
@@ -242,14 +242,14 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 30
     m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Last Word Name
+  m_Text: 'True Umbra: Lost Gospel of Night'
 --- !u!114 &6115695372639377573
 MonoBehaviour:
   m_ObjectHideFlags: 0

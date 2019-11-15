@@ -16,8 +16,8 @@ TagManager:
   - Arena
   - 
   - 
-  - 
-  - 
+  - MagicCircle
+  - Feet
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 205697829
+    locked: 0
+  - name: Circle
+    uniqueID: 1353230745
     locked: 0
   - name: Default
     uniqueID: 0
