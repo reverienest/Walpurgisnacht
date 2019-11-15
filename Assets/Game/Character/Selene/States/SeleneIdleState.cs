@@ -18,7 +18,7 @@ public class SeleneIdleState : SeleneState
         input.cc.HandleLastWord();
 
         // Spells
-        if (!character.GetComponent<ControlShield>().GetShieldOut() && SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
         {
             character.ChangeState<SeleneTeleportState>();
         }

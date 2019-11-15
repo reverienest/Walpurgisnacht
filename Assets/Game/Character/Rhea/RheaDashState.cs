@@ -7,16 +7,16 @@ public class RheaDashState : RheaState
     private enum Sequence { START_DASH, TRAVEL, END_DASH }
     private Sequence state;
 
-    
-    private float travelTimer = 2;
-    private float speed = 5;
+    private float travelTimer;
+    private float speed;
     private Vector3 direction;
 
 
     override public void Enter(RheaStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
         direction = input.cc.LastDirection.normalized;
-
+        travelTimer = input.timer;
+        speed = input.speed;
 
         //state = Sequence.START_DASH;
         //input.anim.Play("StartDash");
@@ -38,15 +38,18 @@ public class RheaDashState : RheaState
             {
                 if (collider.gameObject.TryGetComponent<InnerCollider>(out InnerCollider component))
                 {
-                    character.ChangeState<RheaIdleState>();
+                    collidesWithWall = true;
+                    break;
                 }
             }
-            if (travelTimer <= 0)
+            if (travelTimer <= 0 || collidesWithWall)
             {
+                //travelTimer = input.timer;
                 //state = Sequence.END_DASH;
                 //input.anim.Play("EndDash");
 
                 //Delete later when animation is implemented
+                travelTimer = input.timer;
                 character.ChangeState<RheaIdleState>();
             }
 
@@ -55,10 +58,12 @@ public class RheaDashState : RheaState
 
     override public void SoftTransitionWarning(RheaStateInput input)
     {
+        //travelTimer =input.timer;
         //state = Sequence.END_DASH;
         //input.anim.Play("EndDash");
 
         //Delete later when animation is implemented
+        travelTimer = input.timer;
         character.ChangeState<RheaIdleState>();
     }
 
@@ -71,9 +76,13 @@ public class RheaDashState : RheaState
         else if (eventName == "DashEnded" && state == Sequence.END_DASH)
         {
             if (character.softTransitionChangeState != null)
+            {
                 character.softTransitionChangeState();
+            }
             else
+            {
                 character.ChangeState<RheaIdleState>();
+            }
         }
     }
 }

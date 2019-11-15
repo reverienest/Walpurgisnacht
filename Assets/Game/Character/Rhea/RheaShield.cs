@@ -25,7 +25,7 @@ public class RheaShield : MonoBehaviour
         selene = character.GetComponent<Selene>();
         r2d = GetComponent<Rigidbody2D>();
         ec = GetComponent<EdgeCollider2D>();
-        Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, 2);
     }
 
     // Update is called once per frame

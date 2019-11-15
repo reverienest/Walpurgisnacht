@@ -5,9 +5,9 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
 {
     // SeleneTeleportState constants
     [SerializeField]
-    private float maxTravelTime = 1;
+    private float speed = 10;
     [SerializeField]
-    private float maxTravelDistance = 1;
+    private float timer = 0.2f;
     [SerializeField]
     private GameObject shieldPrefab;
 
@@ -28,8 +28,8 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
 
     override protected void UpdateInput()
     {
-        input.maxTravelTime = maxTravelTime;
-        input.maxTravelDistance = maxTravelDistance;
+        input.speed = speed;
+        input.timer = timer;
     }
 }
 
@@ -39,8 +39,8 @@ public abstract class RheaState : CharacterState<Rhea, RheaState, RheaStateInput
 
 public class RheaStateInput : CharacterStateInput
 {
-    public float maxTravelTime;
-    public float maxTravelDistance;
+    public float speed;
+    public float timer;
 
     public Animator anim;
     public CircleCollider2D cc2d;
