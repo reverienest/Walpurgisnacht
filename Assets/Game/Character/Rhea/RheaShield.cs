@@ -13,11 +13,10 @@ public class RheaShield : MonoBehaviour
 
     private Selene selene;
 
-    private SeleneStateInput input;
-
     private EdgeCollider2D ec;
 
     private Rigidbody2D r2d;
+
     // Start is called before the first frame update
     void Start()
     {
