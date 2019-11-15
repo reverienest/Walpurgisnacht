@@ -1,29 +1,34 @@
 using System;
 using UnityEngine;
 
-public class SeleneIdleState : SeleneState
+public class RheaIdleState : RheaState
 {
     private int prevHorizontalMovement;
 
-    override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo info = null)
+    override public void Enter(RheaStateInput input, CharacterStateTransitionInfo info = null)
     {
         prevHorizontalMovement = 0;
         input.anim.Play("Idle");
     }
 
-    override public void Update(SeleneStateInput input)
+    override public void Update(RheaStateInput input)
     {
         input.cc.HandlePlaceCircle();
 
         // Spells
-        if (!character.GetComponent<ControlShield>().GetShieldOut() && SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
         {
-            character.ChangeState<SeleneTeleportState>();
+            character.ChangeState<RheaShieldState>();
         }
         // TODO: This triggers the last word. Yun can remove this to cast the primary spell.
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
             MatchManager.Instance.StartLastWord(input.cc.playerNumber);
+        }
+
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.MOVE))
+        {
+            character.ChangeState<RheaDashState>();
         }
 
         // Movement animations
@@ -41,7 +46,7 @@ public class SeleneIdleState : SeleneState
             if (horizontalMovement != 0)
             {
                 input.anim.Play("StartMove");
-                input.sr.flipX = horizontalMovement == 1;
+                input.sr.flipX = horizontalMovement != 1;
             }
             else
             {
@@ -51,7 +56,7 @@ public class SeleneIdleState : SeleneState
         prevHorizontalMovement = horizontalMovement;
     }
 
-    override public void FixedUpdate(SeleneStateInput input)
+    override public void FixedUpdate(RheaStateInput input)
     {
         input.cc.HandleMovement();
     }
