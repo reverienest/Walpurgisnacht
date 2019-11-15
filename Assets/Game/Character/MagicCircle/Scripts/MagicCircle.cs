@@ -95,17 +95,17 @@ public class MagicCircle : MonoBehaviour
                 IncrementGuage();
             }
         }
-        
+
+    }
+
+    public bool IsPlayerInCircle
+    {
+        get => lastWardRefillTime != -1;
     }
 
     private bool IsCircleSpawned
     {
         get => lastUpdateMPCharge != -1;
-    }
-
-    private bool IsPlayerInCircle
-    {
-        get => lastWardRefillTime != -1;
     }
 
     private bool ShouldRefill
@@ -131,6 +131,7 @@ public class MagicCircle : MonoBehaviour
         this.playerNumber = playerNumber;
         lastUpdateMPCharge = Time.time;
         SetGuage(startingMP);
+        SpellMap.Instance.HideCircleCooldown(playerNumber);
     }
 
 

@@ -41,6 +41,9 @@ TagManager:
   - name: Background
     uniqueID: 205697829
     locked: 0
+  - name: Circle
+    uniqueID: 1353230745
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
