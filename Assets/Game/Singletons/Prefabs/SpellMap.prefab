@@ -53,8 +53,8 @@ MonoBehaviour:
   - cooldowns:
     - 3
     - 3
-    - 3
-    - 3
+    - 15
+    - 5
     - 30
   player1CooldownSliders: []
   player2CooldownSliders: []

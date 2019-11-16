@@ -17,7 +17,16 @@ public class SeleneTeleportState : SeleneState
         //Make sure we don't teleport out of the map
         RaycastHit2D hit = Physics2D.Raycast(travelOrigin, input.cc.LastDirection, input.maxTravelDistance, LayerMask.GetMask("Arena"));
         float travelDistance = hit.collider ? (hit.distance - input.cc2d.radius) : input.maxTravelDistance;
-        travelDestination = travelOrigin + input.cc.LastDirection * travelDistance;
+        if (InputMap.Instance.GetInput(0, ActionType.RIGHT) || InputMap.Instance.GetInput(0, ActionType.LEFT) || InputMap.Instance.GetInput(0, ActionType.UP) || InputMap.Instance.GetInput(0, ActionType.DOWN))
+        {
+            travelDestination = travelOrigin + input.cc.LastDirection * travelDistance;
+        }
+        else
+        {
+            travelDestination = travelOrigin;
+
+        }
+        //travelDestination = travelOrigin + input.cc.LastDirection * travelDistance;
 
         travelTime = travelDistance / input.maxTravelDistance * input.maxTravelTime;
         travelTimer = travelTime;
