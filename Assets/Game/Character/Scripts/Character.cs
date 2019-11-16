@@ -17,7 +17,7 @@ where I : CharacterStateInput, new()
 
     protected Dictionary<Type, S> stateMap;
     protected S state = null;
-    public I input = new I();
+    protected I input = new I();
 
     protected void Start()
     {
