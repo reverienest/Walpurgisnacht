@@ -19,7 +19,8 @@ public class SeleneFire : MonoBehaviour
     [SerializeField]
     private GameObject heavyPrefab;
 
-    private Vector2 startShot;
+    [HideInInspector]
+    public Vector2 startShot;
     [HideInInspector]
     private Vector2 tarDir;
     public CharacterTargeting charTar;
@@ -41,31 +42,9 @@ public class SeleneFire : MonoBehaviour
     {   
         startShot = transform.position;
         tarDir = charTar.TargetDirection();
- 
-         if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.PRIM))       
-        {
-            StartCoroutine(SelenePrimary(startShot));
-        }
-     
-        if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.HEAVY))
-        {  
-            StartCoroutine(SeleneHeavy());
-        }
-
-        if (SpellMap.Instance.GetSpellDown(charCon.playerNumber, SpellType.INTRIN))
-        {
-            for (int i = 0; i < bulletList.Count; i++)
-            {
-                bool mutateCheck = bulletList[i].CheckMutation();
-                if (mutateCheck != true)
-                {
-                    StartCoroutine(bulletList[i].IntrinsicMutate());
-                }
-            }   
-        }
     }   
 
-    IEnumerator SelenePrimary(Vector2 startShot)
+    public IEnumerator SelenePrimary(Vector2 startShot)
     {
         int tempProjectiles = primaryProjectiles;
         float baseAngle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg;
@@ -95,7 +74,7 @@ public class SeleneFire : MonoBehaviour
         
     }
 
-    IEnumerator SeleneHeavy()
+    public IEnumerator SeleneHeavy()
     {
         float angle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg;
         Vector2 shotDirection = tarDir * primarySpeed;
@@ -112,5 +91,27 @@ public class SeleneFire : MonoBehaviour
             heavyBullet.SpawnChildren(heavyBullet.transform.position, angle, heavyProjectiles);
             heavyBullet.DestroyBullet();
         }
+    }
+
+    public void SPSpell()
+    {
+        StartCoroutine(SelenePrimary(startShot));
+    }
+
+    public void SHSpell()
+    {
+        StartCoroutine(SeleneHeavy());
+    }
+
+    public void SISpell()
+    {
+        for (int i = 0; i < bulletList.Count; i++)
+        {
+            bool mutateCheck = bulletList[i].CheckMutation();
+            if (mutateCheck != true)
+            {
+                StartCoroutine(bulletList[i].IntrinsicMutate());
+            }
+        }   
     }
 }
