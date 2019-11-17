@@ -57,6 +57,7 @@ public class MatchManager : Singleton<MatchManager>
     }
 
     private GameObject[] players = new GameObject[2];
+    public GameObject[] Players { get { return players; } }
 
     private int lastWordPlayerNumber;
     private bool lastWordActive;
@@ -130,7 +131,8 @@ public class MatchManager : Singleton<MatchManager>
                     selene.ChangeStateSoft<SeleneForceMoveState>(transitionInfo);
                     break;
                 case CharacterType.RHEA:
-                    // TODO: Do the same thing for Rhea once her states have been made
+                    Rhea rhea = players[playerNum].GetComponent<Rhea>();
+                    rhea.ChangeStateSoft<RheaForceMoveState>(transitionInfo);
                     break;
             }
         }
