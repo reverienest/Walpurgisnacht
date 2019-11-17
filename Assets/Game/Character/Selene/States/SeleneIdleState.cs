@@ -18,14 +18,24 @@ public class SeleneIdleState : SeleneState
         input.cc.HandleLastWord();
 
         // Spells
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.MOVE))
         {
             character.ChangeState<SeleneTeleportState>();
         }
 
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
-            
+            character.ChangeState<SelenePrimaryState>();
+        }
+
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.HEAVY))
+        {
+            character.ChangeState<SeleneHeavyState>();
+        }
+
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        {
+            character.ChangeState<SeleneIntrinsicState>();
         }
 
         // Movement animations
