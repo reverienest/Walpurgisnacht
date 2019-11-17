@@ -16,6 +16,7 @@ public class Selene : Character<Selene, SeleneState, SeleneStateInput>
         input.rb = GetComponent<Rigidbody2D>();
         input.cc = GetComponent<SharedCharacterController>();
         input.sr = GetComponent<SpriteRenderer>();
+        input.shot = GetComponent<SeleneFire>();
     }
 
     override protected void SetInitialState()
@@ -44,4 +45,5 @@ public class SeleneStateInput : CharacterStateInput
     public Rigidbody2D rb;
     public SharedCharacterController cc;
     public SpriteRenderer sr;
+    public SeleneFire shot;
 }
