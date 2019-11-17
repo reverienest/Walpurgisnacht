@@ -49,18 +49,13 @@ MonoBehaviour:
     - 3
     - 3
     - 3
+    - 30
   - cooldowns:
     - 3
     - 3
-    - 3
-    - 3
-  player1SpellIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  player2SpellIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+    - 15
+    - 5
+    - 30
+  player1CooldownSliders: []
+  player2CooldownSliders: []
+  magicCircleCooldownSlots: []
