@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7786847072380869280}
   - component: {fileID: 1170873391337030589}
   - component: {fileID: 4064234925726897623}
-  m_Layer: 0
+  - component: {fileID: 9052847023316341023}
+  m_Layer: 11
   m_Name: MagicCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
