@@ -35,35 +35,6 @@ public class MagicCircle : MonoBehaviour
                 IncrementGuage();
             }
         }
-
-    }
-
-    public bool IsPlayerInCircle
-    {
-        get => lastWardRefillTime != -1;
-    }
-
-    private bool IsCircleSpawned
-    {
-        get => lastUpdateMPCharge != -1;
-    }
-
-    private bool ShouldRefill
-    {
-        get
-        {
-            if (!IsPlayerInCircle) { return false; }
-
-
-            if (playerNumber == 0)
-            {
-                return PlayerStatsManager.Instance.Player1Wards < PlayerStatsManager.Instance.MaxHealth;
-            }
-            else
-            {
-                return PlayerStatsManager.Instance.Player2Wards < PlayerStatsManager.Instance.MaxHealth;
-            }
-        }
     }
 
     public void SpawnCircle(int playerNumber)
@@ -71,7 +42,6 @@ public class MagicCircle : MonoBehaviour
         this.playerNumber = playerNumber;
         lastUpdate = Time.time;
         SetGuage(startingMP);
-        SpellMap.Instance.HideCircleCooldown(playerNumber);
     }
 
     private void SetGuage(int percentage)

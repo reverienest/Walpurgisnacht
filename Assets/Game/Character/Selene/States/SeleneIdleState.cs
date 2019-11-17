@@ -15,8 +15,6 @@ public class SeleneIdleState : SeleneState
     {
         input.cc.HandlePlaceCircle();
 
-        input.cc.HandleLastWord();
-
         // Spells
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.MOVE))
         {
