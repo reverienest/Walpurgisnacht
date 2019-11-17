@@ -65,3 +65,6 @@ crashlytics-build.properties
 .vscode/*
 
 *.DS_Store
+*.meta
+Assets/CharTest/Scenes/SeleneFire.cs.meta
+Assets/CharTest/Scenes/SeleneFire.cs.meta
