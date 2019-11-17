@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum SpellType
 {
-    PRIM, HEAVY, INTRIN, MOVE, _NUM_TYPES
+    PRIM, HEAVY, INTRIN, MOVE, CIRCLE, _NUM_TYPES
 }
 
 public class SpellMap : Singleton<SpellMap>
@@ -14,7 +14,7 @@ public class SpellMap : Singleton<SpellMap>
     [Serializable]
     private class Cooldowns
     {
-        public float[] cooldowns = new float[4];
+        public float[] cooldowns = new float[5];
         public float this[int i] { get { return cooldowns[i]; } }
     }
     [SerializeField]
@@ -27,9 +27,14 @@ public class SpellMap : Singleton<SpellMap>
     [SerializeField]
     private Slider[] player2CooldownSliders = null;
 
+    [SerializeField]
+    private GameObject[] magicCircleCooldownSlots= null;
+
     private float[][] cooldownTimers = new float[2][];
 
     private ActionType[] spellToActionMap = new ActionType[(int)SpellType._NUM_TYPES];
+
+    private int lastWordCastBy = -1;
 
     void Awake()
     {
@@ -42,6 +47,10 @@ public class SpellMap : Singleton<SpellMap>
         spellToActionMap[(uint)SpellType.HEAVY] = ActionType.HEAVY;
         spellToActionMap[(uint)SpellType.INTRIN] = ActionType.INTRIN;
         spellToActionMap[(uint)SpellType.MOVE] = ActionType.MOVE;
+        spellToActionMap[(uint)SpellType.CIRCLE] = ActionType.CAST_CIRCLE;
+
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
     }
 
     void Update()
@@ -52,7 +61,7 @@ public class SpellMap : Singleton<SpellMap>
                 DecreaseCooldown(Time.deltaTime, playerNum, (SpellType)spellType);
     }
 
-    private bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
+    public bool SpellReady(int playerNumber, SpellType spellType) { return cooldownTimers[playerNumber][(int)spellType] <= 0.0f; }
 
     private void RestartCooldown(int playerNumber, SpellType spellType)
     {
@@ -135,5 +144,28 @@ public class SpellMap : Singleton<SpellMap>
 
         RestartCooldown(playerNumber, spellType);
         return true;
+    }
+
+    public void HideCircleCooldown(int playerNumber)
+    {
+        magicCircleCooldownSlots[playerNumber].GetComponent<Animator>().Play("CooldownSlideOut");
+    }
+    
+    public void ShowCircleCooldown(int playerNumber)
+    {
+        magicCircleCooldownSlots[playerNumber].GetComponent<Animator>().Play("CooldownSlideIn");
+    }
+
+    private void OnLastWordStart(int playerNum)
+    {
+        lastWordCastBy = playerNum;
+    }
+
+
+    private void OnLastWordEnd()
+    {
+        ShowCircleCooldown(lastWordCastBy);
+        SetCooldown(GetInitialCooldown(lastWordCastBy, SpellType.CIRCLE), lastWordCastBy, SpellType.CIRCLE);
+        lastWordCastBy = -1;
     }
 }

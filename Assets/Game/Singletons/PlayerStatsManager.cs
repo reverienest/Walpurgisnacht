@@ -192,4 +192,18 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         float normalizedMP = (float)newValue / maxMP;
         player2MPSlider.value = normalizedMP;
     }
+
+    // Helper Methods
+
+    public bool PlayerAtFullMP(int playerNumber)
+    {
+        if (0 == playerNumber)
+        {
+            return _player1MP == MaxMP;
+        }
+        else
+        {
+            return _player2MP == MaxMP;
+        }
+    }
 }
