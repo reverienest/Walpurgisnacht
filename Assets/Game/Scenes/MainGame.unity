@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 993215800}
   m_Layer: 8
   m_Name: OuterCollider
-  m_TagString: Untagged
+  m_TagString: BulletCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2353,6 +2353,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9999995
+      objectReference: {fileID: 0}
     - target: {fileID: 3383688216138419054, guid: 04ae7b294c1609e428e326be7230e407,
         type: 3}
       propertyPath: m_ChildScaleWidth
@@ -2362,11 +2367,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ChildScaleHeight
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1423610546247297889, guid: 04ae7b294c1609e428e326be7230e407,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 4.9999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04ae7b294c1609e428e326be7230e407, type: 3}

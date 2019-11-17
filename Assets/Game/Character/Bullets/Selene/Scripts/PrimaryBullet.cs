@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PrimaryBullet : MonoBehaviour, IBaseBullet 
 {
-    public SeleneFire player;
-
     [HideInInspector]
     public float baseAngle;
     public float angleSpeed;
@@ -15,6 +13,8 @@ public class PrimaryBullet : MonoBehaviour, IBaseBullet
 
     [HideInInspector]
     public bool hasMutated;
+
+    public SeleneFire player;
 
     void Start()
     {
