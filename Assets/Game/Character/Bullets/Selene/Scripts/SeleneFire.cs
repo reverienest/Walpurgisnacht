@@ -61,7 +61,7 @@ public class SeleneFire : MonoBehaviour
 
                 GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
                 PrimaryBullet primaryBullet = tempObj.GetComponent<PrimaryBullet>();
-                tempObj.GetComponent<PlayerID>().value = charCon.playerNumber;
+                tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
                 bulletList.Add(primaryBullet);
                 primaryBullet.player = this;
                 primaryBullet.shotOrigin = startShot;
@@ -81,7 +81,7 @@ public class SeleneFire : MonoBehaviour
         Vector2 shotDirection = tarDir * primarySpeed;
         GameObject tempObj = Instantiate(heavyPrefab, transform.position, Quaternion.identity);
         HeavyBullet heavyBullet = tempObj.GetComponent<HeavyBullet>();
-        tempObj.GetComponent<PlayerID>().value = charCon.playerNumber;
+        tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
         bulletList.Add(heavyBullet);
         heavyBullet.player = this;
         tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;

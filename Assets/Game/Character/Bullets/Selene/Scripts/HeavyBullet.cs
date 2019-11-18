@@ -75,12 +75,4 @@ public class HeavyBullet : MonoBehaviour, IMutatable
     {
         player.bulletList.Remove(this);
     }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "BulletCollider")
-        {
-            Destroy(gameObject);
-        }
-    }
 }
