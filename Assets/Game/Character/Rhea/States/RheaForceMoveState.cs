@@ -24,7 +24,7 @@ public class RheaForceMoveState : RheaState
             transitionInfo.onCompleteMove(() =>
             {
                 if (transitionInfo.isLastWordCaster)
-                    character.ChangeState<RheaIdleState>(); //TODO: Change this to RheaLastWordState when that's implemented
+                    character.ChangeState<RheaLastWordState>();
                 else
                     character.ChangeState<RheaIdleState>();
             });

@@ -34,12 +34,35 @@ public class MenuNode : MonoBehaviour
     protected MenuNode backward = null;
     public virtual MenuNode Backward { get { return backward; } }
 
+    [SerializeField]
+    private Color defaultOutlineColor = Color.white;
+    public void ResetColor() { OutlineColor = defaultOutlineColor; }
+
+    private Color _outlineColor = Color.white;
+    public Color OutlineColor
+    {
+        get { return _outlineColor; }
+        set
+        {
+            _outlineColor = value;
+            if (outline)
+            {
+                outline.effectColor = _outlineColor;
+            }
+        }
+    }
+
     private Outline outline;
+
+    void Start()
+    {
+        ResetColor();
+    }
 
     public virtual void SelectNode()
     {
         outline = gameObject.AddComponent<Outline>();
-        outline.effectColor = Color.white;
+        outline.effectColor = OutlineColor;
         outline.effectDistance = new Vector2(2, 2);
         onSelect.Invoke();
     }

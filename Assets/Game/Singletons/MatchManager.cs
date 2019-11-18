@@ -99,6 +99,7 @@ public class MatchManager : Singleton<MatchManager>
         LastWordTimer = lastWordDuration;
         int victimPlayerNumber = lastWordPlayerNumber == 0 ? 1 : 0;
 
+        ClearBullets();
         PlayerStatsManager.Instance.StashWards(victimPlayerNumber);
         OnLastWordStart?.Invoke(lastWordPlayerNumber);
         StartForcedMovement(true);
@@ -180,6 +181,7 @@ public class MatchManager : Singleton<MatchManager>
         lastWordActive = false;
         int victimPlayerNumber = lastWordPlayerNumber == 0 ? 1 : 0;
 
+        ClearBullets();
         PlayerStatsManager.Instance.PopWards(victimPlayerNumber);
         OnLastWordEnd?.Invoke();
         StartForcedMovement(false);
@@ -204,6 +206,8 @@ public class MatchManager : Singleton<MatchManager>
                 characterPrefabs[(int)CharacterSelection.Instance.GetPlayerCharacterType(playerNum)],
                 spawnPoints[playerNum].position,
                 Quaternion.identity);
+
+            players[playerNum].transform.Find("Face").gameObject.SetActive(GlobalSettingsManager.Instance.CageMode); // ???
         }
 
         // Setup parameters for their tracking and controls

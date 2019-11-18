@@ -10,20 +10,16 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
     [SerializeField]
     private GameObject shieldPrefab = null;
 
-    [SerializeField]
-    private float beamInterval = 5;
-    [SerializeField]
-    private GameObject beamPrefab = null;
-
     override protected void Init()
     {
         input.anim = GetComponent<Animator>();
         input.cc2d = GetComponent<CircleCollider2D>();
+        input.ch = GetComponent<CharacterHealth>();
+        input.lw = GetComponent<RheaLastWord>();
         input.rb = GetComponent<Rigidbody2D>();
         input.cc = GetComponent<SharedCharacterController>();
         input.sr = GetComponent<SpriteRenderer>();
         input.shieldPrefab = shieldPrefab;
-        input.beamPrefab = beamPrefab;
     }
 
     override protected void SetInitialState()
@@ -35,7 +31,6 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
     {
         input.dashSpeed = dashSpeed;
         input.dashDuration = dashDuration;
-        input.beamInterval = beamInterval;
     }
 }
 
@@ -93,11 +88,10 @@ public class RheaStateInput : CharacterStateInput
     public float dashDuration;
     public GameObject shieldPrefab;
 
-    public float beamInterval;
-    public GameObject beamPrefab;
-
     public Animator anim;
     public CircleCollider2D cc2d;
+    public CharacterHealth ch;
+    public RheaLastWord lw;
     public Rigidbody2D rb;
     public SharedCharacterController cc;
     public SpriteRenderer sr;

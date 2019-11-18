@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07f698432f874b539fafe4dc68ca32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  timer: 0.2
+  dashSpeed: 10
+  dashDuration: 0.2
   shieldPrefab: {fileID: 3468574417592078, guid: 8ea076bf608a541ce95073158aa7de92,
     type: 3}
 --- !u!114 &-8307635674473614645
@@ -30,6 +30,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.7075472, g: 0.130162, b: 0.44533914, a: 1}
   outlineSize: 2
+--- !u!114 &5119666393153459865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496494981954801050}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc764c6d07a2944eb432f6e436fe6a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beamInterval: 5
+  beamPrefab: {fileID: 9103603990311279996, guid: 04c432ca4c079f34497391c8c5b86734,
+    type: 3}
+  bulletInterval: 0.05
+  bulletSpeed: 4
+  bulletPrefab: {fileID: 8242620669631801499, guid: 452fac5f85e892b409e2bb25ea3587d4,
+    type: 3}
 --- !u!1001 &7636391126221395878
 PrefabInstance:
   m_ObjectHideFlags: 0

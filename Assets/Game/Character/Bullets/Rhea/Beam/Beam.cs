@@ -27,16 +27,15 @@ public class Beam : MonoBehaviour
     [SerializeField]
     private float beamFadeTime = 0.5f;
 
+    private Collider2D col;
     private LineRenderer lr;
     private SpriteRenderer sr;
 
-    private Transform beam;
-
     void Start()
     {
+        col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-        beam = transform.GetChild(0);
+        sr = GetComponent<SpriteRenderer>();
 
         lr.SetPosition(0, origin.position);
         lr.SetPosition(1, target.position);
@@ -74,7 +73,7 @@ public class Beam : MonoBehaviour
     {
         transform.position = origin.position;
         Vector2 direction = (Vector2)(target.position - transform.position);
-        beam.right = direction;
+        transform.right = direction;
 
         yield return new WaitForSeconds(beamDelayTime);
 
@@ -84,10 +83,9 @@ public class Beam : MonoBehaviour
             do
             {
                 yield return null;
-                beam.localScale = new Vector3(beam.localScale.x,
+                transform.localScale = new Vector3(transform.localScale.x,
                     Mathf.Lerp(0, 0.3f, (Time.time - startTime) / beamGrowTime),
-                    beam.localScale.z);
-                Debug.Log((Time.time - startTime) / beamGrowTime);
+                    transform.localScale.z);
             }
             while (Time.time - startTime < beamGrowTime);
         }
@@ -95,7 +93,7 @@ public class Beam : MonoBehaviour
         // Beam life
         yield return new WaitForSeconds(beamDuration);
 
-        //TODO: Disable collider
+        col.enabled = false;
 
         // Beam death
         {
