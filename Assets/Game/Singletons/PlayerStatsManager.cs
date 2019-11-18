@@ -104,7 +104,7 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
             if (_player1WardRefill != value && _player1Wards <= maxHealth)
             {
                 if (1 > value)
-                { 
+                {
                     OnWardRefill?.Invoke(0, Player1Wards, value);
                     _player1WardRefill = value;
                 }
@@ -196,8 +196,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
             {
                 if (1 > value)
                 {
-                    OnWardRefill?.Invoke(1, Player1Wards, value);
-                    _player1WardRefill = value;
+                    OnWardRefill?.Invoke(1, Player2Wards, value);
+                    _player2WardRefill = value;
                 }
                 else
                 {
@@ -309,6 +309,24 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     }
 
     // Helper Methods
+
+    public void TakeDamage(int playerNumber)
+    {
+        if (playerNumber == 0)
+        {
+            if (Player1Wards > 0)
+                --Player1Wards;
+            else
+                --Player1Health;
+        }
+        else
+        {
+            if (Player2Wards > 0)
+                --Player2Wards;
+            else
+                --Player2Health;
+        }
+    }
 
     public bool PlayerAtFullMP(int playerNumber)
     {

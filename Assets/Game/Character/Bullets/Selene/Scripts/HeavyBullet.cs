@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyBullet : MonoBehaviour, IBaseBullet
+public class HeavyBullet : Bullet, IMutatable
 {
     public SeleneFire player;
     private Transform target;
     [SerializeField]
-    private GameObject heavyPrefab;
+    private GameObject heavyPrefab = null;
 
     [HideInInspector]
     public Vector2 startHeavyShot;
     [SerializeField]
-    private float heavySpeed;
+    private float heavySpeed = 0;
 
     private float deltaTarget;
     private Vector2 newTarDir;
@@ -36,15 +36,15 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
         startHeavyShot = transform.position;
         newTarDir = TargetDir();
     }
-    IEnumerator IBaseBullet.IntrinsicMutate()
+    IEnumerator IMutatable.IntrinsicMutate()
     {
-        hasMutated = true; 
+        hasMutated = true;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(1f);
 
         rb.velocity = newTarDir * heavySpeed;
     }
-    
+
     public bool CheckMutation()
     {
         if (hasMutated != true)
@@ -71,17 +71,16 @@ public class HeavyBullet : MonoBehaviour, IBaseBullet
         }
     }
 
-    public void DestroyBullet()
+    void OnDestroy()
     {
         player.bulletList.Remove(this);
-        Destroy(this.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" || col.gameObject.tag == "BulletCollider")
         {
-            DestroyBullet();
+            Destroy(gameObject);
         }
     }
 }

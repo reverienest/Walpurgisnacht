@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5397374362809326343}
   m_Layer: 0
   m_Name: prim_1
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe60812aa483094982160b3c121de2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  orbitOrigin: {fileID: 0}
-  angleSpeed: 0.01
+  playerNumber: 0
   baseAngle: 40
+  angleSpeed: 0.01
   shotOrigin: {x: 0, y: 0}
+  hasMutated: 0
+  player: {fileID: 0}
