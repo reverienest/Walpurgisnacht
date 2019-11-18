@@ -187,6 +187,12 @@ public class MatchManager : Singleton<MatchManager>
     {
         ClearBullets();
 
+        // Handles edge case of game ending during Last Word
+        if (lastWordActive)
+        {
+            EndLastWord();
+        }
+
         // Reset stats
         PlayerStatsManager.Instance.Start();
         SpellMap.Instance.ResetAllCooldowns();
