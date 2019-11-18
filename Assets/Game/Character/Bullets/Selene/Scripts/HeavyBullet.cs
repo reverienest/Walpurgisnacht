@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyBullet : Bullet, IMutatable
+public class HeavyBullet : MonoBehaviour, IMutatable
 {
     public SeleneFire player;
     private Transform target;

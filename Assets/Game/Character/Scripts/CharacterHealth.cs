@@ -46,16 +46,16 @@ public class CharacterHealth : MonoBehaviour
 
     private void HandleCollision(RemoteTrigger.ActionType type, Collider2D c)
     {
-        if (type == RemoteTrigger.ActionType.EXIT)
+        if (type == RemoteTrigger.ActionType.EXIT || !c.CompareTag("Bullet"))
             return;
 
-        Bullet bullet = c.GetComponent<Bullet>();
-        if (bullet)
+        PlayerID pid = c.GetComponent<PlayerID>();
+        if (pid)
         {
-            if (bullet.playerNumber != cc.playerNumber && vulnerable && iTimer <= 0)
+            if (pid.value != cc.playerNumber && vulnerable && iTimer <= 0)
             {
                 PlayerStatsManager.Instance.TakeDamage(cc.playerNumber);
-                Destroy(bullet.gameObject);
+                Destroy(pid.gameObject);
                 StartCoroutine(InvulnerableRoutine());
             }
         }
