@@ -18,6 +18,8 @@ public class SeleneFire : MonoBehaviour
     private GameObject primaryPrefab = null;
     [SerializeField]
     private GameObject heavyPrefab = null;
+    [SerializeField]
+    private GameObject lastWordPrefab = null;
 
     [HideInInspector]
     public Vector2 startShot;
@@ -115,5 +117,19 @@ public class SeleneFire : MonoBehaviour
                 StartCoroutine(bulletList[i].IntrinsicMutate());
             }
         }
+    }
+
+    public void SLastWord(float offset)
+    {
+        float angle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg + offset;
+
+        float shotDirXPos = Mathf.Cos(angle * Mathf.Deg2Rad);
+        float shotDirYPos = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * primarySpeed;
+
+        GameObject tempObj = Instantiate(lastWordPrefab, startShot, Quaternion.identity);
+        tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
+        tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
     }
 }

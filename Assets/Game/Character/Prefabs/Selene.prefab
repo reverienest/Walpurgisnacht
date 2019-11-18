@@ -48,8 +48,9 @@ MonoBehaviour:
     type: 3}
   heavyPrefab: {fileID: 5743245757788245915, guid: bd4026251e8d1b64eb9651cd153a50c0,
     type: 3}
+  lastWordPrefab: {fileID: 5908313584948068908, guid: 3fabf8790156e0b45ad53c9ea80a71b0,
+    type: 3}
   startShot: {x: 0, y: 0}
-  charTar: {fileID: 0}
 --- !u!1001 &5327955258788472254
 PrefabInstance:
   m_ObjectHideFlags: 0
