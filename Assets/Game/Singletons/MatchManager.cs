@@ -104,6 +104,14 @@ public class MatchManager : Singleton<MatchManager>
         StartForcedMovement(true);
     }
 
+    private void ClearBullets()
+    {
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Bullet"))
+        {
+            Destroy(g);
+        }
+    }
+
     private void StartForcedMovement(bool isStartingLastWord)
     {
         for (int playerNum = 0; playerNum < players.Length; ++playerNum)
@@ -179,6 +187,8 @@ public class MatchManager : Singleton<MatchManager>
 
     private void ResetArena()
     {
+        ClearBullets();
+
         // Reset stats
         PlayerStatsManager.Instance.Start();
         SpellMap.Instance.ResetAllCooldowns();
