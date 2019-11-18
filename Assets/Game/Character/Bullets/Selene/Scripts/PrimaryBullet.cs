@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrimaryBullet : Bullet, IMutatable
+public class PrimaryBullet : MonoBehaviour, IMutatable
 {
     [HideInInspector]
     public float baseAngle;

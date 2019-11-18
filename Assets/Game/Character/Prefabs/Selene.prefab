@@ -44,9 +44,9 @@ MonoBehaviour:
   primaryWaves: 3
   primarySpeed: 2
   heavyProjectiles: 6
-  primaryPrefab: {fileID: 388504248127969802, guid: 5db50c4e57fdbbf4197b8368d6fe0fa9,
+  primaryPrefab: {fileID: 6033892601529742290, guid: e764d2a29cdf93346901678963e2ec69,
     type: 3}
-  heavyPrefab: {fileID: 5724873062319007756, guid: c81bb2e19062c9f48bf1192523964659,
+  heavyPrefab: {fileID: 5743245757788245915, guid: bd4026251e8d1b64eb9651cd153a50c0,
     type: 3}
   startShot: {x: 0, y: 0}
   charTar: {fileID: 0}
@@ -70,6 +70,11 @@ PrefabInstance:
     - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
+    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
     - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
@@ -132,11 +137,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 086ee0e2af271b44797c085545ce0a4c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &2193138727480721282 stripped
