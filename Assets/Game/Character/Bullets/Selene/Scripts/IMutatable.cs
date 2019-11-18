@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBaseBullet
+public interface IMutatable
 {
     IEnumerator IntrinsicMutate();
-
-    void DestroyBullet();
 
     bool CheckMutation();
 }

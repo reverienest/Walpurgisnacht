@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrimaryBullet : MonoBehaviour, IBaseBullet 
+public class PrimaryBullet : Bullet, IMutatable
 {
     [HideInInspector]
     public float baseAngle;
@@ -26,7 +26,7 @@ public class PrimaryBullet : MonoBehaviour, IBaseBullet
         baseAngle = baseAngle + angleSpeed;
     }
 
-    IEnumerator IBaseBullet.IntrinsicMutate()
+    IEnumerator IMutatable.IntrinsicMutate()
     {
         hasMutated = true;
         rb.velocity = Vector2.zero;
@@ -34,11 +34,11 @@ public class PrimaryBullet : MonoBehaviour, IBaseBullet
 
         for(int i = 0; i < 300; i++)
         {
-            transform.RotateAround(shotOrigin, Vector3.forward, baseAngle * Time.deltaTime); 
+            transform.RotateAround(shotOrigin, Vector3.forward, baseAngle * Time.deltaTime);
 
             yield return new WaitForFixedUpdate();
         }
-        DestroyBullet();
+        Destroy(gameObject);
     }
 
     public bool CheckMutation()
@@ -53,17 +53,16 @@ public class PrimaryBullet : MonoBehaviour, IBaseBullet
         }
     }
 
-    public void DestroyBullet()
+    void OnDestroy()
     {
         player.bulletList.Remove(this);
-        Destroy(this.gameObject);
     }
-    
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "BulletCollider")
+        if (col.gameObject.tag == "BulletCollider")
         {
-            DestroyBullet();
+            Destroy(gameObject);
         }
     }
 }

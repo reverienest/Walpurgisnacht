@@ -6,18 +6,18 @@ public class SeleneFire : MonoBehaviour
 {
 
     [SerializeField]
-    private int primaryProjectiles;     //Number of projectiles in first wave of primary spell
+    private int primaryProjectiles = 0;     //Number of projectiles in first wave of primary spell
     [SerializeField]
-    private int primaryWaves;           //Number of waves in primary spell
+    private int primaryWaves = 0;           //Number of waves in primary spell
     [SerializeField]
-    private float primarySpeed;         //Speed of projectiles in primary spell
+    private float primarySpeed = 0;         //Speed of projectiles in primary spell
     [SerializeField]
-    private int heavyProjectiles;       //Number of split heavy projectiles
+    private int heavyProjectiles = 0;       //Number of split heavy projectiles
 
     [SerializeField]
-    private GameObject primaryPrefab;  
+    private GameObject primaryPrefab = null;
     [SerializeField]
-    private GameObject heavyPrefab;
+    private GameObject heavyPrefab = null;
 
     [HideInInspector]
     public Vector2 startShot;
@@ -26,30 +26,30 @@ public class SeleneFire : MonoBehaviour
     public CharacterTargeting charTar;
 
     [HideInInspector]
-    public List<IBaseBullet> bulletList;
+    public List<IMutatable> bulletList;
 
     private SharedCharacterController charCon;
      // Start is called before the first frame update
     void Start()
     {
         charTar = GetComponent<CharacterTargeting>();
-        bulletList = new List<IBaseBullet>();
+        bulletList = new List<IMutatable>();
         charCon = GetComponent<SharedCharacterController>();
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         startShot = transform.position;
         tarDir = charTar.TargetDirection();
-    }   
+    }
 
     public IEnumerator SelenePrimary(Vector2 startShot)
     {
         int tempProjectiles = primaryProjectiles;
         float baseAngle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg;
 
-        for (int i = primaryWaves; i > 0; i--)  
+        for (int i = primaryWaves; i > 0; i--)
         {
             float angle = baseAngle - (60f/2);
             for (int k = 0; k < tempProjectiles; k++)
@@ -61,6 +61,7 @@ public class SeleneFire : MonoBehaviour
 
                 GameObject tempObj = Instantiate(primaryPrefab, startShot, Quaternion.identity);
                 PrimaryBullet primaryBullet = tempObj.GetComponent<PrimaryBullet>();
+                primaryBullet.playerNumber = charCon.playerNumber;
                 bulletList.Add(primaryBullet);
                 primaryBullet.player = this;
                 primaryBullet.shotOrigin = startShot;
@@ -69,9 +70,9 @@ public class SeleneFire : MonoBehaviour
 
             }
             yield return new WaitForSeconds(.4f);
-            tempProjectiles = tempProjectiles - 1; 
+            tempProjectiles = tempProjectiles - 1;
         }
-        
+
     }
 
     public IEnumerator SeleneHeavy()
@@ -80,6 +81,7 @@ public class SeleneFire : MonoBehaviour
         Vector2 shotDirection = tarDir * primarySpeed;
         GameObject tempObj = Instantiate(heavyPrefab, transform.position, Quaternion.identity);
         HeavyBullet heavyBullet = tempObj.GetComponent<HeavyBullet>();
+        heavyBullet.playerNumber = charCon.playerNumber;
         bulletList.Add(heavyBullet);
         heavyBullet.player = this;
         tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
@@ -89,7 +91,7 @@ public class SeleneFire : MonoBehaviour
         if(heavyBullet != null && heavyBullet.hasMutated != true)
         {
             heavyBullet.SpawnChildren(heavyBullet.transform.position, angle, heavyProjectiles);
-            heavyBullet.DestroyBullet();
+            Destroy(heavyBullet.gameObject);
         }
     }
 
@@ -112,6 +114,6 @@ public class SeleneFire : MonoBehaviour
             {
                 StartCoroutine(bulletList[i].IntrinsicMutate());
             }
-        }   
+        }
     }
 }
