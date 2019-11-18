@@ -49,13 +49,13 @@ public class CharacterHealth : MonoBehaviour
         if (type == RemoteTrigger.ActionType.EXIT || !c.CompareTag("Bullet"))
             return;
 
-        PlayerID pid = c.GetComponent<PlayerID>();
-        if (pid)
+        SharedBullet sb = c.GetComponent<SharedBullet>();
+        if (sb)
         {
-            if (pid.value != cc.playerNumber && vulnerable && iTimer <= 0)
+            if (sb.playerNumber != cc.playerNumber && vulnerable && iTimer <= 0)
             {
                 PlayerStatsManager.Instance.TakeDamage(cc.playerNumber);
-                Destroy(pid.gameObject);
+                Destroy(sb.gameObject);
                 StartCoroutine(InvulnerableRoutine());
             }
         }
