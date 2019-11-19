@@ -10,6 +10,9 @@ public class MagicCircle : MonoBehaviour
     public int playerNumber;
 
     [SerializeField]
+    private Sprite[] circleSprites = new Sprite[2];
+
+    [SerializeField]
     private int circleChargeTime = 0;
 
     [SerializeField]
@@ -36,6 +39,9 @@ public class MagicCircle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CharacterType type = CharacterSelection.Instance.GetPlayerCharacterType(playerNumber);
+        GetComponent<SpriteRenderer>().sprite = circleSprites[(int)type];
+
         //time it takes to increase MP by 1 during normal play
         timeModifierMPCharge = (float)circleChargeTime / (PlayerStatsManager.Instance.MaxMP - startingMP);
 
@@ -46,7 +52,7 @@ public class MagicCircle : MonoBehaviour
         wardRefillModifier = 1.0f / timePerWardRecharge;
 
         //multiplier to addedRefill when player has drained all their MP
-        //basically, what percentage of the overall decrease specified by the serialized fields does the natural recharge contribute? 
+        //basically, what percentage of the overall decrease specified by the serialized fields does the natural recharge contribute?
         slowdownWhenNoMP = (1.0f / timeModifierMPCharge) / ((1.0f / timeModifierMPCharge) + (1.0f / timeModifierWardRefill));
     }
 
@@ -64,7 +70,7 @@ public class MagicCircle : MonoBehaviour
 
             float newWardRefillValue = lastWardRefillValue + addedRefill;
             SetWardRefill(newWardRefillValue);
-            
+
             if (newWardRefillValue > 1)
             {
                 //ward refilled

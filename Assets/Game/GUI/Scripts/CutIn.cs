@@ -11,14 +11,10 @@ public class CutIn : MonoBehaviour
     private Animator anim;
     private Image image;
 
-    private Vector3 baseImageScale;
-
     void Start()
     {
         anim = GetComponent<Animator>();
         image = GetComponentInChildren<Image>();
-
-        baseImageScale = transform.GetChild(0).localScale;
 
         MatchManager.Instance.OnLastWordStart += OnLastWordStart;
     }
@@ -28,13 +24,11 @@ public class CutIn : MonoBehaviour
         image.sprite = cutInSprites[playerNumber];
         if (playerNumber == 0)
         {
-            transform.localScale = baseImageScale;
-            anim.Play("CutInToRight");
+            anim.Play("CutInToRight", -1, 0);
         }
         else
         {
-            transform.localScale = new Vector3(-baseImageScale.x, baseImageScale.y, baseImageScale.z);
-            anim.Play("CutInToLeft");
+            anim.Play("CutInToLeft", -1, 0);
         }
     }
 }
