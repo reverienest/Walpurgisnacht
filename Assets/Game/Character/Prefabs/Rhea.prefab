@@ -49,6 +49,27 @@ MonoBehaviour:
   bulletSpeed: 4
   bulletPrefab: {fileID: 8242620669631801499, guid: 452fac5f85e892b409e2bb25ea3587d4,
     type: 3}
+--- !u!114 &6377821432702206397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496494981954801050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7616f69ffbb2cb7489bb6b29bb1425b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startShot: {x: 0, y: 0}
+  primaryPrefab: {fileID: 6762222865976803033, guid: 7476bfb810a210840a4d339ccb84b091,
+    type: 3}
+  heavyPrefab: {fileID: 7482625195412196960, guid: e78c72329e9f66b41baff2dc810ea42b,
+    type: 3}
+  primarySpeed: 5
+  heavySpeed: 3
+  primaryProjectiles: 15
+  heavyProjectiles: 3
 --- !u!1001 &7636391126221395878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,11 +82,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhea
       objectReference: {fileID: 0}
-    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fa399829902e61b4ea647d28466d793f, type: 2}
     - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_Sprite
@@ -132,6 +148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fa399829902e61b4ea647d28466d793f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &4496494981954801050 stripped
