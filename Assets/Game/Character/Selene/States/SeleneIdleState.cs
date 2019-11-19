@@ -22,18 +22,15 @@ public class SeleneIdleState : SeleneState
         {
             character.ChangeState<SeleneTeleportState>();
         }
-
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
+        else if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
             character.ChangeState<SelenePrimaryState>();
         }
-
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.HEAVY))
+        else if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.HEAVY))
         {
             character.ChangeState<SeleneHeavyState>();
         }
-
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
+        else if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
         {
             character.ChangeState<SeleneIntrinsicState>();
         }
