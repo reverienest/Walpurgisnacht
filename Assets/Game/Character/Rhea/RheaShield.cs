@@ -5,9 +5,6 @@ using UnityEngine;
 public class RheaShield : MonoBehaviour
 {
     [SerializeField]
-    private GameObject character;
-
-    [SerializeField]
     private float shieldDuration = 2;
 
     private CharacterTargeting ct;

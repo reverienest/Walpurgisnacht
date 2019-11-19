@@ -68,7 +68,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3a2d9629b1ba89c41acee09bb15ddd7a, type: 3}
     m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: 0
 --- !u!114 &4339439097664395812
 MonoBehaviour:
@@ -237,18 +237,18 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3a2d9629b1ba89c41acee09bb15ddd7a, type: 3}
     m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 30
-    m_Alignment: 7
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: 'True Umbra: Lost Gospel of Night'
 --- !u!114 &6115695372639377573
 MonoBehaviour:
