@@ -1814,6 +1814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696892692710721993}
   - component: {fileID: 6168995339935338648}
+  - component: {fileID: 2444155463066581419}
   m_Layer: 5
   m_Name: CooldownSliders
   m_TagString: Untagged
@@ -1870,6 +1871,38 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &2444155463066581419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632039859104299413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0310b59507e68b74cbad1e1ea7e8abdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 0
+  cooldownIconSprites:
+  - sprites:
+    - {fileID: 21300000, guid: cebf759338fe7d343b421bcaa517dd7c, type: 3}
+    - {fileID: 21300000, guid: 312e7e2492f57b54f94495fffb8bc34b, type: 3}
+    - {fileID: 21300000, guid: b28cd6da52a4300408607a998a156927, type: 3}
+    - {fileID: 21300000, guid: 90cf8b1c77ef58f40ad7148e5147364f, type: 3}
+    - {fileID: 21300000, guid: 46a4c0795bc334b44a3de7f72300bee1, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 94a3914fa2d713342ab6aea167fcb114, type: 3}
+    - {fileID: 21300000, guid: 397de3abef044ed429b5bb03c1986330, type: 3}
+    - {fileID: 21300000, guid: ff3b5bdc751409d4291df0b3214d7533, type: 3}
+    - {fileID: 21300000, guid: 027374cb2c782af4fabd53bca19ec9cd, type: 3}
+    - {fileID: 21300000, guid: 9d0e93faf27d8004bbe34a1cf6d4d334, type: 3}
+  cooldownIcons:
+  - {fileID: 9006156394746883437}
+  - {fileID: 8022666859915164474}
+  - {fileID: 1237509529828474606}
+  - {fileID: 8738292126879545190}
+  - {fileID: 2923573863515107804}
 --- !u!1 &7339424869935643330
 GameObject:
   m_ObjectHideFlags: 0

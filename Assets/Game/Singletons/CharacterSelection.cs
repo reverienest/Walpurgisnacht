@@ -6,7 +6,7 @@ public class CharacterSelection : Singleton<CharacterSelection>
     public event CharacterTypeChangeAction OnCharacterTypeChange;
 
     [SerializeField]
-    private CharacterType[] playerCharacterTypes = new CharacterType[2];
+    private CharacterType[] playerCharacterTypes = new CharacterType[2]{CharacterType.SELENE, CharacterType.RHEA};
     public CharacterType GetPlayerCharacterType(int playerNumber) { return playerCharacterTypes[playerNumber]; }
     public void SetPlayerCharacterType(int playerNumber, CharacterType type)
     {

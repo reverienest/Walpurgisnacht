@@ -64,10 +64,8 @@ public class CharacterSelectPanel : MonoBehaviour
         if (playerNumber != this.playerNumber)
             return;
 
-        // A little hack part 1
-        // Assuming node has an outline
         CharacterType type = CharacterSelection.Instance.GetPlayerCharacterType(playerNumber);
-        nodes[(int)type].GetComponent<Outline>().effectColor = confirmColor;
+        nodes[(int)type].OutlineColor = confirmColor;
     }
 
     private void UnconfirmCharacter(int playerNumber)
@@ -75,10 +73,8 @@ public class CharacterSelectPanel : MonoBehaviour
         if (playerNumber != this.playerNumber)
             return;
 
-        // A little hack part 2
-        // Hardcoded setting back to white
         CharacterType type = CharacterSelection.Instance.GetPlayerCharacterType(playerNumber);
-        nodes[(int)type].GetComponent<Outline>().effectColor = Color.white;
+        nodes[(int)type].ResetColor();
         confirmCursor.SetActive(false);
     }
 
