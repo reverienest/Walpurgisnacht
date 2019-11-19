@@ -64,7 +64,7 @@ public class SharedCharacterController : MonoBehaviour
             && !MatchManager.Instance.LastWordActive ) //is other player using their last word? 
         {
             MatchManager.Instance.StartLastWord(playerNumber);
-            Destroy(magicCircle);
+            RemoveCircle();
 
             if (0 == playerNumber)
             {
@@ -121,5 +121,11 @@ public class SharedCharacterController : MonoBehaviour
         if (!movementHandled)
             rb.velocity = Vector2.zero;
         movementHandled = false;
+    }
+
+    public void RemoveCircle()
+    {
+        if (null != magicCircle)
+            Destroy(magicCircle);
     }
 }

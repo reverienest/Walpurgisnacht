@@ -43,12 +43,16 @@ MonoBehaviour:
   primaryProjectiles: 6
   primaryWaves: 3
   primarySpeed: 2
+  lastWordSpeed: 4
+  lastWordLargeSpeed: 10
   heavyProjectiles: 6
   primaryPrefab: {fileID: 6033892601529742290, guid: e764d2a29cdf93346901678963e2ec69,
     type: 3}
   heavyPrefab: {fileID: 5743245757788245915, guid: bd4026251e8d1b64eb9651cd153a50c0,
     type: 3}
   lastWordPrefab: {fileID: 5908313584948068908, guid: 3fabf8790156e0b45ad53c9ea80a71b0,
+    type: 3}
+  lastWordLargePrefab: {fileID: 6745252310710675079, guid: a760d5934e99a1548b479bc0cfaaa5db,
     type: 3}
   startShot: {x: 0, y: 0}
 --- !u!1001 &5327955258788472254

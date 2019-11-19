@@ -194,6 +194,7 @@ public class MatchManager : Singleton<MatchManager>
         // Handles edge case of game ending during Last Word
         if (lastWordActive)
         {
+            StopCoroutine(lastWordCoroutine);
             EndLastWord();
         }
 
@@ -205,7 +206,11 @@ public class MatchManager : Singleton<MatchManager>
         {
             // Cleanup old players
             if (players[playerNum])
+            {
+                players[playerNum].GetComponent<SharedCharacterController>().RemoveCircle();
+                SpellMap.Instance.ShowCircleCooldown(playerNum); // HACK: if they lose while their circle is cast this won't be called naturally 
                 Destroy(players[playerNum]);
+            }
 
             // Spawn new players
             players[playerNum] = Instantiate(
