@@ -2,24 +2,26 @@
 
 public class SelenePrimaryState : SeleneState
 {
-    private enum Sequence { INITIAL, END }
-    private Sequence state;
+    private Trigger shoot;
 
-    //TODO: Implement animation events and create animations
     override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
-        state = Sequence.INITIAL;
-        input.anim.Play("SeleneCast");
-        input.shot.SPSpell();
+        input.anim.Play("Cast");
+    }
+
+    override public void Update(SeleneStateInput input)
+    {
+        if (shoot.Value)
+            input.shot.SPSpell();
     }
 
     override public void OnAnimationEvent(string eventName)
     {
-        if (eventName == "CastStart" && state == Sequence.INITIAL)
+        if (eventName == "HolesReady")
         {
-            state = Sequence.END;
+            shoot.Value = true;
         }
-        else if (eventName == "CastEnd" || state == Sequence.END)
+        else if (eventName == "CastEnd")
         {
             character.ChangeState<SeleneIdleState>();
         }

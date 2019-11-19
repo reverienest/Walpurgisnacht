@@ -55,7 +55,8 @@ public class CharacterHealth : MonoBehaviour
             if (sb.playerNumber != cc.playerNumber && vulnerable && iTimer <= 0)
             {
                 PlayerStatsManager.Instance.TakeDamage(cc.playerNumber);
-                Destroy(sb.gameObject);
+                if (sb.destroyOnHit)
+                    Destroy(sb.gameObject);
                 StartCoroutine(InvulnerableRoutine());
             }
         }
