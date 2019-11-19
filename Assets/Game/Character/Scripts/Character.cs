@@ -19,6 +19,10 @@ where I : CharacterStateInput, new()
     protected S state = null;
     protected I input = new I();
 
+    // NOTE: Little hack to ensure Enter is called on next update after transition
+    private Trigger stateChanged;
+    private CharacterStateTransitionInfo info;
+
     protected void Start()
     {
         stateMap = new Dictionary<Type, S>();
@@ -48,6 +52,8 @@ where I : CharacterStateInput, new()
 
     protected void LateUpdate()
     {
+        if (stateChanged.Value)
+            state.Enter(input, info);
         UpdateInput();
         state.Update(input);
     }
@@ -69,7 +75,8 @@ where I : CharacterStateInput, new()
         state?.ForceCleanUp(input);
         state = stateMap[typeof(N)];
         softTransitionChangeState = null;
-        state.Enter(input, transitionInfo);
+        stateChanged.Value = true;
+        info = transitionInfo;
     }
 
     /// Gives the current state a gentle warning that it should transition as soon as possible to the given state N
