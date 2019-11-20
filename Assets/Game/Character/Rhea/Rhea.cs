@@ -22,6 +22,7 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
         input.cc = GetComponent<SharedCharacterController>();
         input.sr = GetComponent<SpriteRenderer>();
         input.slowSprite = hitbox.GetComponent<SpriteRenderer>();
+        input.shot = GetComponent<RheaFire>();
         input.shieldPrefab = shieldPrefab;
     }
 
@@ -99,4 +100,5 @@ public class RheaStateInput : CharacterStateInput
     public SharedCharacterController cc;
     public SpriteRenderer sr;
     public SpriteRenderer slowSprite;
+    public RheaFire shot;
 }

@@ -21,7 +21,12 @@ public class RheaIdleState : RheaState
 
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
-            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
+            character.ChangeState<RheaPrimaryState>();
+        }
+
+        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.HEAVY))
+        {
+            character.ChangeState<RheaHeavyState>();
         }
 
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.MOVE))

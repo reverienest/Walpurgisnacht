@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: f580b8255786d00419db1cbff44d3c08
+guid: 797969bcf435cb34eb38600652aad107
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3743957659742367504
-    second: Move_0
+      213: -7848039375673857549
+    second: Dash_0
   - first:
-      213: 8405476814967859603
-    second: Move_1
+      213: 1228786266525858794
+    second: Dash_1
   - first:
-      213: -5086530901905536447
-    second: Move_2
+      213: -8184982077848143418
+    second: Dash_2
   - first:
-      213: 1521079245874940812
-    second: Move_3
+      213: 3821791876570597701
+    second: Dash_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,85 +98,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Move_0
+      name: Dash_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 315
-        height: 300
+        width: 355.75
+        height: 250
       alignment: 9
-      pivot: {x: 0.46, y: 0.5}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 705acfada310a8b4f8c71dd42120956a
-      internalID: 3743957659742367504
+      spriteID: 9b417341edc2a534e9193c15e7161e56
+      internalID: -7848039375673857549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move_1
+      name: Dash_1
       rect:
         serializedVersion: 2
-        x: 315
+        x: 355
         y: 0
-        width: 315
-        height: 300
+        width: 355.75
+        height: 250
       alignment: 9
-      pivot: {x: 0.42, y: 0.5}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b72e783ca8aead44a99a049621c4a4fb
-      internalID: 8405476814967859603
+      spriteID: c59e25e529944714dabfcf70d9ad643c
+      internalID: 1228786266525858794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move_2
+      name: Dash_2
       rect:
         serializedVersion: 2
-        x: 630
+        x: 710
         y: 0
-        width: 315
-        height: 300
+        width: 355.75
+        height: 250
       alignment: 9
-      pivot: {x: 0.38, y: 0.5}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcddea4e70572fb4290e44f0ee38b2e7
-      internalID: -5086530901905536447
+      spriteID: 838072d1532ed6147b2fc431560dd910
+      internalID: -8184982077848143418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move_3
+      name: Dash_3
       rect:
         serializedVersion: 2
-        x: 945
+        x: 1066
         y: 0
-        width: 315
-        height: 300
+        width: 356
+        height: 250
       alignment: 9
-      pivot: {x: 0.33, y: 0.5}
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7363570656f59fc4a8ecaf8e949e8574
-      internalID: 1521079245874940812
+      spriteID: 22e90491deeccca46b009709a48a82af
+      internalID: 3821791876570597701
       vertices: []
       indices: 
       edges: []
