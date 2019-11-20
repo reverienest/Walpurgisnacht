@@ -9,6 +9,8 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
     private float dashDuration = 0.2f;
     [SerializeField]
     private GameObject shieldPrefab = null;
+    [SerializeField]
+    private GameObject hitbox;
 
     override protected void Init()
     {
@@ -19,6 +21,7 @@ public class Rhea : Character<Rhea, RheaState, RheaStateInput>
         input.rb = GetComponent<Rigidbody2D>();
         input.cc = GetComponent<SharedCharacterController>();
         input.sr = GetComponent<SpriteRenderer>();
+        input.slowSprite = hitbox.GetComponent<SpriteRenderer>();
         input.shieldPrefab = shieldPrefab;
     }
 
@@ -95,4 +98,5 @@ public class RheaStateInput : CharacterStateInput
     public Rigidbody2D rb;
     public SharedCharacterController cc;
     public SpriteRenderer sr;
+    public SpriteRenderer slowSprite;
 }

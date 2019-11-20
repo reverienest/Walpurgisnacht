@@ -17,12 +17,16 @@ public class SharedCharacterController : MonoBehaviour
 
     [SerializeField]
     private GameObject circlePrefab = null;
+    [SerializeField]
+    private GameObject hitbox;
 
     private GameObject magicCircle;
     public bool HasCircle() { return magicCircle != null; }
     public Vector2 GetCirclePosition() { return magicCircle.transform.position; }
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private CircleCollider2D cc2d;
 
     private Vector2 lastDirection;
     /// Last non-zero direction this character moved
@@ -30,13 +34,20 @@ public class SharedCharacterController : MonoBehaviour
 
     void Awake()
     {
+        sr = hitbox.GetComponent<SpriteRenderer>();
+        sr.enabled = false;
         rb = GetComponent<Rigidbody2D>();
+        cc2d = hitbox.GetComponent<CircleCollider2D>();
 
         //Default teleport direction based on player number
         if (playerNumber == 0)
+        {
             lastDirection = Vector2.right;
+        }
         else
+        {
             lastDirection = Vector2.left;
+        }
 
         MatchManager.Instance.OnLastWordStart += OnLastWordStart;
         MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
@@ -106,8 +117,13 @@ public class SharedCharacterController : MonoBehaviour
             verticalMovement--;
         }
 
-        if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
+        if (InputMap.Instance.GetInputUp(playerNumber, ActionType.SLOW))
         {
+            sr.enabled = false;
+        }
+        else if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
+        {
+            sr.enabled = true;
             rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * slowSpeed;
         }
         else
@@ -145,7 +161,7 @@ public class SharedCharacterController : MonoBehaviour
     private void OnLastWordEnd()
     {
         // last word has ended, try to enable our circle
-        if (null == magicCircle || null == circleColor)
+        if (null == magicCircle /*|| null == circleColor*/)
             return;
 
         magicCircle.SetActive(true);

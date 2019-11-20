@@ -16,6 +16,7 @@ MonoBehaviour:
   dashDuration: 0.2
   shieldPrefab: {fileID: 3468574417592078, guid: 8ea076bf608a541ce95073158aa7de92,
     type: 3}
+  hitbox: {fileID: 338376388538536845}
 --- !u!114 &-8307635674473614645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 35c5848a3a380f645a1fb08ab60897c7, type: 2}
+    - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6313812592357874237, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -137,6 +143,12 @@ PrefabInstance:
 --- !u!1 &4496494981954801050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6313812592357874236, guid: 229099dc1155e2d468579de6896f1acd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7636391126221395878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &338376388538536845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7875615754516104235, guid: 229099dc1155e2d468579de6896f1acd,
     type: 3}
   m_PrefabInstance: {fileID: 7636391126221395878}
   m_PrefabAsset: {fileID: 0}

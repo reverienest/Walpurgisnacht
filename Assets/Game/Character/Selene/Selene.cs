@@ -8,6 +8,8 @@ public class Selene : Character<Selene, SeleneState, SeleneStateInput>
     private float maxTravelTime = 1;
     [SerializeField]
     private float maxTravelDistance = 1;
+    [SerializeField]
+    private GameObject hitbox;
 
     override protected void Init()
     {
@@ -17,6 +19,7 @@ public class Selene : Character<Selene, SeleneState, SeleneStateInput>
         input.cc = GetComponent<SharedCharacterController>();
         input.sr = GetComponent<SpriteRenderer>();
         input.shot = GetComponent<SeleneFire>();
+        input.slowSprite = hitbox.GetComponent<SpriteRenderer>();
     }
 
     override protected void SetInitialState()
@@ -46,4 +49,5 @@ public class SeleneStateInput : CharacterStateInput
     public SharedCharacterController cc;
     public SpriteRenderer sr;
     public SeleneFire shot;
+    public SpriteRenderer slowSprite;
 }

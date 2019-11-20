@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTravelTime: 0.5
   maxTravelDistance: 5
+  hitbox: {fileID: 2646847577108373909}
 --- !u!114 &-2587267942630820443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,11 +143,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 277141367373274182, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 260f3ba1ca8504ea0b5dc43131418340,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &2193138727480721282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6313812592357874236, guid: 229099dc1155e2d468579de6896f1acd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5327955258788472254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2646847577108373909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7875615754516104235, guid: 229099dc1155e2d468579de6896f1acd,
     type: 3}
   m_PrefabInstance: {fileID: 5327955258788472254}
   m_PrefabAsset: {fileID: 0}

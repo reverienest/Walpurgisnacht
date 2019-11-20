@@ -12,6 +12,7 @@ public class SeleneTeleportState : SeleneState
 
     override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
+        input.slowSprite.enabled = false;
         travelOrigin = character.transform.position;
 
         //Make sure we don't teleport out of the map
@@ -37,6 +38,7 @@ public class SeleneTeleportState : SeleneState
 
     override public void Update(SeleneStateInput input)
     {
+        input.slowSprite.enabled = false;
         if (state == Sequence.TRAVEL)
         {
             travelTimer -= Time.deltaTime;
