@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1998975aa12c574793f6351c62f4d95, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4793662064770286437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1b44bda063ed4ca4cba347cce2241563, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6590208, g: 0.19090424, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e19095336c22684d94d4369e527563d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   target: {fileID: 0}
 --- !u!114 &6313812592357874208
 MonoBehaviour:
@@ -350,15 +350,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7badc58b33bc147c8be5b2fef1bc9f38, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerNumber: 0
   speed: 4
   slowSpeed: 3
   circlePrefab: {fileID: 6013667188481603560, guid: fa17cfada7ddba24a940e62442e65e67,
     type: 3}
-  hitbox: {fileID: 7875615754516104235}
-  hitboxSR: {fileID: 4793662064770286437}
+  hitbox: {fileID: 1931539272516929888}
 --- !u!114 &955612331718784868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,8 +368,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8da4d83d062e9c54fb23e235d3cbc75c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   vulnerable: 1
   hitbox: {fileID: 5987367909837304623}
   invulnerabilityDuration: 1
@@ -427,7 +426,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -441,8 +440,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0851bbfe54f24d94994d8eadfb5a9, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   linkedSpriteRenderer: {fileID: 6313812592357874239}
 --- !u!1001 &6313812591671966988
 PrefabInstance:
@@ -460,6 +459,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437400882307386067, guid: 4968de94d26993b4ca0b1c3441140a91,
+        type: 3}
+      propertyPath: m_Name
+      value: Reticle
       objectReference: {fileID: 0}
     - target: {fileID: 188338011637728042, guid: 4968de94d26993b4ca0b1c3441140a91,
         type: 3}
@@ -515,11 +519,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437400882307386067, guid: 4968de94d26993b4ca0b1c3441140a91,
-        type: 3}
-      propertyPath: m_Name
-      value: Reticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4968de94d26993b4ca0b1c3441140a91, type: 3}
