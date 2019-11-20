@@ -51,11 +51,16 @@ public class CharacterSelectPanel : MonoBehaviour
         }
     }
 
+    private string Reformat(string original)
+    {
+        return original.Replace("\\n", "\n");
+    }
+
     private void UpdateCharacterUI(int playerNumber, CharacterType type)
     {
         if (playerNumber != this.playerNumber)
             return;
-        descriptionText.text = characterSelectUIData.descriptionTexts[(int)type];
+        descriptionText.text = Reformat(characterSelectUIData.descriptionTexts[(int)type]);
         characterPortrait.sprite = characterSelectUIData.characterPortraits[(int)type];
     }
 
