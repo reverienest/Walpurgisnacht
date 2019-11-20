@@ -12,6 +12,7 @@ public class RheaIdleState : RheaState
     override public void Update(RheaStateInput input)
     {
         input.cc.HandlePlaceCircle();
+        input.cc.HandleLastWord();
 
         // Spells
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.INTRIN))
