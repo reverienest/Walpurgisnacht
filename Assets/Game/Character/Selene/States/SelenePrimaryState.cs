@@ -7,6 +7,7 @@ public class SelenePrimaryState : SeleneState
     override public void Enter(SeleneStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
         input.anim.Play("Cast");
+        AudioManager.instance.Play("SeleneSpellCasting1");
     }
 
     override public void Update(SeleneStateInput input)

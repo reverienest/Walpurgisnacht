@@ -28,7 +28,6 @@ public class MenuNavigator : MonoBehaviour
     void Start()
     {
         Current = start;
-        InputMap.Instance.inputEnabled = true;
     }
 
     void Update()
@@ -36,27 +35,33 @@ public class MenuNavigator : MonoBehaviour
         if (Current.Up && GetInputDown(ActionType.UP))
         {
             Current = Current.Up;
+            AudioManager.instance.Play("MenuButtonClick1");
         }
         if (Current.Down && GetInputDown(ActionType.DOWN))
         {
             Current = Current.Down;
+            AudioManager.instance.Play("MenuButtonClick1");
         }
         if (Current.Left && GetInputDown(ActionType.LEFT))
         {
             Current = Current.Left;
+            AudioManager.instance.Play("MenuButtonClick1");
         }
         if (Current.Right && GetInputDown(ActionType.RIGHT))
         {
             Current = Current.Right;
+            AudioManager.instance.Play("MenuButtonClick1");
         }
         if (GetInputDown(ActionType.CONFIRM))
         {
+            AudioManager.instance.Play("MenuButtonClick2");
             Current.ActivateNode();
             if (Current.Forward)
                 Current = Current.Forward;
         }
         if (GetInputDown(ActionType.BACK))
         {
+            AudioManager.instance.Play("MenuButtonConfirm");
             Current.DeactivateNode();
             if (Current.Backward)
                 Current = Current.Backward;
@@ -66,7 +71,9 @@ public class MenuNavigator : MonoBehaviour
     private bool GetInputDown(ActionType action)
     {
         if (playerNumber == -1)
+        {
             return InputMap.Instance.GetInputDown(0, action) || InputMap.Instance.GetInputDown(1, action);
+        }
         else
             return InputMap.Instance.GetInputDown(playerNumber, action);
     }

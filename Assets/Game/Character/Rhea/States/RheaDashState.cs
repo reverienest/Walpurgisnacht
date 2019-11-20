@@ -15,6 +15,7 @@ public class RheaDashState : RheaState
         dashSpeed = input.dashSpeed;
 
         input.anim.Play("Move");
+        AudioManager.instance.Play("RheaDash");
     }
 
     override public void Update(RheaStateInput input)
