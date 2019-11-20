@@ -12,12 +12,20 @@ public class SeleneFire : MonoBehaviour
     [SerializeField]
     private float primarySpeed = 0;         //Speed of projectiles in primary spell
     [SerializeField]
+    private float lastWordSpeed = 0;         //Speed of projectiles in primary spell
+    [SerializeField]
+    private float lastWordLargeSpeed = 0;         //Speed of projectiles in primary spell
+    [SerializeField]
     private int heavyProjectiles = 0;       //Number of split heavy projectiles
 
     [SerializeField]
     private GameObject primaryPrefab = null;
     [SerializeField]
     private GameObject heavyPrefab = null;
+    [SerializeField]
+    private GameObject lastWordPrefab = null;
+    [SerializeField]
+    private GameObject lastWordLargePrefab = null;
 
     [HideInInspector]
     public Vector2 startShot;
@@ -115,5 +123,33 @@ public class SeleneFire : MonoBehaviour
                 StartCoroutine(bulletList[i].IntrinsicMutate());
             }
         }
+    }
+
+    public void SLastWord(float offset)
+    {
+        float angle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg + offset;
+
+        float shotDirXPos = Mathf.Cos(angle * Mathf.Deg2Rad);
+        float shotDirYPos = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * lastWordSpeed;
+
+        GameObject tempObj = Instantiate(lastWordPrefab, startShot, Quaternion.identity);
+        tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
+        tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
+    }
+
+    public void SLastWordLarge()
+    {
+        float angle = Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg;
+
+        float shotDirXPos = Mathf.Cos(angle * Mathf.Deg2Rad);
+        float shotDirYPos = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        Vector2 shotDirection = new Vector2(shotDirXPos, shotDirYPos) * lastWordLargeSpeed;
+
+        GameObject tempObj = Instantiate(lastWordLargePrefab, startShot, Quaternion.identity);
+        tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
+        tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
     }
 }

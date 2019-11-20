@@ -37,6 +37,9 @@ public class SharedCharacterController : MonoBehaviour
             lastDirection = Vector2.right;
         else
             lastDirection = Vector2.left;
+
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
     }
 
     public bool HandlePlaceCircle()
@@ -64,7 +67,7 @@ public class SharedCharacterController : MonoBehaviour
             && !MatchManager.Instance.LastWordActive ) //is other player using their last word? 
         {
             MatchManager.Instance.StartLastWord(playerNumber);
-            Destroy(magicCircle);
+            RemoveCircle();
 
             if (0 == playerNumber)
             {
@@ -121,5 +124,31 @@ public class SharedCharacterController : MonoBehaviour
         if (!movementHandled)
             rb.velocity = Vector2.zero;
         movementHandled = false;
+    }
+
+    public void RemoveCircle()
+    {
+        if (null != magicCircle)
+            Destroy(magicCircle);
+    }
+    
+    private void OnLastWordStart(int lastWordCastBy)
+    {
+        if (lastWordCastBy == playerNumber || null == magicCircle)
+            return;
+
+        // the other player has cast their last word, disable our circle
+        magicCircle.SetActive(false);
+    }
+
+
+    private void OnLastWordEnd()
+    {
+        // last word has ended, try to enable our circle
+        if (null == magicCircle || null == circleColor)
+            return;
+
+        magicCircle.SetActive(true);
+
     }
 }

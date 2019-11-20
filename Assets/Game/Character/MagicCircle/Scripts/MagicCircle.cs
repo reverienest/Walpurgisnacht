@@ -123,11 +123,11 @@ public class MagicCircle : MonoBehaviour
 
             if (playerNumber == 0)
             {
-                return PlayerStatsManager.Instance.Player1Wards < PlayerStatsManager.Instance.MaxHealth;
+                return PlayerStatsManager.Instance.Player1Wards < PlayerStatsManager.Instance.Player1Health;
             }
             else
             {
-                return PlayerStatsManager.Instance.Player2Wards < PlayerStatsManager.Instance.MaxHealth;
+                return PlayerStatsManager.Instance.Player2Wards < PlayerStatsManager.Instance.Player2Health;
             }
         }
     }
