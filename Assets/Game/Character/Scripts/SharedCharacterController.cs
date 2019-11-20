@@ -62,9 +62,9 @@ public class SharedCharacterController : MonoBehaviour
     public bool HandleLastWord()
     {
         if (InputMap.Instance.GetInput(playerNumber, ActionType.LAST_WORD) //are they pressing the button?
-            && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP? 
+            && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP?
             && magicCircle.GetComponent<MagicCircle>().IsPlayerInCircle //are they in the circle?
-            && !MatchManager.Instance.LastWordActive ) //is other player using their last word? 
+            && !MatchManager.Instance.LastWordActive ) //is other player using their last word?
         {
             MatchManager.Instance.StartLastWord(playerNumber);
             RemoveCircle();
@@ -131,7 +131,7 @@ public class SharedCharacterController : MonoBehaviour
         if (null != magicCircle)
             Destroy(magicCircle);
     }
-    
+
     private void OnLastWordStart(int lastWordCastBy)
     {
         if (lastWordCastBy == playerNumber || null == magicCircle)
@@ -145,7 +145,7 @@ public class SharedCharacterController : MonoBehaviour
     private void OnLastWordEnd()
     {
         // last word has ended, try to enable our circle
-        if (null == magicCircle || null == circleColor)
+        if (null == magicCircle)
             return;
 
         magicCircle.SetActive(true);
