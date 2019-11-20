@@ -8,6 +8,8 @@ public class HeavyBullet : MonoBehaviour, IMutatable
     private Transform target;
     [SerializeField]
     private GameObject heavyPrefab = null;
+    [SerializeField]
+    private float spinSpeed = 180;
 
     [HideInInspector]
     public Vector2 startHeavyShot;
@@ -32,6 +34,7 @@ public class HeavyBullet : MonoBehaviour, IMutatable
     }
     void Update()
     {
+        transform.Rotate(0, 0, spinSpeed * Time.deltaTime);
         target = player.GetComponent<CharacterTargeting>().target;
         startHeavyShot = transform.position;
         newTarDir = TargetDir();
