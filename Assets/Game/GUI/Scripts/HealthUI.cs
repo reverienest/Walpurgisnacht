@@ -34,13 +34,12 @@ public class HealthUI : MonoBehaviour
             {
                 healthIcons[i].color = ModifyAlpha(healthIcons[i].color, 1);
                 healthIcons[i].material.SetFloat("_t", 1);
-                AudioManager.instance.Play("BodyPlayerHit");
             }
             else if (i < newHealth)
             {
+                AudioManager.instance.Play("BodyPlayerHit");
                 healthIcons[i].color = ModifyAlpha(healthIcons[i].color, 1);
                 healthIcons[i].material.SetFloat("_t", 0);
-                AudioManager.instance.Play("BodyPlayerHit");
             }
             else
             {

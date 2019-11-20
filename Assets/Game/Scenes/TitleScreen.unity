@@ -1610,66 +1610,97 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 26ebbdf05088704408ebda0ee02ed9dc, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: GameBegin
     clip: {fileID: 8300000, guid: d8658de38c0eb9641a20bf502f414680, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: RheaDash
     clip: {fileID: 8300000, guid: f85d7296ed7a35949980b58090878dfd, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: LastWordCasting
     clip: {fileID: 8300000, guid: 7785632576770914fa03d21356ef2a20, type: 3}
     volume: 1
     pitch: 0
+    loop: 0
     source: {fileID: 0}
   - name: RheaSpellCasting1
     clip: {fileID: 8300000, guid: 37962c2dd9993d841b18e200b1bfcf13, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: RheaSpellCasting2
     clip: {fileID: 8300000, guid: 6b69ccb4eafb31f4183430f87da1d77d, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: SeleneSpellCasting2
-    clip: {fileID: 8300000, guid: e3b3cffd6e54d2140a25dbd1e773ffdf, type: 3}
+    clip: {fileID: 8300000, guid: 80c044552a211004b923cf114ec55660, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: SeleneSpellCasting1
     clip: {fileID: 8300000, guid: cfa54fe614042794b904e5fc1acb3cb6, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: MenuButtonClick1
     clip: {fileID: 8300000, guid: 9d866831e6dc9114b961840a1d84df74, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: MenuButtonClick2
     clip: {fileID: 8300000, guid: 1d1fe61a91489c04c843498dbb22d8fd, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: MenuButtonConfirm
     clip: {fileID: 8300000, guid: bbe0d9a77b3359b48b7bbd8e09d3d3fd, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: SeleneTeleportEnter
     clip: {fileID: 8300000, guid: 63288afce64585949bfac5012dd1c95d, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: SeleneTeleportExit
     clip: {fileID: 8300000, guid: 6d6ea6bdf0314c74b842a22f635501db, type: 3}
     volume: 1
     pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: RheaIntrinsicShield
+    clip: {fileID: 8300000, guid: a8b6343a28c9f9a408dbfa67e7f5cd13, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: RheaIntrinsicShieldAway
+    clip: {fileID: 8300000, guid: c9facef082976914f984803e79edb10a, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: RheaLastWordSequence
+    clip: {fileID: 8300000, guid: af7529fc3f340eb44bf34e4c99e29156, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &1877314363
 Transform:
