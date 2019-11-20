@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 151
+  spritePixelsToUnits: 130
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,16 +103,16 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 300
+        width: 315
         height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.46, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 626c9d480433e674abb7f6970caeb7f4
+      spriteID: 705acfada310a8b4f8c71dd42120956a
       internalID: 3743957659742367504
       vertices: []
       indices: 
@@ -122,18 +122,18 @@ TextureImporter:
       name: Move_1
       rect:
         serializedVersion: 2
-        x: 300
+        x: 315
         y: 0
-        width: 300
+        width: 315
         height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.42, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b2c23f25fdf9c1429a1b1ffffbe7e47
+      spriteID: b72e783ca8aead44a99a049621c4a4fb
       internalID: 8405476814967859603
       vertices: []
       indices: 
@@ -143,18 +143,18 @@ TextureImporter:
       name: Move_2
       rect:
         serializedVersion: 2
-        x: 600
+        x: 630
         y: 0
-        width: 300
+        width: 315
         height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.38, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3d61762984c89f4a9aa8bc10ed79a1d
+      spriteID: bcddea4e70572fb4290e44f0ee38b2e7
       internalID: -5086530901905536447
       vertices: []
       indices: 
@@ -164,18 +164,18 @@ TextureImporter:
       name: Move_3
       rect:
         serializedVersion: 2
-        x: 900
+        x: 945
         y: 0
-        width: 300
+        width: 315
         height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.33, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 973431532f202bd4ebb1f7a933e3fc24
+      spriteID: 7363570656f59fc4a8ecaf8e949e8574
       internalID: 1521079245874940812
       vertices: []
       indices: 

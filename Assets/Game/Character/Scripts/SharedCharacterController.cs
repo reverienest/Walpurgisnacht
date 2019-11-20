@@ -17,6 +17,8 @@ public class SharedCharacterController : MonoBehaviour
 
     [SerializeField]
     private GameObject circlePrefab = null;
+    [SerializeField]
+    private SpriteRenderer hitboxSR = null;
 
     private GameObject magicCircle;
     public bool HasCircle() { return magicCircle != null; }
@@ -31,6 +33,14 @@ public class SharedCharacterController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
+    }
+
+    void Start()
+    {
+        hitboxSR.color = MatchManager.Instance.GetPlayerOutlineColor(playerNumber);
 
         //Default teleport direction based on player number
         if (playerNumber == 0)
@@ -59,12 +69,12 @@ public class SharedCharacterController : MonoBehaviour
     public bool HandleLastWord()
     {
         if (InputMap.Instance.GetInput(playerNumber, ActionType.LAST_WORD) //are they pressing the button?
-            && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP? 
+            && PlayerStatsManager.Instance.PlayerAtFullMP(playerNumber) //are they at full MP?
             && magicCircle.GetComponent<MagicCircle>().IsPlayerInCircle //are they in the circle?
-            && !MatchManager.Instance.LastWordActive ) //is other player using their last word? 
+            && !MatchManager.Instance.LastWordActive ) //is other player using their last word?
         {
             MatchManager.Instance.StartLastWord(playerNumber);
-            Destroy(magicCircle);
+            RemoveCircle();
 
             if (0 == playerNumber)
             {
@@ -106,10 +116,12 @@ public class SharedCharacterController : MonoBehaviour
         if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
         {
             rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * slowSpeed;
+            hitboxSR.enabled = true;
         }
         else
         {
             rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * speed;
+            hitboxSR.enabled = false;
         }
 
         if (rb.velocity.magnitude != 0)
@@ -121,5 +133,31 @@ public class SharedCharacterController : MonoBehaviour
         if (!movementHandled)
             rb.velocity = Vector2.zero;
         movementHandled = false;
+    }
+
+    public void RemoveCircle()
+    {
+        if (null != magicCircle)
+            Destroy(magicCircle);
+    }
+
+    private void OnLastWordStart(int lastWordCastBy)
+    {
+        if (lastWordCastBy == playerNumber || null == magicCircle)
+            return;
+
+        // the other player has cast their last word, disable our circle
+        magicCircle.SetActive(false);
+    }
+
+
+    private void OnLastWordEnd()
+    {
+        // last word has ended, try to enable our circle
+        if (null == magicCircle)
+            return;
+
+        magicCircle.SetActive(true);
+
     }
 }
