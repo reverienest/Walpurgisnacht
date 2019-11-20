@@ -74,7 +74,7 @@ public class SeleneFire : MonoBehaviour
                 primaryBullet.player = this;
                 primaryBullet.shotOrigin = startShot;
                 tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
-                angle += 60f / (tempProjectiles + 1);
+                angle += 60f / (tempProjectiles - 1);
 
             }
             yield return new WaitForSeconds(.4f);
