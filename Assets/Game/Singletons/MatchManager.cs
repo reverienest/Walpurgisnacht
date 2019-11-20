@@ -23,9 +23,11 @@ public class MatchManager : Singleton<MatchManager>
     private Transform[] spawnPoints = new Transform[2];
 
     [SerializeField]
-    private GameObject[] characterPrefabs = null;
+    private GameObject[] characterPrefabs = new GameObject[(int)CharacterType._NUM_TYPES];
     [SerializeField]
-    private Sprite[] characterHeadshots = null;
+    private Sprite[] characterRegularHeadshots = new Sprite[(int)CharacterType._NUM_TYPES];
+    [SerializeField]
+    private Sprite[] characterLastWordHeadshots = new Sprite[(int)CharacterType._NUM_TYPES];
 
     [SerializeField]
     private int winsNeeded = 3;
@@ -82,10 +84,6 @@ public class MatchManager : Singleton<MatchManager>
 
     void Start()
     {
-        // Setup player character UI images
-        for (int i = 0; i < playerCharacterImages.Length; ++i)
-            playerCharacterImages[i].sprite = characterHeadshots[(int)CharacterSelection.Instance.GetPlayerCharacterType(i)];
-
         PlayerStatsManager.Instance.OnDeathAction += new PlayerStatsManager.DeathAction(OnPlayerDeath);
         InputMap.Instance.inputEnabled = false;
         ResetArena();
@@ -105,6 +103,9 @@ public class MatchManager : Singleton<MatchManager>
         PlayerStatsManager.Instance.StashWards(victimPlayerNumber);
         OnLastWordStart?.Invoke(lastWordPlayerNumber);
         StartForcedMovement(true);
+
+        // Setup player character UI image
+        playerCharacterImages[lastWordPlayerNumber].sprite = characterLastWordHeadshots[(int)CharacterSelection.Instance.GetPlayerCharacterType(lastWordPlayerNumber)];
     }
 
     private void ClearBullets()
@@ -187,10 +188,16 @@ public class MatchManager : Singleton<MatchManager>
         PlayerStatsManager.Instance.PopWards(victimPlayerNumber);
         OnLastWordEnd?.Invoke();
         StartForcedMovement(false);
+
+        // Setup player character UI images
+        playerCharacterImages[lastWordPlayerNumber].sprite = characterRegularHeadshots[(int)CharacterSelection.Instance.GetPlayerCharacterType(lastWordPlayerNumber)];
     }
 
     private void ResetArena()
     {
+        // Setup player character UI images
+        for (int i = 0; i < playerCharacterImages.Length; ++i)
+            playerCharacterImages[i].sprite = characterRegularHeadshots[(int)CharacterSelection.Instance.GetPlayerCharacterType(i)];
         ClearBullets();
 
         // Handles edge case of game ending during Last Word
