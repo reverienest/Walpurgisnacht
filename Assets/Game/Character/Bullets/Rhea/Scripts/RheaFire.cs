@@ -52,6 +52,7 @@ public class RheaFire : MonoBehaviour
             GameObject temp = Instantiate(primaryPrefab, startShot, Quaternion.identity);
             temp.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
             temp.GetComponent<Rigidbody2D>().velocity = shotVelocity;
+            temp.transform.right = shotVelocity;
             yield return new WaitForSeconds(.1f);
         }
     }
@@ -70,6 +71,7 @@ public class RheaFire : MonoBehaviour
             GameObject temp = Instantiate(heavyPrefab, startShot, Quaternion.identity);
             temp.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
             temp.GetComponent<Rigidbody2D>().velocity = shotVelocity;
+            temp.transform.right = shotVelocity;
 
             angle += 60 / (heavyProjectiles + 1);
         }
