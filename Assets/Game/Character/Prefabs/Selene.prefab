@@ -50,7 +50,7 @@ MonoBehaviour:
     type: 3}
   heavyPrefab: {fileID: 5743245757788245915, guid: bd4026251e8d1b64eb9651cd153a50c0,
     type: 3}
-  lastWordPrefab: {fileID: 5908313584948068908, guid: 3fabf8790156e0b45ad53c9ea80a71b0,
+  lastWordPrefab: {fileID: 4497085296242156103, guid: c3c08094c774e5247ba7802177352ecf,
     type: 3}
   lastWordLargePrefab: {fileID: 6745252310710675079, guid: a760d5934e99a1548b479bc0cfaaa5db,
     type: 3}

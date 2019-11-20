@@ -24,6 +24,8 @@ public class SharedCharacterController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Color circleColor;
+
     private Vector2 lastDirection;
     /// Last non-zero direction this character moved
     public Vector2 LastDirection { get { return lastDirection; } }
@@ -37,6 +39,9 @@ public class SharedCharacterController : MonoBehaviour
             lastDirection = Vector2.right;
         else
             lastDirection = Vector2.left;
+
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
     }
 
     public bool HandlePlaceCircle()
@@ -127,5 +132,29 @@ public class SharedCharacterController : MonoBehaviour
     {
         if (null != magicCircle)
             Destroy(magicCircle);
+    }
+    
+    private void OnLastWordStart(int lastWordCastBy)
+    {
+        if (lastWordCastBy == playerNumber || null == magicCircle)
+            return;
+
+        // the other player has cast their last word, disable our circle
+        circleColor = magicCircle.GetComponent<SpriteRenderer>().color;
+        Color tmp = magicCircle.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0f;
+        magicCircle.GetComponent<SpriteRenderer>().color = tmp;
+        magicCircle.GetComponent<MagicCircle>().CircleDisabled = true;
+    }
+
+
+    private void OnLastWordEnd()
+    {
+        // last word has ended, try to enable our circle
+        if (null == magicCircle || null == circleColor)
+            return;
+
+        magicCircle.GetComponent<SpriteRenderer>().color = circleColor;
+        magicCircle.GetComponent<MagicCircle>().CircleDisabled = false;
     }
 }

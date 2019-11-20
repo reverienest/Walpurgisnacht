@@ -98,10 +98,11 @@ MonoBehaviour:
   circleSprites:
   - {fileID: 21300000, guid: 440dc7d93a6dbfd43bbd450612726af2, type: 3}
   - {fileID: 21300000, guid: d32ca0bfc2e91954c85cfeee44f0e7fe, type: 3}
-  circleChargeTime: 2
+  circleChargeTime: 60
   startingMP: 20
   timePerWardRecharge: 10
   mpPerWardRecharge: 25
+  CircleDisabled: 0
 --- !u!70 &9052847023316341023
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

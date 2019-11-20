@@ -24,6 +24,9 @@ public class MagicCircle : MonoBehaviour
     [SerializeField]
     private int mpPerWardRecharge = 0;
 
+    [HideInInspector]
+    public bool CircleDisabled = false;
+
     private float timeModifierMPCharge;
     private float lastUpdateMPCharge = -1;
 
@@ -59,6 +62,12 @@ public class MagicCircle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CircleDisabled)
+        {
+            return;
+        }
+
+
         if (ShouldRefill)
         {
             float addedRefill = (Time.time - lastWardRefillTime) * wardRefillModifier;
