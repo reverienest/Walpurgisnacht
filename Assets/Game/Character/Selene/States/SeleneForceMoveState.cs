@@ -24,7 +24,7 @@ public class SeleneForceMoveState : SeleneState
             transitionInfo.onCompleteMove(() =>
             {
                 if (transitionInfo.isLastWordCaster)
-                    character.ChangeState<SeleneIdleState>(); //TODO: Change this to SeleneLastWordState when that's implemented
+                    character.ChangeState<SeleneLastWordState>(); 
                 else
                     character.ChangeState<SeleneIdleState>();
             });
