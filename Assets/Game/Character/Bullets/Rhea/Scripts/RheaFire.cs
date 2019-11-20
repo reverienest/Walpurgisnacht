@@ -16,13 +16,13 @@ public class RheaFire : MonoBehaviour
     private GameObject heavyPrefab = null;
 
     [SerializeField]
-    private float primarySpeed;
+    private float primarySpeed = 5;
     [SerializeField]
-    private float heavySpeed;
+    private float heavySpeed = 3;
     [SerializeField]
-    private int primaryProjectiles;
+    private int primaryProjectiles = 15;
     [SerializeField]
-    private int heavyProjectiles;
+    private int heavyProjectiles = 3;
 
     // Start is called before the first frame update
     void Start()
