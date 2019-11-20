@@ -17,6 +17,8 @@ public class SharedCharacterController : MonoBehaviour
 
     [SerializeField]
     private GameObject circlePrefab = null;
+    [SerializeField]
+    private SpriteRenderer hitboxSR = null;
 
     private GameObject magicCircle;
     public bool HasCircle() { return magicCircle != null; }
@@ -32,14 +34,19 @@ public class SharedCharacterController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
+        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
+    }
+
+    void Start()
+    {
+        hitboxSR.color = MatchManager.Instance.GetPlayerOutlineColor(playerNumber);
+
         //Default teleport direction based on player number
         if (playerNumber == 0)
             lastDirection = Vector2.right;
         else
             lastDirection = Vector2.left;
-
-        MatchManager.Instance.OnLastWordStart += OnLastWordStart;
-        MatchManager.Instance.OnLastWordEnd += OnLastWordEnd;
     }
 
     public bool HandlePlaceCircle()
@@ -109,10 +116,12 @@ public class SharedCharacterController : MonoBehaviour
         if (InputMap.Instance.GetInput(playerNumber, ActionType.SLOW))
         {
             rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * slowSpeed;
+            hitboxSR.enabled = true;
         }
         else
         {
             rb.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * speed;
+            hitboxSR.enabled = false;
         }
 
         if (rb.velocity.magnitude != 0)

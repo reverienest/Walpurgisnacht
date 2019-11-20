@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07f698432f874b539fafe4dc68ca32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 10
-  dashDuration: 0.2
+  dashSpeed: 12
+  dashDuration: 0.3
   shieldPrefab: {fileID: 3468574417592078, guid: 8ea076bf608a541ce95073158aa7de92,
     type: 3}
 --- !u!114 &-8307635674473614645
