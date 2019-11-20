@@ -135,7 +135,7 @@ public class InputMap : Singleton<InputMap>
         keyMaps[1].Add(ActionType.MOVE, KeyCode.Y);
         keyMaps[1].Add(ActionType.LAST_WORD, KeyCode.Alpha3);
         keyMaps[1].Add(ActionType.SLOW, KeyCode.RightShift);
-        keyMaps[1].Add(ActionType.CAST_CIRCLE, KeyCode.RightCommand);
+        keyMaps[1].Add(ActionType.CAST_CIRCLE, KeyCode.RightControl);
 
         controllerMaps[1].Add(ActionType.CONFIRM, new ControllerInput("P2A"));
         controllerMaps[1].Add(ActionType.BACK, new ControllerInput("P2B"));

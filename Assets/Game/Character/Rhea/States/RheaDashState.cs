@@ -10,6 +10,8 @@ public class RheaDashState : RheaState
 
     override public void Enter(RheaStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
+        input.slowSprite.enabled = false;
+
         direction = input.cc.LastDirection.normalized;
         travelTimer = input.dashDuration;
         dashSpeed = input.dashSpeed;
@@ -19,6 +21,7 @@ public class RheaDashState : RheaState
 
     override public void Update(RheaStateInput input)
     {
+        input.slowSprite.enabled = false;
         travelTimer -= Time.deltaTime;
         character.transform.position += direction * Time.deltaTime * dashSpeed;
         List<Collider2D> contactList = new List<Collider2D>();
