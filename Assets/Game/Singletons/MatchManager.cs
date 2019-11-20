@@ -45,6 +45,8 @@ public class MatchManager : Singleton<MatchManager>
     private Image[] playerCharacterImages = null;
     [SerializeField]
     private Color[] playerOutlineColors = new Color[2];
+    public Color GetPlayerOutlineColor(int playerNumber) { return playerOutlineColors[playerNumber]; }
+
     private int[] _playerScores = new int[2];
     private void SetPlayerScore(int playerNumber, int value)
     {
@@ -208,7 +210,7 @@ public class MatchManager : Singleton<MatchManager>
             if (players[playerNum])
             {
                 players[playerNum].GetComponent<SharedCharacterController>().RemoveCircle();
-                SpellMap.Instance.ShowCircleCooldown(playerNum); // HACK: if they lose while their circle is cast this won't be called naturally 
+                SpellMap.Instance.ShowCircleCooldown(playerNum); // HACK: if they lose while their circle is cast this won't be called naturally
                 Destroy(players[playerNum]);
             }
 

@@ -14,7 +14,7 @@ public class RheaDashState : RheaState
         travelTimer = input.dashDuration;
         dashSpeed = input.dashSpeed;
 
-        input.anim.Play("Move");
+        input.anim.Play("Dash");
     }
 
     override public void Update(RheaStateInput input)
