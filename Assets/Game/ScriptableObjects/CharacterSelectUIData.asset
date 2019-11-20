@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: CharacterSelectUIData
   m_EditorClassIdentifier: 
   descriptionTexts:
-  - Selene is slick
-  - Rhea is rad
+  - 'Selene: Witch of the Void Reserved and withdrawn, her spells draw from the quiet
+    power of the greater void to wreak havoc on her foes. \n -Primary Spell: Fires
+    waves of cosmic energy. \n -Heavy Spell: Sends out a crescent blade that splits
+    outward. \n -Defensive Spell: Rends a hole through space to escape danger. \n
+    -Intrinsic Spell: Warps all of her spells, giving them alternate properties. '
+  - 'Rhea: Child of the Sun A member of an elite group of arbiters, her spells burn
+    hot with her soul''s fire. \n -Primary Spell: Swings her sword, sending out a
+    hail of fire. \n -Heavy Spell: A mighty swing of her sword rends a wave of energy.
+    \n -Defensive Spell: Sidesteps quickly to avoid incoming fire. \n -Intrinsic Spell:
+    Raises a shield of fire to protect her from danger. '
   characterPortraits:
   - {fileID: 21300000, guid: f814e920c1f7df94fb7d2e4f64eea34e, type: 3}
   - {fileID: 21300000, guid: 9d15f65a93ad76a4eb664aeaac76dac8, type: 3}
