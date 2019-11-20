@@ -24,8 +24,6 @@ public class SharedCharacterController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private Color circleColor;
-
     private Vector2 lastDirection;
     /// Last non-zero direction this character moved
     public Vector2 LastDirection { get { return lastDirection; } }
@@ -140,11 +138,7 @@ public class SharedCharacterController : MonoBehaviour
             return;
 
         // the other player has cast their last word, disable our circle
-        circleColor = magicCircle.GetComponent<SpriteRenderer>().color;
-        Color tmp = magicCircle.GetComponent<SpriteRenderer>().color;
-        tmp.a = 0f;
-        magicCircle.GetComponent<SpriteRenderer>().color = tmp;
-        magicCircle.GetComponent<MagicCircle>().circleDisabled = true;
+        magicCircle.SetActive(false);
     }
 
 
@@ -154,7 +148,7 @@ public class SharedCharacterController : MonoBehaviour
         if (null == magicCircle || null == circleColor)
             return;
 
-        magicCircle.GetComponent<SpriteRenderer>().color = circleColor;
-        magicCircle.GetComponent<MagicCircle>().circleDisabled = false;
+        magicCircle.SetActive(true);
+
     }
 }
