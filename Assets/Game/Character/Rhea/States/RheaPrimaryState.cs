@@ -9,6 +9,7 @@ public class RheaPrimaryState : RheaState
     override public void Enter(RheaStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
         input.anim.Play("Cast");
+        AudioManager.instance.Play("RheaSpellCasting1");
     }
 
     override public void Update(RheaStateInput input)

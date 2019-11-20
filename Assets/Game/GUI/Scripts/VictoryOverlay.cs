@@ -26,12 +26,18 @@ public class VictoryOverlay : MonoBehaviour
 
     private float transitionTimer;
     private bool transitionDone;
+    public GameObject MainTheme;
+    private AudioSource MainThemeSource;
+    public GameObject VictoryTheme;
+    private AudioSource MainVictoryTheme;
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
         MatchManager.Instance.OnVictoryAction += OnVictoryAction;
+        MainThemeSource = MainTheme.GetComponent<AudioSource>();
+        MainVictoryTheme = VictoryTheme.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,6 +58,9 @@ public class VictoryOverlay : MonoBehaviour
         victorText.text = "(P" + (playerNumber + 1) + ") " + victorCharacterString;
         victorImage.sprite = characterVictorySprites[(int)victorCharacter];
         anim.Play("VictoryOverlay");
+        MainThemeSource.mute = true;
+        MainVictoryTheme.Play();
+
         StartCoroutine(BlurAndFade());
     }
 

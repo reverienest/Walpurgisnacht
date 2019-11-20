@@ -33,6 +33,7 @@ public class SeleneTeleportState : SeleneState
 
         state = Sequence.ENTER_HOLE;
         input.anim.Play("EnterHole");
+        AudioManager.instance.Play("SeleneTeleportEnter");
     }
 
     override public void Update(SeleneStateInput input)
@@ -46,6 +47,7 @@ public class SeleneTeleportState : SeleneState
                 character.transform.position = travelDestination;
                 state = Sequence.EXIT_HOLE;
                 input.anim.Play("ExitHole");
+                AudioManager.instance.Play("SeleneTeleportExit");
             }
         }
     }
@@ -54,6 +56,7 @@ public class SeleneTeleportState : SeleneState
     {
         state = Sequence.EXIT_HOLE;
         input.anim.Play("ExitHole");
+        AudioManager.instance.Play("SeleneTeleportExit");
     }
 
     override public void OnAnimationEvent(string eventName)

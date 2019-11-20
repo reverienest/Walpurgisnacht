@@ -68,14 +68,17 @@ public abstract class RheaState : CharacterState<Rhea, RheaState, RheaStateInput
         if (prevHorizontalMovement != horizontalMovement && horizontalMovement != 0)
         {
             input.anim.Play("Move");
+            AudioManager.instance.Play("RheaMove");
             input.sr.flipX = horizontalMovement == 1;
         }
         else if (!prevMoving && verticalMovement != 0)
         {
             input.anim.Play("Move");
+            AudioManager.instance.Play("RheaMove");
         }
         else if (!moving && prevMoving)
         {
+            AudioManager.instance.Stop("RheaMove");
             input.anim.Play("Idle");
         }
         prevHorizontalMovement = horizontalMovement;
