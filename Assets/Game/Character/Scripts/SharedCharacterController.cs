@@ -145,7 +145,7 @@ public class SharedCharacterController : MonoBehaviour
     private void OnLastWordEnd()
     {
         // last word has ended, try to enable our circle
-        if (null == magicCircle || null == circleColor)
+        if (null == magicCircle)
             return;
 
         magicCircle.SetActive(true);

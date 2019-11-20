@@ -1,12 +1,14 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
     public static AudioManager instance;
+
     void Awake()
     {
         if (instance == null)
@@ -28,10 +30,34 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    static IEnumerator FadeIn(Sound s, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = s.volume;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            s.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
+
+    private void FadeinCaller(Sound s, float duration, float targetVolume)
+    {
+        StartCoroutine(FadeIn(s, duration, targetVolume));
+    }
+
     public void Play (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+        if(s.fade == true)
+        {
+            FadeInCaller(s, 1, 3);
+        }
+
         if (s.source == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
