@@ -7,13 +7,11 @@ public class RheaShieldState : RheaState
 
     override public void Enter(RheaStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
-        input.slowSprite.enabled = false;
         shield = UnityEngine.Object.Instantiate(input.shieldPrefab, character.transform);
     }
 
     override public void Update(RheaStateInput input)
     {
-        input.slowSprite.enabled = false;
         if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
         {
             MatchManager.Instance.StartLastWord(input.cc.playerNumber);
