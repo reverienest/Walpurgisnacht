@@ -16,7 +16,7 @@ MonoBehaviour:
   dashDuration: 0.3
   shieldPrefab: {fileID: 3468574417592078, guid: 8ea076bf608a541ce95073158aa7de92,
     type: 3}
-  hitbox: {fileID: 8302348499803545286}
+  hitbox: {fileID: 338376388538536845}
 --- !u!114 &-8307635674473614645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,11 +83,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhea
       objectReference: {fileID: 0}
-    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fa399829902e61b4ea647d28466d793f, type: 2}
     - target: {fileID: 6313812592357874239, guid: 229099dc1155e2d468579de6896f1acd,
         type: 3}
       propertyPath: m_Sprite
@@ -159,6 +154,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2274170633725359417, guid: 229099dc1155e2d468579de6896f1acd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fa399829902e61b4ea647d28466d793f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229099dc1155e2d468579de6896f1acd, type: 3}
 --- !u!1 &4496494981954801050 stripped
@@ -167,9 +167,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7636391126221395878}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8302348499803545286 stripped
+--- !u!1 &338376388538536845 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1931539272516929888, guid: 229099dc1155e2d468579de6896f1acd,
+  m_CorrespondingSourceObject: {fileID: 7875615754516104235, guid: 229099dc1155e2d468579de6896f1acd,
     type: 3}
   m_PrefabInstance: {fileID: 7636391126221395878}
   m_PrefabAsset: {fileID: 0}
