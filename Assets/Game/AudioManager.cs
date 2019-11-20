@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    static IEnumerator FadeIn(Sound s, float duration, float targetVolume)
+    /*static IEnumerator FadeIn(Sound s, float duration, float targetVolume)
     {
         float currentTime = 0;
         float start = s.volume;
@@ -44,23 +44,33 @@ public class AudioManager : MonoBehaviour
         yield break;
     }
 
-    private void FadeinCaller(Sound s, float duration, float targetVolume)
+    private void FadeInCaller(Sound s, float duration, float targetVolume)
     {
         StartCoroutine(FadeIn(s, duration, targetVolume));
-    }
+    }*/
 
     public void Play (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if(s.loop == false)
+        {
+            s.source.volume = 2;
+        }
         s.source.Play();
-        if(s.fade == true)
+        /*if(s.fade == true)
         {
             FadeInCaller(s, 1, 3);
-        }
+        }*/
 
         if (s.source == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
         }
+    }
+
+    public void Stop (string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Stop();
     }
 }

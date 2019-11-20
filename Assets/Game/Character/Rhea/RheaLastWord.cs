@@ -64,7 +64,7 @@ public class RheaLastWord : MonoBehaviour
             go.GetComponent<Rigidbody2D>().velocity = shotVelocity;
             go.transform.right = shotVelocity;
             //Rhea's Last Word Sequence Sound
-            AudioManager.instance.Play("RheaLastWordSequence");
+                AudioManager.instance.Play("RheaLastWordSequence");
 
         }
     }

@@ -12,7 +12,7 @@ public class Sound
     [Range(.1f, 3f)]
     public float pitch;
     public bool loop;
-    public bool fade;
+    //public bool fade;
 
     [HideInInspector]
     public AudioSource source;

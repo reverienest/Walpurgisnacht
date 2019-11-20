@@ -28,6 +28,7 @@ public class MenuNavigator : MonoBehaviour
     void Start()
     {
         Current = start;
+        InputMap.Instance.inputEnabled = true;
     }
 
     void Update()

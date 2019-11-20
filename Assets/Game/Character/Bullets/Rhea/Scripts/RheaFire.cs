@@ -53,8 +53,14 @@ public class RheaFire : MonoBehaviour
             temp.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
             temp.GetComponent<Rigidbody2D>().velocity = shotVelocity;
             temp.transform.right = shotVelocity;
+            
             yield return new WaitForSeconds(.1f);
+            if(Random.Range(1,3) == 1)
+            {
+                AudioManager.instance.Play("RheaLastWordSequence");
+            }
         }
+        AudioManager.instance.Stop("RheaLastWordSequence");
     }
 
     public void RheaHeavy(Vector2 startShot)
