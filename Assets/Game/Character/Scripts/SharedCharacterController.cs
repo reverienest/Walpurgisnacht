@@ -144,7 +144,7 @@ public class SharedCharacterController : MonoBehaviour
         Color tmp = magicCircle.GetComponent<SpriteRenderer>().color;
         tmp.a = 0f;
         magicCircle.GetComponent<SpriteRenderer>().color = tmp;
-        magicCircle.GetComponent<MagicCircle>().CircleDisabled = true;
+        magicCircle.GetComponent<MagicCircle>().circleDisabled = true;
     }
 
 
@@ -155,6 +155,6 @@ public class SharedCharacterController : MonoBehaviour
             return;
 
         magicCircle.GetComponent<SpriteRenderer>().color = circleColor;
-        magicCircle.GetComponent<MagicCircle>().CircleDisabled = false;
+        magicCircle.GetComponent<MagicCircle>().circleDisabled = false;
     }
 }
