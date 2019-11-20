@@ -40,6 +40,7 @@ public class RheaFire : MonoBehaviour
 
     public IEnumerator RheaPrimary(Vector2 startShot)
     {
+        Vector2 tarDir = this.tarDir; // Capture it at the beginning
         for(int i = 0; i < primaryProjectiles; i++)
         {
             float angle = (Random.Range(-0.15f * Mathf.PI, 0.15f * Mathf.PI) + Mathf.Atan2(tarDir.y, tarDir.x)) * Mathf.Rad2Deg;
@@ -65,12 +66,12 @@ public class RheaFire : MonoBehaviour
 
     public void RheaHeavy(Vector2 startShot)
     {
-        float angle = (Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg) -  (60f/2);
+        float angle = (Mathf.Atan2(tarDir.y, tarDir.x) * Mathf.Rad2Deg) -  (60f/ heavyProjectiles);
 
         for(int i = 0; i < heavyProjectiles; i++)
         {
             float shotDirX = Mathf.Cos(angle * Mathf.Deg2Rad);
-            float shotDirY = Mathf.Sin(angle * Mathf.Rad2Deg);
+            float shotDirY = Mathf.Sin(angle * Mathf.Deg2Rad);
 
             Vector2 shotVelocity = new Vector2(shotDirX, shotDirY) * heavySpeed;
 
@@ -79,7 +80,7 @@ public class RheaFire : MonoBehaviour
             temp.GetComponent<Rigidbody2D>().velocity = shotVelocity;
             temp.transform.right = shotVelocity;
 
-            angle += 60 / (heavyProjectiles + 1);
+            angle += 60 / (heavyProjectiles);
         }
     }
 

@@ -49,9 +49,12 @@ MonoBehaviour:
   characterPrefabs:
   - {fileID: 5494616695495671793, guid: 9e08071e718676241bd15ee0ef04fe61, type: 3}
   - {fileID: 4965133680744376420, guid: 2c799703f2ea1c743a9ddc062b4844d6, type: 3}
-  characterHeadshots:
+  characterRegularHeadshots:
   - {fileID: 21300000, guid: 38aeea35e1ad6f74fbc9f0bce695656a, type: 3}
   - {fileID: 21300000, guid: d9a59b53224cf0f4fafd93872a218b92, type: 3}
+  characterLastWordHeadshots:
+  - {fileID: 21300000, guid: b722fed96be740d4cb110ca1b40f98c9, type: 3}
+  - {fileID: 21300000, guid: 9c5807a17d3c3fc4f826963871906e25, type: 3}
   winsNeeded: 3
   roundStartString: Let's Dance!
   lastWordDuration: 30

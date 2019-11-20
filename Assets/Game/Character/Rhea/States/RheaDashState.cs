@@ -13,9 +13,9 @@ public class RheaDashState : RheaState
         direction = input.cc.LastDirection.normalized;
         travelTimer = input.dashDuration;
         dashSpeed = input.dashSpeed;
-
-        input.anim.Play("Move");
+        
         AudioManager.instance.Play("RheaDash");
+        input.anim.Play("Dash");
     }
 
     override public void Update(RheaStateInput input)
