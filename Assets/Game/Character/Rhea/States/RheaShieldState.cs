@@ -13,10 +13,6 @@ public class RheaShieldState : RheaState
 
     override public void Update(RheaStateInput input)
     {
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
-        {
-            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
-        }
         if (shield == null)
         {
             if (character.softTransitionChangeState != null)
