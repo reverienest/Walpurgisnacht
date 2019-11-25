@@ -35,6 +35,7 @@ public class SplashText : MonoBehaviour
         text.text = textString;
 
         anim.Play("SplashText");
+        AudioManager.instance.Play("GameBegin");
     }
 
     private void OnAnimationEnd()

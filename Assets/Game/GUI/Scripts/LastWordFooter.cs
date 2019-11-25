@@ -32,6 +32,7 @@ public class LastWordFooter : MonoBehaviour
     {
         titleText.text = lastWordNames[(int)CharacterSelection.Instance.GetPlayerCharacterType(playerNumber)];
         anim.Play("LastWordIn");
+        AudioManager.instance.Play("LastWordCasting");
     }
 
     private void OnLastWordEnd()

@@ -8,14 +8,11 @@ public class RheaShieldState : RheaState
     override public void Enter(RheaStateInput input, CharacterStateTransitionInfo transitionInfo = null)
     {
         shield = UnityEngine.Object.Instantiate(input.shieldPrefab, character.transform);
+        AudioManager.instance.Play("RheaIntrinsicShield");
     }
 
     override public void Update(RheaStateInput input)
     {
-        if (SpellMap.Instance.GetSpellDown(input.cc.playerNumber, SpellType.PRIM))
-        {
-            MatchManager.Instance.StartLastWord(input.cc.playerNumber);
-        }
         if (shield == null)
         {
             if (character.softTransitionChangeState != null)
@@ -23,7 +20,7 @@ public class RheaShieldState : RheaState
             else
                 character.ChangeState<RheaIdleState>();
         }
-
+        AudioManager.instance.Play("RheaIntrinsicShieldAway");
         HandleMoveAnimation(input);
     }
 

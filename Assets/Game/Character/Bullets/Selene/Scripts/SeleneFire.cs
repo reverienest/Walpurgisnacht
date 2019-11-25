@@ -80,7 +80,6 @@ public class SeleneFire : MonoBehaviour
             yield return new WaitForSeconds(.4f);
             tempProjectiles = tempProjectiles - 1;
         }
-
     }
 
     public IEnumerator SeleneHeavy()
@@ -123,6 +122,7 @@ public class SeleneFire : MonoBehaviour
                 StartCoroutine(bulletList[i].IntrinsicMutate());
             }
         }
+        AudioManager.instance.Play("SeleneIntrinsic1");
     }
 
     public void SLastWord(float offset)
@@ -151,5 +151,6 @@ public class SeleneFire : MonoBehaviour
         GameObject tempObj = Instantiate(lastWordLargePrefab, startShot, Quaternion.identity);
         tempObj.GetComponent<SharedBullet>().playerNumber = charCon.playerNumber;
         tempObj.GetComponent<Rigidbody2D>().velocity = shotDirection;
+        AudioManager.instance.Play("SeleneLastWordSequence");
     }
 }
